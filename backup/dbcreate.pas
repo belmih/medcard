@@ -41,7 +41,7 @@ const
   tablesAnswers: string = ' CREATE TABLE answers (' +
     ' id          INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE NOT NULL,' +
     ' answerorder INTEGER,'+
-    ' question_id INTEGER REFERENCES questions,'
+    ' question_id INTEGER REFERENCES questions,'+
     ' answertext  TEXT,'+
     ' points      INTEGER );';
 
@@ -51,25 +51,26 @@ const
     ' level1       INTEGER,'+
     ' level2       INTEGER,'+
     ' level3       INTEGER,'+
-    ' questiontext TEXT,'
+    ' questiontext TEXT,'+
     ' answertext   TEXT,'+
     ' points       INTEGER );';
 
-procedure dbcreate(SQLite3Connection1: TSQLite3Connection);
+procedure dbcreate;
 
  implementation
- procedure dbcreate(SQLite3Connection1: TSQLite3Connection);
+ uses LoginForm;
+
+ procedure dbcreate;
  begin
-   SQLIte3Connection1.ExecuteDirect(tableUsers);
-   SQLIte3Connection1.ExecuteDirect(tableDoctors);
-   SQLIte3Connection1.ExecuteDirect(tableActions);
-   SQLIte3Connection1.ExecuteDirect(tableQuestions);
-   SQLIte3Connection1.ExecuteDirect(tablesAnswers);
-   SQLIte3Connection1.ExecuteDirect(tablesResults);
-
-   SQLIte3Connection1.ExecuteDirect('CREATE UNIQUE INDEX "users_id_idx" on users(id);');
-
- end;
+   Form1.SQLIte3Connection1.ExecuteDirect(tableUsers);
+   Form1.SQLIte3Connection1.ExecuteDirect(tableDoctors);
+   Form1.SQLIte3Connection1.ExecuteDirect(tableActions);
+   Form1.SQLIte3Connection1.ExecuteDirect(tableQuestions);
+   Form1.SQLIte3Connection1.ExecuteDirect(tablesAnswers);
+   Form1.SQLIte3Connection1.ExecuteDirect(tablesResults);
+   Form1.SQLIte3Connection1.ExecuteDirect('insert into users(login, password, role) values("admin","qwerty","admin");');
+   Form1.SQLIte3Connection1.ExecuteDirect('CREATE UNIQUE INDEX "users_id_idx" on users(id);');
+end;
 
 end.
 

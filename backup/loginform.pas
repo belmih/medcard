@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, sqlite3conn, sqldb, FileUtil, Forms, Controls, Graphics,
-  Dialogs, StdCtrls, dbcreate;
+  Dialogs, StdCtrls, dbcreate, mform;
 
 type
 
@@ -14,13 +14,15 @@ type
 
   TForm1 = class(TForm)
     Button1: TButton;
-    Edit1: TEdit;
-    Edit2: TEdit;
+    eLogin: TEdit;
+    ePassword: TEdit;
     Label1: TLabel;
     Label2: TLabel;
-    SQLite3Connection1: TSQLite3Connection;
-    SQLQuery1: TSQLQuery;
-    SQLTransaction1: TSQLTransaction;
+    SQLite3Conn: TSQLite3Connection;
+    SQLQueryDoctors: TSQLQuery;
+    SQLQueryUsers: TSQLQuery;
+    SQLTransact: TSQLTransaction;
+    procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   private
     procedure InitDb;
@@ -42,12 +44,36 @@ procedure TForm1.FormCreate(Sender: TObject);
 begin
   CurDir := ExtractFilePath(Application.ExeName);
   databasefile := CurDir + 'database.db';
-  SQLite3Connection1.CharSet := 'UTF8';
-  SQLite3Connection1.Transaction := SQLTransaction1;
-  SQLite3Connection1.DatabaseName := databasefile;
-  SQLTransaction1.DataBase := SQLite3Connection1;
-  SQLQuery1.DataBase := SQLite3Connection1;
+  SQLite3Conn.CharSet := 'UTF8';
+  SQLite3Conn.Transaction := SQLTransact;
+  SQLite3Conn.DatabaseName := databasefile;
+  SQLTransact.DataBase := SQLite3Conn;
+  SQLQueryUsers.DataBase := SQLite3Conn;
   InitDb;
+end;
+
+procedure TForm1.Button1Click(Sender: TObject);
+var
+  showMainForm: Boolean;
+begin
+  showMainForm:=False;
+  SQLQueryUsers.Close;
+  SQLQueryUsers.SQL.Text := 'select id from users where login = :l and password = :p';
+  SQLQueryUsers.ParamByName('l').AsString := eLogin.Text;
+  SQLQueryUsers.ParamByName('p').AsString := ePassword.Text;
+  SQLTransact.Active := True;
+  SQLQueryUsers.Open;
+  SQLQueryUsers.First;
+  if not SQLQueryUsers.EOF then
+  begin
+    showMainForm:=True;
+  end;
+  SQLQueryUsers.Close;
+  if showMainForm then
+  begin
+    Form1.Hide;
+    Form2.Show;
+  end;
 end;
 
 procedure TForm1.InitDb;
@@ -56,18 +82,19 @@ var
 begin
   try
     newdb := not FileExists(databasefile);
-    SQLIte3Connection1.Open;
+    SQLite3Conn.Open;
     if newdb then
     begin
-      SQLTransaction1.Active := True;
-      dbcreate.dbcreate(SQLite3Connection1);
-      SQLTransaction1.Commit;
+      SQLTransact.Active := True;
+      dbcreate.dbcreate;
+      SQLTransact.Commit;
       ShowMessage('Была создана новая БД!');
     end;
+    SQLite3Conn.ExecuteDirect('PRAGMA foreign_keys = ON;');
   except
     ShowMessage('Ошибка подключения к базе!');
   end;
-  SQLIte3Connection1.ExecuteDirect('PRAGMA foreign_keys = ON;');
+
 end;
 
 end.

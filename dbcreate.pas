@@ -55,21 +55,22 @@ const
     ' answertext   TEXT,'+
     ' points       INTEGER );';
 
-procedure dbcreate(SQLite3Connection1: TSQLite3Connection);
+procedure dbcreate;
 
  implementation
- procedure dbcreate(SQLite3Connection1: TSQLite3Connection);
+ uses LoginForm;
+
+ procedure dbcreate;
  begin
-   SQLIte3Connection1.ExecuteDirect(tableUsers);
-   SQLIte3Connection1.ExecuteDirect(tableDoctors);
-   SQLIte3Connection1.ExecuteDirect(tableActions);
-   SQLIte3Connection1.ExecuteDirect(tableQuestions);
-   SQLIte3Connection1.ExecuteDirect(tablesAnswers);
-   SQLIte3Connection1.ExecuteDirect(tablesResults);
-
-   SQLIte3Connection1.ExecuteDirect('CREATE UNIQUE INDEX "users_id_idx" on users(id);');
-
- end;
+   Form1.SQLIte3Conn.ExecuteDirect(tableUsers);
+   Form1.SQLIte3Conn.ExecuteDirect(tableDoctors);
+   Form1.SQLIte3Conn.ExecuteDirect(tableActions);
+   Form1.SQLIte3Conn.ExecuteDirect(tableQuestions);
+   Form1.SQLIte3Conn.ExecuteDirect(tablesAnswers);
+   Form1.SQLIte3Conn.ExecuteDirect(tablesResults);
+   Form1.SQLIte3Conn.ExecuteDirect('insert into users(login, password, role) values("admin","qwerty","admin");');
+   Form1.SQLIte3Conn.ExecuteDirect('CREATE UNIQUE INDEX "users_id_idx" on users(id);');
+end;
 
 end.
 

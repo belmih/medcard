@@ -1,0 +1,8 @@
+object MainForm1: TMainForm1
+  Left = 932
+  Height = 243
+  Top = 290
+  Width = 320
+  Caption = 'medcard'
+  LCLVersion = '1.8.0.6'
+end

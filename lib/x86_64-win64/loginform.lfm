@@ -1,12 +1,13 @@
 object Form1: TForm1
-  Left = 381
+  Left = 377
   Height = 240
-  Top = 110
+  Top = 164
   Width = 320
   Caption = 'medcard'
   ClientHeight = 240
   ClientWidth = 320
   OnCreate = FormCreate
+  Position = poDesktopCenter
   LCLVersion = '1.8.0.6'
   object Label1: TLabel
     Left = 63
@@ -24,21 +25,23 @@ object Form1: TForm1
     Caption = 'Label2'
     ParentColor = False
   end
-  object Edit1: TEdit
-    Left = 66
+  object eLogin: TEdit
+    Left = 64
     Height = 23
     Top = 73
     Width = 80
     TabOrder = 0
-    Text = 'Edit1'
+    Text = 'admin'
   end
-  object Edit2: TEdit
+  object ePassword: TEdit
     Left = 74
     Height = 23
     Top = 131
     Width = 80
+    EchoMode = emPassword
+    PasswordChar = '*'
     TabOrder = 1
-    Text = 'Edit2'
+    Text = 'qwerty'
   end
   object Button1: TButton
     Left = 192
@@ -46,24 +49,54 @@ object Form1: TForm1
     Top = 178
     Width = 75
     Caption = 'Button1'
+    OnClick = Button1Click
     TabOrder = 2
   end
-  object SQLite3Connection1: TSQLite3Connection
-    Connected = False
+  object SQLite3Conn: TSQLite3Connection
+    Connected = True
     LoginPrompt = False
+    DatabaseName = 'database.db'
     KeepConnection = False
-    left = 232
-    top = 96
+    Transaction = SQLTransact
+    left = 48
+    top = 8
   end
-  object SQLTransaction1: TSQLTransaction
-    Active = False
-    left = 232
+  object SQLTransact: TSQLTransaction
+    Active = True
+    Database = SQLite3Conn
+    left = 168
     top = 16
   end
-  object SQLQuery1: TSQLQuery
+  object SQLQueryUsers: TSQLQuery
     FieldDefs = <>
+    Database = SQLite3Conn
+    Transaction = SQLTransact
     Params = <>
-    left = 72
-    top = 176
+    left = 240
+    top = 32
+  end
+  object SQLQueryDoctors: TSQLQuery
+    IndexName = 'DEFAULT_ORDER'
+    FieldDefs = <    
+      item
+        Name = 'id'
+        DataType = ftAutoInc
+        Precision = -1
+      end    
+      item
+        Name = 'doc'
+        DataType = ftString
+        Precision = -1
+        Size = 255
+      end>
+    Active = True
+    Database = SQLite3Conn
+    Transaction = SQLTransact
+    SQL.Strings = (
+      'select id, fullname || '', '' || post doc from doctors'
+    )
+    Params = <>
+    left = 240
+    top = 104
   end
 end

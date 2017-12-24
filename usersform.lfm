@@ -1,0 +1,140 @@
+object Form3: TForm3
+  Left = 717
+  Height = 630
+  Top = 319
+  Width = 1045
+  Caption = 'Пользователи'
+  ClientHeight = 630
+  ClientWidth = 1045
+  OnCreate = FormCreate
+  LCLVersion = '1.8.0.6'
+  object DBGrid1: TDBGrid
+    Left = 16
+    Height = 504
+    Top = 104
+    Width = 904
+    AutoFillColumns = True
+    Color = clWindow
+    Columns = <    
+      item
+        Title.Caption = 'id'
+        Width = 217
+        FieldName = 'id'
+      end    
+      item
+        Title.Caption = 'login'
+        Width = 217
+        FieldName = 'login'
+        DisplayFormat = '%s'
+      end    
+      item
+        Title.Caption = 'password'
+        Width = 217
+        FieldName = 'password'
+      end    
+      item
+        Title.Caption = 'role'
+        Width = 220
+        FieldName = 'role'
+      end>
+    DataSource = DataSource1
+    TabOrder = 0
+    OnCellClick = DBGrid1CellClick
+    OnPrepareCanvas = DBGrid1PrepareCanvas
+  end
+  object Button1: TButton
+    Left = 944
+    Height = 25
+    Top = 104
+    Width = 75
+    Caption = 'Добавить'
+    TabOrder = 1
+  end
+  object Button2: TButton
+    Left = 944
+    Height = 25
+    Top = 152
+    Width = 75
+    Caption = 'Изменить'
+    TabOrder = 2
+  end
+  object Button3: TButton
+    Left = 944
+    Height = 25
+    Top = 208
+    Width = 75
+    Caption = 'Удалить'
+    TabOrder = 3
+  end
+  object Button4: TButton
+    Left = 944
+    Height = 25
+    Top = 264
+    Width = 75
+    Caption = 'Обновить'
+    TabOrder = 4
+  end
+  object eLogin: TEdit
+    Left = 304
+    Height = 23
+    Top = 48
+    Width = 80
+    TabOrder = 5
+    Text = 'eLogin'
+  end
+  object ePassword: TEdit
+    Left = 512
+    Height = 23
+    Top = 48
+    Width = 80
+    TabOrder = 6
+    Text = 'ePassword'
+  end
+  object Edit3: TEdit
+    Left = 736
+    Height = 23
+    Top = 48
+    Width = 80
+    TabOrder = 7
+    Text = 'Edit3'
+  end
+  object DataSource1: TDataSource
+    DataSet = SQLQuery1
+    left = 104
+    top = 464
+  end
+  object SQLQuery1: TSQLQuery
+    FieldDefs = <    
+      item
+        Name = 'id'
+        DataType = ftInteger
+        Precision = -1
+      end    
+      item
+        Name = 'login'
+        DataType = ftMemo
+        Precision = -1
+      end    
+      item
+        Name = 'password'
+        DataType = ftMemo
+        Precision = -1
+      end    
+      item
+        Name = 'role'
+        DataType = ftMemo
+        Precision = -1
+      end>
+    Database = Form1.SQLite3Conn
+    Transaction = Form1.SQLTransact
+    SQL.Strings = (
+      'select * from users'
+    )
+    RefreshSQL.Strings = (
+      'select * from users'
+    )
+    Params = <>
+    left = 56
+    top = 464
+  end
+end
