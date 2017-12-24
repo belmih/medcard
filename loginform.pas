@@ -23,11 +23,10 @@ type
     SQLTransaction1: TSQLTransaction;
     procedure FormCreate(Sender: TObject);
   private
-
+    procedure InitDb;
   public
 
   end;
-
 var
   Form1: TForm1;
   databasefile: string;
@@ -46,18 +45,29 @@ begin
   SQLite3Connection1.CharSet := 'UTF8';
   SQLite3Connection1.Transaction := SQLTransaction1;
   SQLite3Connection1.DatabaseName := databasefile;
-  if not FileExists(databasefile) then
-  begin
-    dbcreate.DBCreate(SQLIte3Connection1);
-  end;
-  try  // пробуем подключится к базе
+  SQLTransaction1.DataBase := SQLite3Connection1;
+  SQLQuery1.DataBase := SQLite3Connection1;
+  InitDb;
+end;
+
+procedure TForm1.InitDb;
+var
+  newdb: Boolean;
+begin
+  try
+    newdb := not FileExists(databasefile);
     SQLIte3Connection1.Open;
-    SQLTransaction1.Active := True;
-    SQLIte3Connection1.Connected := True;
-  except   // если не удалось то выводим сообщение о ошибке
+    if newdb then
+    begin
+      SQLTransaction1.Active := True;
+      dbcreate.dbcreate(SQLite3Connection1);
+      SQLTransaction1.Commit;
+      ShowMessage('Была создана новая БД!');
+    end;
+  except
     ShowMessage('Ошибка подключения к базе!');
   end;
-
+  SQLIte3Connection1.ExecuteDirect('PRAGMA foreign_keys = ON;');
 end;
 
 end.
