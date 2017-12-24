@@ -6,6 +6,7 @@ object Form1: TForm1
   Caption = 'medcard'
   ClientHeight = 240
   ClientWidth = 320
+  OnCreate = FormCreate
   LCLVersion = '1.8.0.6'
   object Label1: TLabel
     Left = 63
@@ -46,5 +47,23 @@ object Form1: TForm1
     Width = 75
     Caption = 'Button1'
     TabOrder = 2
+  end
+  object SQLite3Connection1: TSQLite3Connection
+    Connected = False
+    LoginPrompt = False
+    KeepConnection = False
+    left = 232
+    top = 96
+  end
+  object SQLTransaction1: TSQLTransaction
+    Active = False
+    left = 232
+    top = 16
+  end
+  object SQLQuery1: TSQLQuery
+    FieldDefs = <>
+    Params = <>
+    left = 72
+    top = 176
   end
 end

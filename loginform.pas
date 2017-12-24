@@ -5,7 +5,8 @@ unit LoginForm;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls;
+  Classes, SysUtils, sqlite3conn, sqldb, FileUtil, Forms, Controls, Graphics,
+  Dialogs, StdCtrls, dbcreate;
 
 type
 
@@ -17,6 +18,10 @@ type
     Edit2: TEdit;
     Label1: TLabel;
     Label2: TLabel;
+    SQLite3Connection1: TSQLite3Connection;
+    SQLQuery1: TSQLQuery;
+    SQLTransaction1: TSQLTransaction;
+    procedure FormCreate(Sender: TObject);
   private
 
   public
@@ -25,10 +30,35 @@ type
 
 var
   Form1: TForm1;
+  databasefile: string;
+  CurDir: string;
 
 implementation
 
 {$R *.lfm}
+
+{ TForm1 }
+
+procedure TForm1.FormCreate(Sender: TObject);
+begin
+  CurDir := ExtractFilePath(Application.ExeName);
+  databasefile := CurDir + 'database.db';
+  SQLite3Connection1.CharSet := 'UTF8';
+  SQLite3Connection1.Transaction := SQLTransaction1;
+  SQLite3Connection1.DatabaseName := databasefile;
+  if not FileExists(databasefile) then
+  begin
+    dbcreate.DBCreate(SQLIte3Connection1);
+  end;
+  try  // пробуем подключится к базе
+    SQLIte3Connection1.Open;
+    SQLTransaction1.Active := True;
+    SQLIte3Connection1.Connected := True;
+  except   // если не удалось то выводим сообщение о ошибке
+    ShowMessage('Ошибка подключения к базе!');
+  end;
+
+end;
 
 end.
 
