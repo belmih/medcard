@@ -15,17 +15,23 @@
         <UsageCount Value="20"/>
       </Unit0>
       <Unit1>
-        <Filename Value="unit1.pas"/>
+        <Filename Value="loginform.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="Form1"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="Unit1"/>
+        <UnitName Value="LoginForm"/>
         <IsVisibleTab Value="True"/>
+        <CursorPos X="7" Y="2"/>
         <UsageCount Value="20"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
     </Units>
-    <JumpHistory HistoryIndex="-1"/>
+    <JumpHistory Count="1">
+      <Position1>
+        <Filename Value="loginform.pas"/>
+        <Caret Line="2" Column="7"/>
+      </Position1>
+    </JumpHistory>
   </ProjectSession>
 </CONFIG>
