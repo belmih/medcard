@@ -8,9 +8,9 @@
       <Unit0>
         <Filename Value="medcard.lpr"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="1"/>
-        <CursorPos X="41" Y="20"/>
-        <UsageCount Value="28"/>
+        <EditorIndex Value="2"/>
+        <CursorPos X="14" Y="20"/>
+        <UsageCount Value="43"/>
         <Loaded Value="True"/>
       </Unit0>
       <Unit1>
@@ -20,9 +20,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="LoginForm"/>
-        <TopLine Value="43"/>
-        <CursorPos X="3" Y="45"/>
-        <UsageCount Value="28"/>
+        <TopLine Value="88"/>
+        <CursorPos X="3" Y="121"/>
+        <UsageCount Value="43"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
@@ -31,8 +31,8 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="6"/>
         <TopLine Value="32"/>
-        <CursorPos X="21" Y="65"/>
-        <UsageCount Value="28"/>
+        <CursorPos X="14" Y="46"/>
+        <UsageCount Value="43"/>
         <Loaded Value="True"/>
       </Unit2>
       <Unit3>
@@ -42,10 +42,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
-        <EditorIndex Value="3"/>
-        <TopLine Value="39"/>
-        <CursorPos X="2" Y="74"/>
-        <UsageCount Value="25"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="141"/>
+        <CursorPos X="7" Y="155"/>
+        <UsageCount Value="40"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit3>
@@ -56,9 +56,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="64"/>
-        <CursorPos X="5" Y="98"/>
-        <UsageCount Value="24"/>
+        <TopLine Value="46"/>
+        <CursorPos X="19" Y="65"/>
+        <UsageCount Value="39"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit4>
@@ -70,7 +70,7 @@
         <UnitName Value="doctorsform"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="26" Y="13"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="18"/>
       </Unit5>
       <Unit6>
         <Filename Value="form5.pas"/>
@@ -80,29 +80,29 @@
         <UnitName Value="qform5"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="37" Y="6"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="18"/>
       </Unit6>
       <Unit7>
         <Filename Value="..\..\..\Downloads\persons-master\persons-master\persons.pas"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="11"/>
+        <UsageCount Value="9"/>
       </Unit7>
       <Unit8>
         <Filename Value="..\..\..\Downloads\persons-master\persons-master\unit1.pas"/>
         <HasResources Value="True"/>
         <UnitName Value="Unit1"/>
         <EditorIndex Value="5"/>
-        <TopLine Value="117"/>
+        <TopLine Value="464"/>
         <CursorPos X="42" Y="431"/>
-        <UsageCount Value="14"/>
+        <UsageCount Value="22"/>
         <Loaded Value="True"/>
       </Unit8>
       <Unit9>
         <Filename Value="C:\lazarus\lcl\include\control.inc"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="3"/>
         <TopLine Value="3830"/>
         <CursorPos X="13" Y="3834"/>
-        <UsageCount Value="11"/>
+        <UsageCount Value="19"/>
         <Loaded Value="True"/>
       </Unit9>
       <Unit10>
@@ -110,14 +110,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="539"/>
         <CursorPos Y="566"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="8"/>
       </Unit10>
       <Unit11>
         <Filename Value="C:\lazarus\lcl\include\wincontrol.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="8196"/>
         <CursorPos Y="8233"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="8"/>
       </Unit11>
       <Unit12>
         <Filename Value="mainform.pas"/>
@@ -125,129 +125,129 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="17" Y="6"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="18"/>
       </Unit12>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="mform.pas"/>
-        <Caret Line="62" Column="14" TopLine="25"/>
+        <Caret Line="95" Column="40" TopLine="73"/>
       </Position1>
       <Position2>
         <Filename Value="mform.pas"/>
-        <Caret Line="63" Column="14" TopLine="26"/>
+        <Caret Line="110" Column="19" TopLine="75"/>
       </Position2>
       <Position3>
         <Filename Value="mform.pas"/>
-        <Caret Line="64" Column="14" TopLine="27"/>
+        <Caret Line="85" Column="24" TopLine="71"/>
       </Position3>
       <Position4>
-        <Filename Value="loginform.pas"/>
-        <Caret Line="44" Column="3" TopLine="42"/>
+        <Filename Value="mform.pas"/>
+        <Caret Line="86" Column="24" TopLine="72"/>
       </Position4>
       <Position5>
-        <Filename Value="medcard.lpr"/>
-        <Caret Line="10" Column="47"/>
+        <Filename Value="mform.pas"/>
+        <Caret Line="88" Column="24" TopLine="74"/>
       </Position5>
       <Position6>
-        <Filename Value="medcard.lpr"/>
-        <Caret Line="20" Column="41"/>
+        <Filename Value="mform.pas"/>
+        <Caret Line="132" Column="4" TopLine="112"/>
       </Position6>
       <Position7>
-        <Filename Value="C:\lazarus\lcl\include\control.inc"/>
-        <Caret Line="3847" Column="9" TopLine="3830"/>
+        <Filename Value="loginform.pas"/>
+        <Caret Line="48" TopLine="16"/>
       </Position7>
       <Position8>
-        <Filename Value="mform.pas"/>
-        <Caret Line="66" Column="14" TopLine="27"/>
+        <Filename Value="loginform.pas"/>
+        <Caret Line="9" Column="39" TopLine="4"/>
       </Position8>
       <Position9>
-        <Filename Value="mform.pas"/>
-        <Caret Line="72" Column="24" TopLine="36"/>
+        <Filename Value="loginform.pas"/>
+        <Caret Line="49" TopLine="16"/>
       </Position9>
       <Position10>
-        <Filename Value="mform.pas"/>
-        <Caret Line="73" Column="3" TopLine="36"/>
+        <Filename Value="loginform.pas"/>
+        <Caret Line="37" Column="2" TopLine="34"/>
       </Position10>
       <Position11>
-        <Filename Value="mform.pas"/>
-        <Caret Line="72" Column="3" TopLine="35"/>
+        <Filename Value="loginform.pas"/>
+        <Caret Line="52" Column="21" TopLine="39"/>
       </Position11>
       <Position12>
         <Filename Value="mform.pas"/>
-        <Caret Line="71" Column="3" TopLine="34"/>
+        <Caret Line="122" Column="14" TopLine="112"/>
       </Position12>
       <Position13>
         <Filename Value="mform.pas"/>
-        <Caret Line="72" Column="3" TopLine="35"/>
+        <Caret Line="79" Column="5" TopLine="65"/>
       </Position13>
       <Position14>
         <Filename Value="mform.pas"/>
-        <Caret Line="71" Column="3" TopLine="34"/>
+        <Caret Line="78" Column="5" TopLine="64"/>
       </Position14>
       <Position15>
         <Filename Value="mform.pas"/>
-        <Caret Line="72" Column="3" TopLine="35"/>
+        <Caret Line="137" Column="33" TopLine="103"/>
       </Position15>
       <Position16>
         <Filename Value="mform.pas"/>
-        <Caret Line="73" Column="3" TopLine="36"/>
+        <Caret Line="138" Column="33" TopLine="104"/>
       </Position16>
       <Position17>
         <Filename Value="mform.pas"/>
-        <Caret Line="72" Column="18" TopLine="37"/>
+        <Caret Line="139" Column="33" TopLine="105"/>
       </Position17>
       <Position18>
         <Filename Value="mform.pas"/>
-        <Caret Line="71" Column="18" TopLine="36"/>
+        <Caret Line="140" Column="33" TopLine="106"/>
       </Position18>
       <Position19>
         <Filename Value="mform.pas"/>
-        <Caret Line="72" Column="18" TopLine="37"/>
+        <Caret Line="148" Column="13" TopLine="108"/>
       </Position19>
       <Position20>
         <Filename Value="mform.pas"/>
-        <Caret Line="73" Column="18" TopLine="38"/>
+        <Caret Line="121" Column="17" TopLine="120"/>
       </Position20>
       <Position21>
         <Filename Value="mform.pas"/>
-        <Caret Line="72" Column="18" TopLine="37"/>
+        <Caret Line="152" Column="7" TopLine="138"/>
       </Position21>
       <Position22>
         <Filename Value="mform.pas"/>
-        <Caret Line="71" Column="18" TopLine="36"/>
+        <Caret Line="153" Column="7" TopLine="139"/>
       </Position22>
       <Position23>
-        <Filename Value="loginform.pas"/>
-        <Caret Line="44" Column="3" TopLine="42"/>
+        <Filename Value="mform.pas"/>
+        <Caret Line="152" Column="7" TopLine="138"/>
       </Position23>
       <Position24>
         <Filename Value="mform.pas"/>
-        <Caret Line="71" Column="18" TopLine="36"/>
+        <Caret Line="153" Column="7" TopLine="139"/>
       </Position24>
       <Position25>
         <Filename Value="mform.pas"/>
-        <Caret Line="70" Column="18" TopLine="35"/>
+        <Caret Line="154" Column="7" TopLine="140"/>
       </Position25>
       <Position26>
         <Filename Value="mform.pas"/>
-        <Caret Line="71" Column="2" TopLine="36"/>
+        <Caret Line="155" Column="7" TopLine="141"/>
       </Position26>
       <Position27>
         <Filename Value="mform.pas"/>
-        <Caret Line="70" Column="2" TopLine="35"/>
+        <Caret Line="156" Column="7" TopLine="142"/>
       </Position27>
       <Position28>
         <Filename Value="mform.pas"/>
-        <Caret Line="71" Column="2" TopLine="36"/>
+        <Caret Line="157" Column="7" TopLine="143"/>
       </Position28>
       <Position29>
         <Filename Value="mform.pas"/>
-        <Caret Line="72" Column="2" TopLine="37"/>
+        <Caret Line="156" Column="7" TopLine="142"/>
       </Position29>
       <Position30>
         <Filename Value="mform.pas"/>
-        <Caret Line="73" Column="2" TopLine="38"/>
+        <Caret Line="155" Column="7" TopLine="141"/>
       </Position30>
     </JumpHistory>
   </ProjectSession>

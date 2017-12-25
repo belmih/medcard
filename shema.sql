@@ -1,0 +1,14 @@
+CREATE TABLE users ( id         INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE NOT NULL, login      TEXT, password   TEXT, role       TEXT);
+;
+CREATE TABLE sqlite_sequence(name,seq);
+CREATE TABLE doctors ( id         INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE NOT NULL, surname    TEXT, name       TEXT, patronymic TEXT, fullname   TEXT, post       TEXT);
+;
+CREATE TABLE actions ( id         INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE NOT NULL, actiondate TIMESTAMP DEFAULT CURRENT_TIMESTAMP, user_id    INTEGER REFERENCES users, doc_id     INTEGER REFERENCES doctors, medcardnum VARCHAR (256));
+;
+CREATE TABLE questions ( id            INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE NOT NULL, level1        INTEGER, level2        INTEGER, level3        INTEGER, questionorder INTEGER, questiontext  TEXT);
+;
+CREATE TABLE answers ( id          INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE NOT NULL, answerorder INTEGER, question_id INTEGER REFERENCES questions, answertext  TEXT, points      INTEGER );
+;
+CREATE TABLE results ( id           INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE NOT NULL, action_id    INTEGER REFERENCES actions, level1       INTEGER, level2       INTEGER, level3       INTEGER, questiontext TEXT, answertext   TEXT, points       INTEGER );
+;
+CREATE UNIQUE INDEX "users_id_idx" on users(id);

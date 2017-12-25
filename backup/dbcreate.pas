@@ -62,14 +62,14 @@ procedure dbcreate;
 
  procedure dbcreate;
  begin
-   Form1.SQLIte3Connection1.ExecuteDirect(tableUsers);
-   Form1.SQLIte3Connection1.ExecuteDirect(tableDoctors);
-   Form1.SQLIte3Connection1.ExecuteDirect(tableActions);
-   Form1.SQLIte3Connection1.ExecuteDirect(tableQuestions);
-   Form1.SQLIte3Connection1.ExecuteDirect(tablesAnswers);
-   Form1.SQLIte3Connection1.ExecuteDirect(tablesResults);
-   Form1.SQLIte3Connection1.ExecuteDirect('insert into users(login, password, role) values("admin","qwerty","admin");');
-   Form1.SQLIte3Connection1.ExecuteDirect('CREATE UNIQUE INDEX "users_id_idx" on users(id);');
+   Form1.SQLIte3Conn.ExecuteDirect(tableUsers);
+   Form1.SQLIte3Conn.ExecuteDirect(tableDoctors);
+   Form1.SQLIte3Conn.ExecuteDirect(tableActions);
+   Form1.SQLIte3Conn.ExecuteDirect(tableQuestions);
+   Form1.SQLIte3Conn.ExecuteDirect(tablesAnswers);
+   Form1.SQLIte3Conn.ExecuteDirect(tablesResults);
+   Form1.SQLIte3Conn.ExecuteDirect('insert into users(login, password, role) values("admin","qwerty","admin");');
+   Form1.SQLIte3Conn.ExecuteDirect('CREATE UNIQUE INDEX "users_id_idx" on users(id);');
 end;
 
 end.

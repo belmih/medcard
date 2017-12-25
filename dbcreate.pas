@@ -70,6 +70,7 @@ procedure dbcreate;
    Form1.SQLIte3Conn.ExecuteDirect(tablesResults);
    Form1.SQLIte3Conn.ExecuteDirect('insert into users(login, password, role) values("admin","qwerty","admin");');
    Form1.SQLIte3Conn.ExecuteDirect('CREATE UNIQUE INDEX "users_id_idx" on users(id);');
+   Form1.SQLTransact.Commit;
 end;
 
 end.
