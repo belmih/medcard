@@ -1,0 +1,20 @@
+object Form4: TForm4
+  Left = 391
+  Height = 240
+  Top = 304
+  Width = 405
+  Caption = 'О программе'
+  ClientHeight = 240
+  ClientWidth = 405
+  LCLVersion = '1.8.0.6'
+  object Label1: TLabel
+    Left = 120
+    Height = 64
+    Top = 168
+    Width = 272
+    AutoSize = False
+    Caption = 'Some icons by Yusuke Kamiyamane. Licensed under a Creative Commons Attribution 3.0 License.'#13#10#13#10'http://p.yusukekamiyamane.com'
+    ParentColor = False
+    WordWrap = True
+  end
+end

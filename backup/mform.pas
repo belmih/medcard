@@ -6,7 +6,8 @@ interface
 
 uses
   Classes, SysUtils, sqldb, db, FileUtil, Forms, Controls, Graphics, Dialogs,
-  ComCtrls, Menus, DbCtrls, StdCtrls, DBGrids, ExtCtrls, ActnList, Types;
+  ComCtrls, Menus, DbCtrls, StdCtrls, DBGrids, ExtCtrls, ActnList, Buttons,
+  Types;
 
 type
 
@@ -48,18 +49,16 @@ type
     ToolButton1: TToolButton;
     ToolButton2: TToolButton;
     ToolButton3: TToolButton;
+    procedure actRowAddExecute(Sender: TObject);
     procedure actRowDeleteExecute(Sender: TObject);
-    procedure btnAddClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure MenuItem3Click(Sender: TObject);
+    procedure MenuItem7Click(Sender: TObject);
     procedure miRowDeleteClick(Sender: TObject);
     procedure miShowUsersFormClick(Sender: TObject);
-    procedure PageControl1Change(Sender: TObject);
-    procedure TabSheet1ContextPopup(Sender: TObject; MousePos: TPoint;
-      var Handled: Boolean);
   private
 
   public
@@ -71,7 +70,7 @@ var
 
 implementation
 
-uses LoginForm, usersform;
+uses LoginForm, usersform, aboutform;
 {$R *.lfm}
 
 { TForm2 }
@@ -95,7 +94,22 @@ begin
 
 end;
 
-procedure TForm2.btnAddClick(Sender: TObject);
+
+procedure TForm2.actRowDeleteExecute(Sender: TObject);
+var id: Integer;
+begin
+  if MessageDlg('Вопрос', 'Удалить запись?', mtConfirmation,
+   [mbYes, mbNo],0) = mrYes
+  then
+  begin
+    //id := DBGrid1.Columns.Items[0].Field.AsInteger;
+    id:=DBGrid1.DataSource.DataSet.FieldByName('id').AsInteger;
+    ShowMessage(IntToStr(id));
+    DBGrid1.SelectedRows.Delete;
+  end;
+end;
+
+procedure TForm2.actRowAddExecute(Sender: TObject);
 var
  query: TSQLQuery;
  key: Integer;
@@ -120,20 +134,6 @@ begin
  dblcDoctor.KeyValue := key;
 end;
 
-procedure TForm2.actRowDeleteExecute(Sender: TObject);
-var id: Integer;
-begin
-  if MessageDlg('Вопрос', 'Удалить запись?', mtConfirmation,
-   [mbYes, mbNo],0) = mrYes
-  then
-  begin
-    //id := DBGrid1.Columns.Items[0].Field.AsInteger;
-    id:=DBGrid1.DataSource.DataSet.FieldByName('id').AsInteger;
-    ShowMessage(IntToStr(id));
-    DBGrid1.SelectedRows.Delete;
-  end;
-end;
-
 procedure TForm2.FormActivate(Sender: TObject);
 begin
   StatusBar1.Panels.Items[0].Width := 250;
@@ -144,6 +144,11 @@ end;
 procedure TForm2.MenuItem3Click(Sender: TObject);
 begin
  Form1.Close;
+end;
+
+procedure TForm2.MenuItem7Click(Sender: TObject);
+begin
+  Form4.Show;
 end;
 
 procedure TForm2.miRowDeleteClick(Sender: TObject);
@@ -166,17 +171,7 @@ begin
   Form3.Show;
 end;
 
-procedure TForm2.PageControl1Change(Sender: TObject);
-begin
 
-end;
-
-procedure TForm2.TabSheet1ContextPopup(Sender: TObject; MousePos: TPoint;
-  var Handled: Boolean);
-begin
-
-
-end;
 
 { TForm2 }
 

@@ -7,11 +7,12 @@ uses
   cthreads,
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, LoginForm, dbcreate, mform, usersform, unit2;
+  Forms, LoginForm, dbcreate, mform, usersform, aboutform;
 
 {$R *.res}
 
 begin
+  Application.Scaled:=True;
   RequireDerivedFormResource:=True;
   Application.Initialize;
   Application.CreateForm(TForm1, Form1);
