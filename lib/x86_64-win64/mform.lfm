@@ -1,7 +1,7 @@
 object Form2: TForm2
-  Left = 371
+  Left = 168
   Height = 600
-  Top = 111
+  Top = 100
   Width = 800
   Caption = 'medcard'
   ClientHeight = 580
@@ -10,6 +10,7 @@ object Form2: TForm2
   OnActivate = FormActivate
   OnClose = FormClose
   OnCreate = FormCreate
+  OnShow = FormShow
   Position = poDesktopCenter
   LCLVersion = '1.8.0.6'
   object StatusBar1: TStatusBar
@@ -122,8 +123,8 @@ object Form2: TForm2
           FieldName = 'id'
         end      
         item
-          Title.Caption = 'Дата'
-          Width = 90
+          Title.Caption = 'Дата начала'
+          Width = 110
           FieldName = 'actiondate'
         end      
         item
@@ -133,16 +134,18 @@ object Form2: TForm2
         end      
         item
           Title.Caption = 'Номер карты'
-          Width = 200
+          Width = 150
           FieldName = 'medcardnum'
         end      
         item
-          Title.Caption = 'Заблокирована'
-          FieldName = 'block'
+          Title.Caption = 'Дата завершения'
+          Width = 110
+          FieldName = 'enddate'
         end>
       DataSource = dsActions
       Options = [dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
       TabOrder = 0
+      OnDblClick = DBGrid1DblClick
     end
     object ToolBar1: TToolBar
       Left = 1
@@ -207,6 +210,10 @@ object Form2: TForm2
     end
     object MenuItem6: TMenuItem
       Caption = 'Справка'
+      object ShowLog: TMenuItem
+        Caption = 'Отладка'
+        OnClick = ShowLogClick
+      end
       object MenuItem7: TMenuItem
         Caption = 'О программе'
         OnClick = MenuItem7Click
@@ -233,10 +240,10 @@ object Form2: TForm2
     Transaction = Form1.SQLTransact
     SQL.Strings = (
       'select a.id,'
-      '       actiondate,'
+      '       datetime(actiondate, ''localtime'') as actiondate,'
       '       d.fullname || '', '' || post as doctor,'
       '       medcardnum || '''' as medcardnum,'
-      '       block'
+      '       datetime(enddate, ''localtime'') as enddate'
       '  from actions a inner join doctors d on a.doc_id=d.id'
       ' order by actiondate desc'
     )

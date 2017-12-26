@@ -62,6 +62,7 @@ begin
  for i := 0 to Pred(SQLQUsers.FieldCount) do
    if SQLQUsers.Fields[i].DataType in [ftMemo,ftWideMemo] then
      SQLQUsers.FieldDefs[i].DataType := ftString;
+ DBGrid1.Repaint;
 end;
 
 procedure TForm3.SQLQUsersCalcFields(DataSet: TDataSet);
@@ -70,6 +71,7 @@ begin
  for i := 0 to Pred(SQLQUsers.FieldCount) do
    if SQLQUsers.Fields[i].DataType in [ftMemo,ftWideMemo] then
      SQLQUsers.FieldDefs[i].DataType := ftString;
+ DBGrid1.Repaint;
 end;
 
 procedure TForm3.DBGrid1PrepareCanvas(sender: TObject; DataCol: Integer;
@@ -80,7 +82,7 @@ begin
   for i := 0 to Pred(SQLQUsers.FieldCount) do
     if SQLQUsers.Fields[i].DataType in [ftMemo,ftWideMemo] then
       SQLQUsers.FieldDefs[i].DataType := ftString;
-  DBGrid1.Repaint;
+
 //SQLQuery1.Fields[i].OnGetText := @DBGridOnGetText;
 end;
 

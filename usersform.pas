@@ -41,7 +41,7 @@ var
   Form3: TForm3;
 
 implementation
- uses LoginForm;
+ uses loginform;
 {$R *.lfm}
 
 

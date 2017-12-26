@@ -39,19 +39,6 @@ var
 
 implementation
 
- function Translate(Name,Value : AnsiString; Hash : Longint; arg:pointer) : AnsiString;
-begin
-  case StringCase(Value,['&Yes','&No','Cancel']) of
-   0: Result:='&Да';
-   1: Result:='&Нет';
-   2: Result:='Отмена';
-   else Result:=Value;
-  end;
-end;
-
-
-
-
 {$R *.lfm}
 
 { TForm1 }
@@ -96,19 +83,19 @@ var
   query: TSQLQuery;
 begin
   showMainForm := False;
-  query := TSQLQuery.Create(Application);
   try
-    query.SQLConnection  := SQLite3Conn;
-    query.SQLTransaction := SQLTransact;
+    query := TSQLQuery.Create(nil);
+    query.DataBase := SQLite3Conn;
     query.SQL.Text := 'select u.id,'#13#10
                     + '       d.fullname'#13#10
                     + '  from users u left join doctors d'#13#10
                     + '    on u.doctor_id = d.id'#13#10
                     + ' where login = :l'#13#10
                     + '   and passwrd = :p';
+    query.Prepare;
     query.ParamByName('l').AsString := eLogin.Text;
     query.ParamByName('p').AsString := ePassword.Text;
-    query.open;
+    query.Open;
     query.First;
     if not query.EOF then
     begin
@@ -116,8 +103,8 @@ begin
       userFullName := query.Fields.FieldByName('fullname').AsString;
       showMainForm := True;
     end;
-    query.Close;
   finally
+    query.Close;
     query.Free;
   end;
   if showMainForm then
@@ -125,6 +112,17 @@ begin
     Form1.Hide;
     Form2.Show;
   end;
+end;
+
+
+function Translate(Name,Value : AnsiString; Hash : Longint; arg:pointer) : AnsiString;
+begin
+ case StringCase(Value,['&Yes','&No','Cancel']) of
+  0: Result:='&Да';
+  1: Result:='&Нет';
+  2: Result:='Отмена';
+  else Result:=Value;
+ end;
 end;
 
 initialization

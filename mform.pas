@@ -5,9 +5,9 @@ unit mform;
 interface
 
 uses
-  Classes, SysUtils, sqldb, db, FileUtil, Forms, Controls, Graphics, Dialogs,
+  Classes, SysUtils, sqldb,sqlite3conn, db, FileUtil, Forms, Controls, Graphics, Dialogs,
   ComCtrls, Menus, DbCtrls, StdCtrls, DBGrids, ExtCtrls, ActnList, Buttons,
-  Types;
+  Types,workform;
 
 type
 
@@ -39,6 +39,7 @@ type
     MenuItem6: TMenuItem;
     MenuItem7: TMenuItem;
     MenuItem8: TMenuItem;
+    ShowLog: TMenuItem;
     miShowUsersForm: TMenuItem;
     Panel1: TPanel;
     Panel2: TPanel;
@@ -52,11 +53,14 @@ type
     procedure actRowAddExecute(Sender: TObject);
     procedure actRowDeleteExecute(Sender: TObject);
     procedure Button1Click(Sender: TObject);
+    procedure DBGrid1DblClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
+    procedure FormShow(Sender: TObject);
     procedure MenuItem3Click(Sender: TObject);
     procedure MenuItem7Click(Sender: TObject);
+    procedure ShowLogClick(Sender: TObject);
     procedure miRowDeleteClick(Sender: TObject);
     procedure miShowUsersFormClick(Sender: TObject);
   private
@@ -70,7 +74,7 @@ var
 
 implementation
 
-uses LoginForm, usersform, aboutform;
+uses loginform, usersform, aboutform, logform;
 {$R *.lfm}
 
 { TForm2 }
@@ -82,8 +86,13 @@ end;
 
 procedure TForm2.FormCreate(Sender: TObject);
 begin
-  qDoctors.Open;
-  qActions.Open;
+
+end;
+
+procedure TForm2.FormShow(Sender: TObject);
+begin
+  StatusBar1.Panels.Items[0].Width := 250;
+  StatusBar1.Panels.Items[0].Text := userFullName + ' (' + Form1.eLogin.Text+')';
 end;
 
 procedure TForm2.Button1Click(Sender: TObject);
@@ -94,6 +103,15 @@ begin
 
 end;
 
+procedure TForm2.DBGrid1DblClick(Sender: TObject);
+var id: Integer;
+begin
+    id:=DBGrid1.DataSource.DataSet.FieldByName('id').AsInteger;
+    //ShowMessage(IntToStr(id));
+    Form5.tmpID:=id;
+    Form5.Show;
+end;
+
 
 procedure TForm2.actRowDeleteExecute(Sender: TObject);
 var id: Integer;
@@ -102,7 +120,6 @@ begin
    [mbYes, mbNo],0) = mrYes
   then
   begin
-    //id := DBGrid1.Columns.Items[0].Field.AsInteger;
     id:=DBGrid1.DataSource.DataSet.FieldByName('id').AsInteger;
     ShowMessage(IntToStr(id));
     DBGrid1.SelectedRows.Delete;
@@ -113,32 +130,33 @@ procedure TForm2.actRowAddExecute(Sender: TObject);
 var
  query: TSQLQuery;
  key: Integer;
+ id: Integer;
 begin
  key := dblcDoctor.KeyValue;
- query := TSQLQuery.Create(Application);
  try
-   query.SQLConnection := Form1.SQLite3Conn;
-   query.SQLTransaction := Form1.SQLTransact;
+   query := TSQLQuery.Create(nil);
+   query.DataBase := Form1.SQLite3Conn;
    query.SQL.Text := 'insert into actions(user_id, doc_id, medcardnum) values(:u,:d,:m)';
+   query.Prepare;
    query.ParamByName('u').AsInteger := user_id;
    query.ParamByName('d').AsInteger := key;
    query.ParamByName('m').AsString  := eMedCard.Text;
    query.ExecSQL;
    Form1.SQLTransact.Commit;
-   query.Close;
  finally
+   query.Close;
    query.Free;
  end;
  qDoctors.Open;
  qActions.Open;
  dblcDoctor.KeyValue := key;
+ Form5.Show;
 end;
 
 procedure TForm2.FormActivate(Sender: TObject);
 begin
-  StatusBar1.Panels.Items[0].Width := 250;
-  StatusBar1.Panels.Items[0].Text := userFullName + ' (' + Form1.eLogin.Text+')';
-
+    qDoctors.Open;
+  qActions.Open;
 end;
 
 procedure TForm2.MenuItem3Click(Sender: TObject);
@@ -149,6 +167,11 @@ end;
 procedure TForm2.MenuItem7Click(Sender: TObject);
 begin
   Form4.Show;
+end;
+
+procedure TForm2.ShowLogClick(Sender: TObject);
+begin
+  FormLog.Show;
 end;
 
 procedure TForm2.miRowDeleteClick(Sender: TObject);
