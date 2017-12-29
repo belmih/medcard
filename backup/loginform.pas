@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, sqlite3conn, sqldb, sqldblib, FileUtil, Forms, Controls,
-  Graphics, Dialogs, StdCtrls,LCLProc, dbcreate, mform;
+  Graphics, Dialogs, StdCtrls,LCLProc, ExtCtrls, dbcreate, mform;
 
 type
 
@@ -16,8 +16,10 @@ type
     btnLogin: TButton;
     eLogin: TEdit;
     ePassword: TEdit;
-    imgListDBNavigator: TImageList;
+    ilDBNavigator: TImageList;
+    Image1: TImage;
     imgList: TImageList;
+    imgListDBNavigator: TImageList;
     Label1: TLabel;
     Label2: TLabel;
     SQLite3Conn: TSQLite3Connection;
@@ -119,11 +121,10 @@ end;
 
 function Translate(Name,Value : AnsiString; Hash : Longint; arg:pointer) : AnsiString;
 begin
- case StringCase(Value,['&Yes','&No','Cancel','Delete record']) of
+ case StringCase(Value,['&Yes','&No','Cancel']) of
   0: Result:='&Да';
   1: Result:='&Нет';
   2: Result:='Отмена';
-  3: Result:='123';
   else Result:=Value;
  end;
 end;

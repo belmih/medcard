@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, sqlite3conn, sqldb, sqldblib, FileUtil, Forms, Controls,
-  Graphics, Dialogs, StdCtrls,LCLProc, dbcreate, mform;
+  Graphics, Dialogs, StdCtrls,LCLProc, ExtCtrls, dbcreate, mform;
 
 type
 
@@ -18,6 +18,7 @@ type
     ePassword: TEdit;
     ilDBNavigator: TImageList;
     imgList: TImageList;
+    imgListDBNavigator: TImageList;
     Label1: TLabel;
     Label2: TLabel;
     SQLite3Conn: TSQLite3Connection;
