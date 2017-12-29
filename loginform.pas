@@ -49,7 +49,7 @@ implementation
 procedure TForm1.FormCreate(Sender: TObject);
 begin
   CurDir := ExtractFilePath(Application.ExeName);
-  databasefile := CurDir + 'database.db';
+  databasefile := CurDir + '.\database.db';
 
   SQLite3Conn.CharSet := 'UTF8';
   SQLite3Conn.Transaction := SQLTransact;

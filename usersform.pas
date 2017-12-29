@@ -14,8 +14,11 @@ type
 
   TForm3 = class(TForm)
     DBGrid1: TDBGrid;
+    DBGrid2: TDBGrid;
     DBNavigator1: TDBNavigator;
     dsUsers: TDataSource;
+    GroupBox1: TGroupBox;
+    GroupBox2: TGroupBox;
     SQLQUsers: TSQLQuery;
     StatusBar1: TStatusBar;
     ToolBar1: TToolBar;
@@ -51,6 +54,7 @@ implementation
    SQLQUsers.UpdateMode:= upWhereKeyOnly;
    SQLQUsers.Close;
    SQLQUsers.Open;
+
 
  end;
 

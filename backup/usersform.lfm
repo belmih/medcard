@@ -8,43 +8,6 @@ object Form3: TForm3
   ClientWidth = 640
   OnCreate = FormCreate
   LCLVersion = '1.8.0.6'
-  object DBGrid1: TDBGrid
-    Left = 0
-    Height = 433
-    Top = 24
-    Width = 640
-    Align = alClient
-    AutoFillColumns = True
-    Color = clWindow
-    Columns = <    
-      item
-        Title.Caption = 'id'
-        Width = 121
-        FieldName = 'id'
-      end    
-      item
-        Title.Caption = 'login'
-        Width = 121
-        FieldName = 'login'
-      end    
-      item
-        Title.Caption = 'passwrd'
-        Width = 121
-        FieldName = 'passwrd'
-      end    
-      item
-        Title.Caption = 'userrole'
-        Width = 121
-        FieldName = 'userrole'
-      end    
-      item
-        Title.Caption = 'doctor_id'
-        Width = 123
-        FieldName = 'doctor_id'
-      end>
-    DataSource = dsUsers
-    TabOrder = 0
-  end
   object ToolBar1: TToolBar
     Left = 0
     Height = 24
@@ -52,7 +15,7 @@ object Form3: TForm3
     Width = 640
     Caption = 'ToolBar1'
     Images = Form1.imgList
-    TabOrder = 1
+    TabOrder = 0
     object DBNavigator1: TDBNavigator
       Left = 24
       Height = 22
@@ -67,7 +30,9 @@ object Form3: TForm3
       ChildSizing.ControlsPerLine = 100
       ClientHeight = 22
       ClientWidth = 248
+      ConfirmDelete = False
       DataSource = dsUsers
+      Flat = True
       Options = []
       TabOrder = 0
       Images = Form1.imgListDBNavigator
@@ -87,6 +52,93 @@ object Form3: TForm3
     Width = 640
     Panels = <>
   end
+  object GroupBox1: TGroupBox
+    Left = 0
+    Height = 121
+    Top = 336
+    Width = 640
+    Align = alBottom
+    Caption = 'Список врачей'
+    ClientHeight = 101
+    ClientWidth = 636
+    TabOrder = 2
+    object DBGrid2: TDBGrid
+      Left = 0
+      Height = 101
+      Top = 0
+      Width = 636
+      Align = alClient
+      Color = clWindow
+      Columns = <      
+        item
+          Title.Caption = 'id'
+          Width = 25
+          FieldName = 'id'
+        end      
+        item
+          Title.Caption = 'ФИО Врача'
+          Width = 263
+          FieldName = 'fnp'
+        end>
+      DataSource = Form2.dsDoctors
+      Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgAutoSizeColumns]
+      TabOrder = 0
+    end
+  end
+  object GroupBox2: TGroupBox
+    Left = 0
+    Height = 312
+    Top = 24
+    Width = 640
+    Align = alClient
+    Caption = 'Учетные записи'
+    ClientHeight = 292
+    ClientWidth = 636
+    TabOrder = 3
+    object DBGrid1: TDBGrid
+      Left = 0
+      Height = 292
+      Top = 0
+      Width = 636
+      Align = alClient
+      Color = clWindow
+      Columns = <      
+        item
+          Title.Caption = 'id'
+          Width = 27
+          FieldName = 'id'
+        end      
+        item
+          Title.Caption = 'login'
+          Width = 69
+          FieldName = 'login'
+        end      
+        item
+          Title.Caption = 'passwrd'
+          Width = 58
+          FieldName = 'passwrd'
+        end      
+        item
+          Title.Caption = 'userrole'
+          Width = 57
+          FieldName = 'userrole'
+        end      
+        item
+          Title.Caption = 'doctor_id'
+          Width = 65
+          FieldName = 'doctor_id'
+        end      
+        item
+          Title.Caption = 'fullname'
+          Width = 175
+          FieldName = 'fullname'
+        end>
+      DataSource = dsUsers
+      Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgAutoSizeColumns]
+      Options2 = [goScrollToLastRow]
+      TabOrder = 0
+    end
+  end
   object dsUsers: TDataSource
     DataSet = SQLQUsers
     left = 104
@@ -94,36 +146,70 @@ object Form3: TForm3
   end
   object SQLQUsers: TSQLQuery
     PacketRecords = -1
+    IndexName = 'DEFAULT_ORDER'
     FieldDefs = <    
       item
         Name = 'id'
-        DataType = ftUnknown
+        DataType = ftInteger
+        Precision = -1
       end    
       item
         Name = 'login'
-        DataType = ftUnknown
+        DataType = ftString
+        Precision = -1
+        Size = 255
       end    
       item
         Name = 'passwrd'
-        DataType = ftUnknown
+        DataType = ftString
+        Precision = -1
+        Size = 255
       end    
       item
         Name = 'userrole'
-        DataType = ftUnknown
+        DataType = ftString
+        Precision = -1
+        Size = 255
       end    
       item
         Name = 'doctor_id'
-        DataType = ftUnknown
+        DataType = ftInteger
+        Precision = -1
+      end    
+      item
+        Name = 'fullname'
+        DataType = ftString
+        Precision = -1
+        Size = 255
       end>
+    Active = True
     Database = Form1.SQLite3Conn
     Transaction = Form1.SQLTransact
     SQL.Strings = (
-      'select id,'
+      'select u.id,'
       '       login || '''' login,'
       '       passwrd || '''' passwrd,'
       '       userrole || '''' userrole,'
-      '       doctor_id'
-      '  from users'
+      '       doctor_id,'
+      '       fullname || '''' fullname'
+      '  from users u left join doctors d on d.id = u.doctor_id'
+    )
+    InsertSQL.Strings = (
+      'insert into users'
+      '(login, passwrd, userrole, doctor_id)'
+      'values'
+      '(:login, :passwrd, :userrole, :doctor_id)'
+    )
+    UpdateSQL.Strings = (
+      'UPDATE users SET'
+      'login = :login,'
+      'passwrd = :passwrd,'
+      'userrole = :userrole,'
+      'doctor_id = :doctor_id'
+      'WHERE id = :id'
+    )
+    DeleteSQL.Strings = (
+      'delete from users where id = :id'
     )
     Params = <>
     left = 40

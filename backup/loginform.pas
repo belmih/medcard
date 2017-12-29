@@ -17,7 +17,6 @@ type
     eLogin: TEdit;
     ePassword: TEdit;
     ilDBNavigator: TImageList;
-    Image1: TImage;
     imgList: TImageList;
     imgListDBNavigator: TImageList;
     Label1: TLabel;
@@ -50,7 +49,7 @@ implementation
 procedure TForm1.FormCreate(Sender: TObject);
 begin
   CurDir := ExtractFilePath(Application.ExeName);
-  databasefile := CurDir + 'database.db';
+  databasefile := CurDir + '.\database.db';
 
   SQLite3Conn.CharSet := 'UTF8';
   SQLite3Conn.Transaction := SQLTransact;

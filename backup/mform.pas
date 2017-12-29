@@ -14,6 +14,8 @@ type
   { TForm2 }
 
   TForm2 = class(TForm)
+    actShowUsersForm: TAction;
+    actUsersSave: TAction;
     actRefresh: TAction;
     actRowAdd: TAction;
     actRowDelete: TAction;
@@ -26,7 +28,6 @@ type
     DBGrid1: TDBGrid;
     DBLookupListBox1: TDBLookupListBox;
     eMedCard: TEdit;
-    ImageList1: TImageList;
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
@@ -52,6 +53,8 @@ type
     ToolButton3: TToolButton;
     procedure actRowAddExecute(Sender: TObject);
     procedure actRowDeleteExecute(Sender: TObject);
+    procedure actShowUsersFormExecute(Sender: TObject);
+    procedure actUsersSaveExecute(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure DBGrid1DblClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
@@ -126,6 +129,16 @@ begin
   end;
 end;
 
+procedure TForm2.actShowUsersFormExecute(Sender: TObject);
+begin
+  Form3.Show;
+end;
+
+procedure TForm2.actUsersSaveExecute(Sender: TObject);
+begin
+
+end;
+
 procedure TForm2.actRowAddExecute(Sender: TObject);
 var
  query: TSQLQuery;
@@ -191,7 +204,7 @@ end;
 
 procedure TForm2.miShowUsersFormClick(Sender: TObject);
 begin
-  Form3.Show;
+
 end;
 
 

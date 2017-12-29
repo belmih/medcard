@@ -1,20 +1,54 @@
 object Form4: TForm4
-  Left = 391
+  Left = 387
   Height = 240
-  Top = 304
-  Width = 405
+  Top = 188
+  Width = 480
   Caption = 'О программе'
   ClientHeight = 240
-  ClientWidth = 405
+  ClientWidth = 480
   LCLVersion = '1.8.0.6'
   object Label1: TLabel
-    Left = 120
+    Left = 16
     Height = 64
     Top = 168
-    Width = 272
+    Width = 448
+    Alignment = taCenter
     AutoSize = False
     Caption = 'Some icons by Yusuke Kamiyamane. Licensed under a Creative Commons Attribution 3.0 License.'#13#10#13#10'http://p.yusukekamiyamane.com'
     ParentColor = False
     WordWrap = True
+  end
+  object Label2: TLabel
+    Left = 16
+    Height = 56
+    Top = 104
+    Width = 448
+    Alignment = taCenter
+    AutoSize = False
+    Caption = 'Это произведение доступно по лицензии Creative Commons С указанием авторства-Некоммерческая-С сохранением условий 4.0 Всемирная.'
+    ParentColor = False
+    WordWrap = True
+    OnClick = Label2Click
+  end
+  object Label3: TLabel
+    Left = 16
+    Height = 30
+    Top = 8
+    Width = 448
+    Alignment = taCenter
+    AutoSize = False
+    Caption = 'БУЗ ВО "Вологодский областной противотуберкулезный диспансер"'
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+    WordWrap = True
+  end
+  object Label4: TLabel
+    Left = 356
+    Height = 15
+    Top = 40
+    Width = 108
+    Caption = 'guzvopd@yandex.ru'
+    ParentColor = False
   end
 end
