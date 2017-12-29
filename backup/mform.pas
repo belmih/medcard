@@ -74,7 +74,7 @@ var
 
 implementation
 
-uses LoginForm, usersform, aboutform, logform;
+uses loginform, usersform, aboutform, logform;
 {$R *.lfm}
 
 { TForm2 }

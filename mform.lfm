@@ -276,6 +276,10 @@ object Form2: TForm2
     object actRefresh: TAction
       Caption = 'actRefresh'
     end
+    object actUsersSave: TAction
+      Caption = 'actUsersSave'
+      OnExecute = actUsersSaveExecute
+    end
   end
   object ImageList1: TImageList
     left = 240

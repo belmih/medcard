@@ -1,174 +1,132 @@
 object Form3: TForm3
-  Left = 363
-  Height = 630
-  Top = 187
-  Width = 1045
+  Left = 442
+  Height = 480
+  Top = 188
+  Width = 640
   Caption = 'Пользователи'
-  ClientHeight = 630
-  ClientWidth = 1045
+  ClientHeight = 480
+  ClientWidth = 640
   OnCreate = FormCreate
   LCLVersion = '1.8.0.6'
-  object Button1: TButton
-    Left = 944
-    Height = 25
-    Top = 104
-    Width = 75
-    Caption = 'Добавить'
-    TabOrder = 0
-  end
-  object Button2: TButton
-    Left = 944
-    Height = 25
-    Top = 152
-    Width = 75
-    Caption = 'Изменить'
-    TabOrder = 1
-  end
-  object Button3: TButton
-    Left = 944
-    Height = 25
-    Top = 208
-    Width = 75
-    Caption = 'Удалить'
-    TabOrder = 2
-  end
-  object Button4: TButton
-    Left = 944
-    Height = 25
-    Top = 264
-    Width = 75
-    Caption = 'Обновить'
-    TabOrder = 3
-  end
-  object eLogin: TEdit
-    Left = 304
-    Height = 23
-    Top = 48
-    Width = 80
-    TabOrder = 4
-    Text = 'eLogin'
-  end
-  object ePassword: TEdit
-    Left = 512
-    Height = 23
-    Top = 48
-    Width = 80
-    TabOrder = 5
-    Text = 'ePassword'
-  end
-  object Edit3: TEdit
-    Left = 736
-    Height = 23
-    Top = 48
-    Width = 80
-    TabOrder = 6
-    Text = 'Edit3'
-  end
-  object DBNavigator1: TDBNavigator
-    Left = 368
-    Height = 25
-    Top = 8
-    Width = 241
-    BevelOuter = bvNone
-    ChildSizing.EnlargeHorizontal = crsScaleChilds
-    ChildSizing.EnlargeVertical = crsScaleChilds
-    ChildSizing.ShrinkHorizontal = crsScaleChilds
-    ChildSizing.ShrinkVertical = crsScaleChilds
-    ChildSizing.Layout = cclLeftToRightThenTopToBottom
-    ChildSizing.ControlsPerLine = 100
-    ClientHeight = 25
-    ClientWidth = 241
-    DataSource = dsUsers
-    Options = []
-    TabOrder = 7
-  end
   object DBGrid1: TDBGrid
-    Left = 40
-    Height = 304
-    Top = 88
-    Width = 816
+    Left = 0
+    Height = 433
+    Top = 24
+    Width = 640
+    Align = alClient
     AutoFillColumns = True
     Color = clWindow
     Columns = <    
       item
         Title.Caption = 'id'
-        Width = 156
+        Width = 121
         FieldName = 'id'
       end    
       item
         Title.Caption = 'login'
-        Width = 156
+        Width = 121
         FieldName = 'login'
       end    
       item
         Title.Caption = 'passwrd'
-        Width = 156
+        Width = 121
         FieldName = 'passwrd'
       end    
       item
         Title.Caption = 'userrole'
-        Width = 156
+        Width = 121
         FieldName = 'userrole'
       end    
       item
         Title.Caption = 'doctor_id'
-        Width = 159
+        Width = 123
         FieldName = 'doctor_id'
       end>
     DataSource = dsUsers
-    TabOrder = 8
-    OnPrepareCanvas = DBGrid1PrepareCanvas
+    TabOrder = 0
+  end
+  object ToolBar1: TToolBar
+    Left = 0
+    Height = 24
+    Top = 0
+    Width = 640
+    Caption = 'ToolBar1'
+    Images = Form1.imgList
+    TabOrder = 1
+    object DBNavigator1: TDBNavigator
+      Left = 24
+      Height = 22
+      Top = 2
+      Width = 248
+      BevelOuter = bvNone
+      ChildSizing.EnlargeHorizontal = crsScaleChilds
+      ChildSizing.EnlargeVertical = crsScaleChilds
+      ChildSizing.ShrinkHorizontal = crsScaleChilds
+      ChildSizing.ShrinkVertical = crsScaleChilds
+      ChildSizing.Layout = cclLeftToRightThenTopToBottom
+      ChildSizing.ControlsPerLine = 100
+      ClientHeight = 22
+      ClientWidth = 248
+      DataSource = dsUsers
+      Options = []
+      TabOrder = 0
+      Images = Form1.imgListDBNavigator
+    end
+    object ToolButton1: TToolButton
+      Left = 1
+      Top = 2
+      Caption = 'actRefresh'
+      ImageIndex = 0
+      OnClick = ToolButton1Click
+    end
+  end
+  object StatusBar1: TStatusBar
+    Left = 0
+    Height = 23
+    Top = 457
+    Width = 640
+    Panels = <>
   end
   object dsUsers: TDataSource
     DataSet = SQLQUsers
     left = 104
-    top = 16
+    top = 56
   end
   object SQLQUsers: TSQLQuery
-    IndexName = 'DEFAULT_ORDER'
+    PacketRecords = -1
     FieldDefs = <    
       item
         Name = 'id'
-        DataType = ftAutoInc
-        Precision = -1
+        DataType = ftUnknown
       end    
       item
         Name = 'login'
-        DataType = ftMemo
-        Precision = -1
+        DataType = ftUnknown
       end    
       item
         Name = 'passwrd'
-        DataType = ftMemo
-        Precision = -1
+        DataType = ftUnknown
       end    
       item
         Name = 'userrole'
-        DataType = ftMemo
-        Precision = -1
+        DataType = ftUnknown
       end    
       item
         Name = 'doctor_id'
-        DataType = ftInteger
-        Precision = -1
+        DataType = ftUnknown
       end>
-    Active = True
-    AfterOpen = SQLQUsersAfterOpen
-    OnCalcFields = SQLQUsersCalcFields
     Database = Form1.SQLite3Conn
     Transaction = Form1.SQLTransact
     SQL.Strings = (
-      'select * from users'
+      'select id,'
+      '       login || '''' login,'
+      '       passwrd || '''' passwrd,'
+      '       userrole || '''' userrole,'
+      '       doctor_id'
+      '  from users'
     )
-    InsertSQL.Strings = (
-      ''
-    )
-    RefreshSQL.Strings = (
-      ''
-    )
-    Options = [sqoAutoApplyUpdates, sqoAutoCommit, sqoRefreshUsingSelect]
     Params = <>
-    left = 32
-    top = 24
+    left = 40
+    top = 56
   end
 end

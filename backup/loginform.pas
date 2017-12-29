@@ -1,4 +1,4 @@
-unit LoginForm;
+unit loginform;
 
 {$mode objfpc}{$H+}
 
@@ -16,6 +16,8 @@ type
     btnLogin: TButton;
     eLogin: TEdit;
     ePassword: TEdit;
+    imgListDBNavigator: TImageList;
+    imgList: TImageList;
     Label1: TLabel;
     Label2: TLabel;
     SQLite3Conn: TSQLite3Connection;
@@ -117,10 +119,11 @@ end;
 
 function Translate(Name,Value : AnsiString; Hash : Longint; arg:pointer) : AnsiString;
 begin
- case StringCase(Value,['&Yes','&No','Cancel']) of
+ case StringCase(Value,['&Yes','&No','Cancel','Delete record']) of
   0: Result:='&Да';
   1: Result:='&Нет';
   2: Result:='Отмена';
+  3: Result:='123';
   else Result:=Value;
  end;
 end;

@@ -16,6 +16,8 @@ type
     btnLogin: TButton;
     eLogin: TEdit;
     ePassword: TEdit;
+    ilDBNavigator: TImageList;
+    imgList: TImageList;
     Label1: TLabel;
     Label2: TLabel;
     SQLite3Conn: TSQLite3Connection;

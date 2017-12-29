@@ -14,6 +14,7 @@ type
   { TForm2 }
 
   TForm2 = class(TForm)
+    actUsersSave: TAction;
     actRefresh: TAction;
     actRowAdd: TAction;
     actRowDelete: TAction;
@@ -52,6 +53,7 @@ type
     ToolButton3: TToolButton;
     procedure actRowAddExecute(Sender: TObject);
     procedure actRowDeleteExecute(Sender: TObject);
+    procedure actUsersSaveExecute(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure DBGrid1DblClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
@@ -124,6 +126,11 @@ begin
     ShowMessage(IntToStr(id));
     DBGrid1.SelectedRows.Delete;
   end;
+end;
+
+procedure TForm2.actUsersSaveExecute(Sender: TObject);
+begin
+
 end;
 
 procedure TForm2.actRowAddExecute(Sender: TObject);

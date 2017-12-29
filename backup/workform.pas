@@ -50,7 +50,7 @@ begin
 
 
   node := Form5.TreeView1.Items.Add(nil,'Критерии качества');
-  node.Data:=1;
+  node.
   FormLog.AddLogInt(node.Index);
   while not query.EOF do
   begin

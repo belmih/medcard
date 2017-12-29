@@ -2,5 +2,4 @@
 <CONFIG>
   <Compiler Value="C:\lazarus\fpc\3.0.4\bin\x86_64-win64\fpc.exe" Date="1266910071"/>
   <Params Value=" -MObjFPC -Scghi -O1 -WG -l -vewnhilbq -FiC:\Users\ййй\Documents\GitHub\medcard\lib\x86_64-win64 -FuC:\lazarus\lcl\units\x86_64-win64\win32 -FuC:\lazarus\lcl\units\x86_64-win64 -FuC:\lazarus\components\lazutils\lib\x86_64-win64 -FuC:\lazarus\packager\units\x86_64-win64 -FuC:\Users\ййй\Documents\GitHub\medcard\ -FUC:\Users\ййй\Documents\GitHub\medcard\lib\x86_64-win64\ -dLCL -dLCLwin32 medcard.lpr"/>
-  <Complete Value="False"/>
 </CONFIG>
