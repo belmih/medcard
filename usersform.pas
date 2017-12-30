@@ -16,10 +16,8 @@ type
     DBGrid1: TDBGrid;
     DBGrid2: TDBGrid;
     DBNavigator1: TDBNavigator;
-    dsUsers: TDataSource;
     GroupBox1: TGroupBox;
     GroupBox2: TGroupBox;
-    SQLQUsers: TSQLQuery;
     StatusBar1: TStatusBar;
     ToolBar1: TToolBar;
     ToolButton1: TToolButton;
@@ -48,14 +46,14 @@ implementation
 
  procedure TFormUsers.FormCreate(Sender: TObject);
  begin
-   SQLQUsers.Options := [sqoAutoApplyUpdates,
+   {SQLQUsers.Options := [sqoAutoApplyUpdates,
                          sqoCancelUpdatesOnRefresh,
                          sqoRefreshUsingSelect,
                          sqoKeepOpenOnCommit];
    SQLQUsers.UpdateMode:= upWhereKeyOnly;
    SQLQUsers.Close;
    SQLQUsers.Open;
-
+   }
 
  end;
 
@@ -66,8 +64,8 @@ end;
 
 procedure TFormUsers.ToolButton1Click(Sender: TObject);
 begin
-  SQLQUsers.ApplyUpdates;
-  FormLogin.SQLTransact.Commit;
+  //SQLQUsers.ApplyUpdates;
+  //FormLogin.SQLTransact.Commit;
 end;
 
 end.

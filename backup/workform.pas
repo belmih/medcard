@@ -94,7 +94,7 @@ begin
     query.Prepare;
     query.ParamByName('id').AsInteger := id;
     //query.ExecSQL;
-    Form1.SQLTransact.Commit;
+    FormLogin.SQLTransact.Commit;
     FillTree(query);
   finally
     query.Close;

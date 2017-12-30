@@ -5,8 +5,8 @@ unit loginform;
 interface
 
 uses
-  Classes, SysUtils, sqlite3conn, sqldb, sqldblib, FileUtil, Forms, Controls,
-  Graphics, Dialogs, StdCtrls,LCLProc, ExtCtrls, dbcreate;
+  Classes, SysUtils, sqlite3conn, sqldb, FileUtil, Forms, Controls,
+  Graphics, Dialogs, StdCtrls,LCLProc, ExtCtrls;
 
 type
 
@@ -17,16 +17,12 @@ type
     eLogin: TEdit;
     ePassword: TEdit;
     ilDBNavigator: TImageList;
-    imgList: TImageList;
-    imgListDBNavigator: TImageList;
     Label1: TLabel;
     Label2: TLabel;
-    SQLite3Conn: TSQLite3Connection;
-    SQLTransact: TSQLTransaction;
     procedure btnLoginClick(Sender: TObject);
-    procedure FormCreate(Sender: TObject);
+
   private
-    procedure InitDb;
+
   public
 
   end;
@@ -46,75 +42,40 @@ implementation
 
 { TFormLogin }
 
-procedure TFormLogin.FormCreate(Sender: TObject);
-begin
-  CurDir := ExtractFilePath(Application.ExeName);
-  databasefile := CurDir + '.\database.db';
-
-  SQLite3Conn.CharSet := 'UTF8';
-  SQLite3Conn.Transaction := SQLTransact;
-  SQLite3Conn.DatabaseName := databasefile;
-  SQLTransact.DataBase := SQLite3Conn;
-  InitDb;
-end;
-
-procedure TFormLogin.InitDb;
-var
-  newdb: Boolean;
-begin
-  try
-    newdb := not FileExists(databasefile);
-    SQLite3Conn.Open;
-    SQLTransact.Active := True;
-    if newdb then
-    begin
-      dbcreate.dbcreate;
-      SQLTransact.Commit;
-      ShowMessage('Была создана новая БД!');
-    end;
-    SQLite3Conn.ExecuteDirect('PRAGMA foreign_keys = ON;');
-
-  except
-    ShowMessage('Ошибка подключения к базе!');
-  end;
-
-end;
-
 procedure TFormLogin.btnLoginClick(Sender: TObject);
 var
-  showMainForm: Boolean;
-  query: TSQLQuery;
+  ShowMainForm: Boolean;
+  Query: TSQLQuery;
 begin
-  showMainForm := False;
+  ShowMainForm := False;
   try
-    query := TSQLQuery.Create(nil);
-    query.DataBase := SQLite3Conn;
-    query.SQL.Text := 'select u.id,'#13#10
+    Query := TSQLQuery.Create(nil);
+    Query.DataBase := FormMain.SQLite3Conn;
+    Query.SQL.Text := 'select u.id,'#13#10
                     + '       d.fullname'#13#10
                     + '  from users u left join doctors d'#13#10
                     + '    on u.doctor_id = d.id'#13#10
                     + ' where login = :l'#13#10
                     + '   and passwrd = :p';
-    query.Prepare;
-    query.ParamByName('l').AsString := eLogin.Text;
-    query.ParamByName('p').AsString := ePassword.Text;
-    query.Open;
-    query.First;
-    if not query.EOF then
+    Query.Prepare;
+    Query.ParamByName('l').AsString := eLogin.Text;
+    Query.ParamByName('p').AsString := ePassword.Text;
+    Query.Open;
+    Query.First;
+    if not Query.EOF then
     begin
-      user_id := query.Fields.FieldByName('id').AsInteger;
-      userFullName := query.Fields.FieldByName('fullname').AsString;
-      showMainForm := True;
+      FormMain.UserID := Query.Fields.FieldByName('id').AsInteger;
+      //userFullName := query.Fields.FieldByName('fullname').AsString;
+      ShowMainForm := True;
     end;
   finally
-    query.Close;
-    query.Free;
+    Query.Close;
+    Query.Free;
   end;
-  if showMainForm then
+  if ShowMainForm then
   begin
     FormLogin.Hide;
     FormMain.Show;
-
   end;
 end;
 

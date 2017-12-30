@@ -30,7 +30,6 @@ object FormActions: TFormActions
       ButtonHeight = 22
       ButtonWidth = 23
       Caption = 'ToolBar1'
-      Images = FormLogin.imgList
       ParentShowHint = False
       ShowHint = True
       TabOrder = 0
@@ -86,10 +85,8 @@ object FormActions: TFormActions
           Width = 110
           FieldName = 'enddate'
         end>
-      DataSource = dsActions
       Options = [dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgAutoSizeColumns]
       TabOrder = 1
-      TitleImageList = FormLogin.imgListDBNavigator
       OnDblClick = DBGrid1DblClick
     end
   end
@@ -121,7 +118,6 @@ object FormActions: TFormActions
       KeyField = 'id'
       ListField = 'fnp'
       ListFieldIndex = 0
-      ListSource = dsDoctors
       LookupCache = True
       TabOrder = 1
     end
@@ -148,46 +144,5 @@ object FormActions: TFormActions
       Caption = 'Номер карты'
       ParentColor = False
     end
-  end
-  object qDoctors: TSQLQuery
-    FieldDefs = <>
-    Database = FormLogin.SQLite3Conn
-    Transaction = FormLogin.SQLTransact
-    SQL.Strings = (
-      'select id,'
-      '       fullname || '', '' || post fnp'
-      '  from doctors'
-      ' order by fullname'
-    )
-    Params = <>
-    left = 40
-    top = 272
-  end
-  object qActions: TSQLQuery
-    FieldDefs = <>
-    Database = FormLogin.SQLite3Conn
-    Transaction = FormLogin.SQLTransact
-    SQL.Strings = (
-      'select a.id,'
-      '       datetime(actiondate, ''localtime'') as actiondate,'
-      '       d.fullname || '', '' || post as doctor,'
-      '       medcardnum || '''' as medcardnum,'
-      '       datetime(enddate, ''localtime'') as enddate'
-      '  from actions a inner join doctors d on a.doc_id=d.id'
-      ' order by actiondate desc'
-    )
-    Params = <>
-    left = 152
-    top = 272
-  end
-  object dsActions: TDataSource
-    DataSet = qActions
-    left = 152
-    top = 336
-  end
-  object dsDoctors: TDataSource
-    DataSet = qDoctors
-    left = 40
-    top = 336
   end
 end

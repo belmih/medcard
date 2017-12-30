@@ -5,14 +5,10 @@ unit doctorsform;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, DBGrids;
+  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs;
 
 type
-
-  { TFormDoctors }
-
   TFormDoctors = class(TForm)
-    DBGrid1: TDBGrid;
   private
 
   public

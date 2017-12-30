@@ -18,15 +18,11 @@ type
     DBComboBox1: TDBComboBox;
     DBGrid1: TDBGrid;
     dblcDoctor: TDBLookupComboBox;
-    dsActions: TDataSource;
-    dsDoctors: TDataSource;
     eMedCard: TEdit;
     GroupBox1: TGroupBox;
     GroupBox2: TGroupBox;
     Label1: TLabel;
     Label3: TLabel;
-    qActions: TSQLQuery;
-    qDoctors: TSQLQuery;
     ToolBar1: TToolBar;
     ToolButton1: TToolButton;
     ToolButton2: TToolButton;
@@ -74,7 +70,7 @@ end;
 
 procedure TFormActions.FormShow(Sender: TObject);
 begin
-  StatusBar1.Panels.Items[0].Width := 250;
+  //StatusBar1.Panels.Items[0].Width := 250;
   //StatusBar1.Panels.Items[0].Text := userFullName + ' (' + Form1.eLogin.Text+')';
 end;
 
@@ -127,7 +123,7 @@ var
  key: Integer;
  id: Integer;
 begin
- key := dblcDoctor.KeyValue;
+{ key := dblcDoctor.KeyValue;
  try
    query := TSQLQuery.Create(nil);
    query.DataBase := FormLogin.SQLite3Conn;
@@ -145,13 +141,13 @@ begin
  qDoctors.Open;
  qActions.Open;
  dblcDoctor.KeyValue := key;
- //Form5.Show;
+ //Form5.Show; }
 end;
 
 procedure TFormActions.FormActivate(Sender: TObject);
 begin
-    qDoctors.Open;
-  qActions.Open;
+  //qDoctors.Open;
+  //qActions.Open;
 end;
 
 procedure TFormActions.MenuItem3Click(Sender: TObject);

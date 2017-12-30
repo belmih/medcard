@@ -12,87 +12,6 @@ object FormActions: TFormActions
   OnShow = FormShow
   Position = poDesktopCenter
   LCLVersion = '1.8.0.6'
-  object GroupBox1: TGroupBox
-    Left = 0
-    Height = 520
-    Top = 80
-    Width = 800
-    Align = alClient
-    Caption = 'Результаты'
-    ClientHeight = 500
-    ClientWidth = 796
-    TabOrder = 1
-    object ToolBar1: TToolBar
-      Left = 0
-      Height = 24
-      Top = 0
-      Width = 796
-      ButtonHeight = 22
-      ButtonWidth = 23
-      Caption = 'ToolBar1'
-      Images = FormLogin.imgList
-      ParentShowHint = False
-      ShowHint = True
-      TabOrder = 0
-      object ToolButton1: TToolButton
-        Left = 24
-        Top = 2
-        Caption = 'actRowDelete'
-        ImageIndex = 2
-      end
-      object ToolButton2: TToolButton
-        Left = 1
-        Top = 2
-        Caption = 'actRowAdd'
-        ImageIndex = 1
-      end
-      object ToolButton3: TToolButton
-        Left = 47
-        Top = 2
-        Caption = 'actRefresh'
-        ImageIndex = 3
-      end
-    end
-    object DBGrid1: TDBGrid
-      Left = 0
-      Height = 476
-      Top = 24
-      Width = 796
-      Align = alClient
-      Color = clWindow
-      Columns = <      
-        item
-          Title.Caption = 'id'
-          Width = 25
-          FieldName = 'id'
-        end      
-        item
-          Title.Caption = 'Дата начала'
-          Width = 82
-          FieldName = 'actiondate'
-        end      
-        item
-          Title.Caption = 'Врач'
-          Width = 42
-          FieldName = 'doctor'
-        end      
-        item
-          Title.Caption = 'Номер карты'
-          Width = 89
-          FieldName = 'medcardnum'
-        end      
-        item
-          Title.Caption = 'Дата завершения'
-          Width = 110
-          FieldName = 'enddate'
-        end>
-      DataSource = dsActions
-      Options = [dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgAutoSizeColumns]
-      TabOrder = 1
-      TitleImageList = FormLogin.imgListDBNavigator
-      OnDblClick = DBGrid1DblClick
-    end
-  end
   object GroupBox2: TGroupBox
     Left = 0
     Height = 80
@@ -121,7 +40,6 @@ object FormActions: TFormActions
       KeyField = 'id'
       ListField = 'fnp'
       ListFieldIndex = 0
-      ListSource = dsDoctors
       LookupCache = True
       TabOrder = 1
     end
@@ -148,46 +66,5 @@ object FormActions: TFormActions
       Caption = 'Номер карты'
       ParentColor = False
     end
-  end
-  object qDoctors: TSQLQuery
-    FieldDefs = <>
-    Database = FormLogin.SQLite3Conn
-    Transaction = FormLogin.SQLTransact
-    SQL.Strings = (
-      'select id,'
-      '       fullname || '', '' || post fnp'
-      '  from doctors'
-      ' order by fullname'
-    )
-    Params = <>
-    left = 40
-    top = 272
-  end
-  object qActions: TSQLQuery
-    FieldDefs = <>
-    Database = FormLogin.SQLite3Conn
-    Transaction = FormLogin.SQLTransact
-    SQL.Strings = (
-      'select a.id,'
-      '       datetime(actiondate, ''localtime'') as actiondate,'
-      '       d.fullname || '', '' || post as doctor,'
-      '       medcardnum || '''' as medcardnum,'
-      '       datetime(enddate, ''localtime'') as enddate'
-      '  from actions a inner join doctors d on a.doc_id=d.id'
-      ' order by actiondate desc'
-    )
-    Params = <>
-    left = 152
-    top = 272
-  end
-  object dsActions: TDataSource
-    DataSet = qActions
-    left = 152
-    top = 336
-  end
-  object dsDoctors: TDataSource
-    DataSet = qDoctors
-    left = 40
-    top = 336
   end
 end

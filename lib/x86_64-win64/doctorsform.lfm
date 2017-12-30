@@ -1,8 +1,19 @@
 object FormDoctors: TFormDoctors
-  Left = 460
+  Left = 292
   Height = 600
-  Top = 274
+  Top = 143
   Width = 800
   Caption = 'FormDoctors'
+  ClientHeight = 600
+  ClientWidth = 800
   LCLVersion = '1.8.0.6'
+  object DBGrid1: TDBGrid
+    Left = 360
+    Height = 336
+    Top = 240
+    Width = 406
+    Color = clWindow
+    Columns = <>
+    TabOrder = 0
+  end
 end

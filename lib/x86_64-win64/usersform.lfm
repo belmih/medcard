@@ -16,7 +16,6 @@ object FormUsers: TFormUsers
     Top = 0
     Width = 640
     Caption = 'ToolBar1'
-    Images = FormLogin.imgList
     TabOrder = 0
     object DBNavigator1: TDBNavigator
       Left = 24
@@ -33,11 +32,9 @@ object FormUsers: TFormUsers
       ClientHeight = 22
       ClientWidth = 248
       ConfirmDelete = False
-      DataSource = dsUsers
       Flat = True
       Options = []
       TabOrder = 0
-      Images = FormLogin.imgListDBNavigator
     end
     object ToolButton1: TToolButton
       Left = 1
@@ -82,7 +79,6 @@ object FormUsers: TFormUsers
           Width = 78
           FieldName = 'fnp'
         end>
-      DataSource = FormActions.dsDoctors
       Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgAutoSizeColumns]
       TabOrder = 0
     end
@@ -135,84 +131,9 @@ object FormUsers: TFormUsers
           Width = 62
           FieldName = 'fullname'
         end>
-      DataSource = dsUsers
       Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgAutoSizeColumns]
       Options2 = [goScrollToLastRow]
       TabOrder = 0
     end
-  end
-  object dsUsers: TDataSource
-    DataSet = SQLQUsers
-    left = 104
-    top = 80
-  end
-  object SQLQUsers: TSQLQuery
-    PacketRecords = -1
-    FieldDefs = <    
-      item
-        Name = 'id'
-        DataType = ftInteger
-        Precision = -1
-      end    
-      item
-        Name = 'login'
-        DataType = ftString
-        Precision = -1
-        Size = 255
-      end    
-      item
-        Name = 'passwrd'
-        DataType = ftString
-        Precision = -1
-        Size = 255
-      end    
-      item
-        Name = 'userrole'
-        DataType = ftString
-        Precision = -1
-        Size = 255
-      end    
-      item
-        Name = 'doctor_id'
-        DataType = ftInteger
-        Precision = -1
-      end    
-      item
-        Name = 'fullname'
-        DataType = ftString
-        Precision = -1
-        Size = 255
-      end>
-    Database = FormLogin.SQLite3Conn
-    Transaction = FormLogin.SQLTransact
-    SQL.Strings = (
-      'select u.id,'
-      '       login || '''' login,'
-      '       passwrd || '''' passwrd,'
-      '       userrole || '''' userrole,'
-      '       doctor_id,'
-      '       fullname || '''' fullname'
-      '  from users u left join doctors d on d.id = u.doctor_id'
-    )
-    InsertSQL.Strings = (
-      'insert into users'
-      '(login, passwrd, userrole, doctor_id)'
-      'values'
-      '(:login, :passwrd, :userrole, :doctor_id)'
-    )
-    UpdateSQL.Strings = (
-      'UPDATE users SET'
-      'login = :login,'
-      'passwrd = :passwrd,'
-      'userrole = :userrole,'
-      'doctor_id = :doctor_id'
-      'WHERE id = :id'
-    )
-    DeleteSQL.Strings = (
-      'delete from users where id = :id'
-    )
-    Params = <>
-    left = 32
-    top = 80
   end
 end
