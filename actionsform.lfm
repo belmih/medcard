@@ -1,11 +1,11 @@
 object FormActions: TFormActions
-  Left = 374
+  Left = 922
   Height = 600
-  Top = 124
+  Top = 294
   Width = 800
   Caption = 'medcard'
-  ClientHeight = 600
-  ClientWidth = 800
+  ClientHeight = 0
+  ClientWidth = 0
   OnActivate = FormActivate
   OnClose = FormClose
   OnCreate = FormCreate

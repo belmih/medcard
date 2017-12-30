@@ -79,7 +79,7 @@ end;
 procedure TFormActions.DBGrid1DblClick(Sender: TObject);
 var id: Integer;
 begin
-    id:=DBGrid1.DataSource.DataSet.FieldByName('id').AsInteger;
+    //id:=DBGrid1.DataSource.DataSet.FieldByName('id').AsInteger;
     //ShowMessage(IntToStr(id));
     //Form5.tmpID:=id;
     //Form5.Show;
@@ -89,14 +89,14 @@ end;
 procedure TFormActions.actRowDeleteExecute(Sender: TObject);
 var id: Integer;
 begin
-  if MessageDlg('Вопрос', 'Удалить запись?', mtConfirmation,
+  {if MessageDlg('Вопрос', 'Удалить запись?', mtConfirmation,
    [mbYes, mbNo],0) = mrYes
   then
   begin
     id:=DBGrid1.DataSource.DataSet.FieldByName('id').AsInteger;
     ShowMessage(IntToStr(id));
     DBGrid1.SelectedRows.Delete;
-  end;
+  end; }
 end;
 
 procedure TFormActions.actShowUsersFormExecute(Sender: TObject);
@@ -162,7 +162,7 @@ end;
 procedure TFormActions.miRowDeleteClick(Sender: TObject);
 var id: Integer;
 begin
-
+  {
   if MessageDlg('Вопрос', 'Удалить запись?', mtConfirmation,
    [mbYes, mbNo],0) = mrYes
   then
@@ -171,7 +171,7 @@ begin
     id:=DBGrid1.DataSource.DataSet.FieldByName('id').AsInteger;
     ShowMessage(IntToStr(id));
     DBGrid1.SelectedRows.Delete;
-  end;
+  end;   }
 end;
 
 procedure TFormActions.miShowUsersFormClick(Sender: TObject);
