@@ -6,13 +6,13 @@ interface
 
 uses
   Classes, SysUtils, sqlite3conn, sqldb, sqldblib, FileUtil, Forms, Controls,
-  Graphics, Dialogs, StdCtrls,LCLProc, ExtCtrls, dbcreate, mform;
+  Graphics, Dialogs, StdCtrls,LCLProc, ExtCtrls, dbcreate;
 
 type
 
-  { TForm1 }
+  { TFormLogin }
 
-  TForm1 = class(TForm)
+  TFormLogin = class(TForm)
     btnLogin: TButton;
     eLogin: TEdit;
     ePassword: TEdit;
@@ -31,7 +31,7 @@ type
 
   end;
 var
-  Form1: TForm1;
+  FormLogin: TFormLogin;
   databasefile: String;
   user_id: Integer;
   userFullName: String;
@@ -41,12 +41,12 @@ var
 
 
 implementation
-
+  uses mainform;
 {$R *.lfm}
 
-{ TForm1 }
+{ TFormLogin }
 
-procedure TForm1.FormCreate(Sender: TObject);
+procedure TFormLogin.FormCreate(Sender: TObject);
 begin
   CurDir := ExtractFilePath(Application.ExeName);
   databasefile := CurDir + '.\database.db';
@@ -58,7 +58,7 @@ begin
   InitDb;
 end;
 
-procedure TForm1.InitDb;
+procedure TFormLogin.InitDb;
 var
   newdb: Boolean;
 begin
@@ -80,7 +80,7 @@ begin
 
 end;
 
-procedure TForm1.btnLoginClick(Sender: TObject);
+procedure TFormLogin.btnLoginClick(Sender: TObject);
 var
   showMainForm: Boolean;
   query: TSQLQuery;
@@ -112,8 +112,9 @@ begin
   end;
   if showMainForm then
   begin
-    Form1.Hide;
-    Form2.Show;
+    FormLogin.Hide;
+    FormMain.Show;
+
   end;
 end;
 

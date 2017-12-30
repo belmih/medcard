@@ -1,4 +1,4 @@
-object Form3: TForm3
+object FormUsers: TFormUsers
   Left = 442
   Height = 480
   Top = 188
@@ -6,7 +6,9 @@ object Form3: TForm3
   Caption = 'Пользователи'
   ClientHeight = 480
   ClientWidth = 640
+  OnClose = FormClose
   OnCreate = FormCreate
+  Position = poDesktopCenter
   LCLVersion = '1.8.0.6'
   object ToolBar1: TToolBar
     Left = 0
@@ -14,7 +16,7 @@ object Form3: TForm3
     Top = 0
     Width = 640
     Caption = 'ToolBar1'
-    Images = Form1.imgList
+    Images = FormLogin.imgList
     TabOrder = 0
     object DBNavigator1: TDBNavigator
       Left = 24
@@ -35,7 +37,7 @@ object Form3: TForm3
       Flat = True
       Options = []
       TabOrder = 0
-      Images = Form1.imgListDBNavigator
+      Images = FormLogin.imgListDBNavigator
     end
     object ToolButton1: TToolButton
       Left = 1
@@ -77,10 +79,10 @@ object Form3: TForm3
         end      
         item
           Title.Caption = 'ФИО Врача'
-          Width = 263
+          Width = 78
           FieldName = 'fnp'
         end>
-      DataSource = Form2.dsDoctors
+      DataSource = FormActions.dsDoctors
       Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgAutoSizeColumns]
       TabOrder = 0
     end
@@ -105,12 +107,12 @@ object Form3: TForm3
       Columns = <      
         item
           Title.Caption = 'id'
-          Width = 27
+          Width = 25
           FieldName = 'id'
         end      
         item
           Title.Caption = 'login'
-          Width = 69
+          Width = 42
           FieldName = 'login'
         end      
         item
@@ -130,7 +132,7 @@ object Form3: TForm3
         end      
         item
           Title.Caption = 'fullname'
-          Width = 175
+          Width = 62
           FieldName = 'fullname'
         end>
       DataSource = dsUsers
@@ -142,11 +144,10 @@ object Form3: TForm3
   object dsUsers: TDataSource
     DataSet = SQLQUsers
     left = 104
-    top = 56
+    top = 80
   end
   object SQLQUsers: TSQLQuery
     PacketRecords = -1
-    IndexName = 'DEFAULT_ORDER'
     FieldDefs = <    
       item
         Name = 'id'
@@ -182,9 +183,8 @@ object Form3: TForm3
         Precision = -1
         Size = 255
       end>
-    Active = True
-    Database = Form1.SQLite3Conn
-    Transaction = Form1.SQLTransact
+    Database = FormLogin.SQLite3Conn
+    Transaction = FormLogin.SQLTransact
     SQL.Strings = (
       'select u.id,'
       '       login || '''' login,'
@@ -212,7 +212,7 @@ object Form3: TForm3
       'delete from users where id = :id'
     )
     Params = <>
-    left = 40
-    top = 56
+    left = 32
+    top = 80
   end
 end

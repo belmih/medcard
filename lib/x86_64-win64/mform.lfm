@@ -1,4 +1,4 @@
-object Form2: TForm2
+object FormMain: TFormMain
   Left = 374
   Height = 600
   Top = 124
@@ -29,114 +29,71 @@ object Form2: TForm2
       end>
     SimplePanel = False
   end
-  object Panel1: TPanel
+  object GroupBox1: TGroupBox
     Left = 0
-    Height = 64
-    Top = 0
-    Width = 800
-    Align = alTop
-    ClientHeight = 64
-    ClientWidth = 800
-    TabOrder = 1
-    object Label1: TLabel
-      Left = 8
-      Height = 15
-      Top = 8
-      Width = 74
-      Caption = 'Номер карты'
-      ParentColor = False
-    end
-    object eMedCard: TEdit
-      Left = 8
-      Height = 23
-      Top = 27
-      Width = 210
-      TabOrder = 0
-    end
-    object Label2: TLabel
-      Left = 20
-      Height = 15
-      Top = 103
-      Width = 27
-      Caption = 'Врач'
-      ParentColor = False
-    end
-    object DBLookupListBox1: TDBLookupListBox
-      Left = 16
-      Height = 376
-      Top = 136
-      Width = 210
-      ListFieldIndex = 0
-      LookupCache = False
-      TabOrder = 1
-    end
-    object Label3: TLabel
-      Left = 232
-      Height = 15
-      Top = 8
-      Width = 27
-      Caption = 'Врач'
-      ParentColor = False
-    end
-    object dblcDoctor: TDBLookupComboBox
-      Left = 232
-      Height = 23
-      Top = 27
-      Width = 389
-      AutoComplete = True
-      DataSource = dsDoctors
-      KeyField = 'id'
-      ListField = 'fnp'
-      ListFieldIndex = 0
-      ListSource = dsDoctors
-      LookupCache = False
-      TabOrder = 2
-    end
-    object btnAdd: TButton
-      Left = 680
-      Height = 25
-      Top = 25
-      Width = 75
-      Action = actRowAdd
-      Caption = 'Добавить'
-      TabOrder = 3
-    end
-  end
-  object Panel2: TPanel
-    Left = 0
-    Height = 493
-    Top = 64
+    Height = 477
+    Top = 80
     Width = 800
     Align = alClient
-    ClientHeight = 493
-    ClientWidth = 800
+    Caption = 'Результаты'
+    ClientHeight = 457
+    ClientWidth = 796
     TabOrder = 2
+    object ToolBar1: TToolBar
+      Left = 0
+      Height = 24
+      Top = 0
+      Width = 796
+      ButtonHeight = 22
+      ButtonWidth = 23
+      Caption = 'ToolBar1'
+      Images = Form1.imgList
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 0
+      object ToolButton1: TToolButton
+        Left = 24
+        Top = 2
+        Action = actRowDelete
+      end
+      object ToolButton2: TToolButton
+        Left = 1
+        Top = 2
+        Action = actRowAdd
+      end
+      object ToolButton3: TToolButton
+        Left = 47
+        Top = 2
+        Action = actRefresh
+        ImageIndex = 3
+      end
+    end
     object DBGrid1: TDBGrid
-      Left = 1
-      Height = 467
-      Top = 25
-      Width = 798
+      Left = 0
+      Height = 433
+      Top = 24
+      Width = 796
       Align = alClient
       Color = clWindow
       Columns = <      
         item
           Title.Caption = 'id'
-          Width = 50
+          Width = 25
           FieldName = 'id'
         end      
         item
           Title.Caption = 'Дата начала'
-          Width = 110
+          Width = 82
           FieldName = 'actiondate'
         end      
         item
           Title.Caption = 'Врач'
-          Width = 300
+          Width = 42
           FieldName = 'doctor'
         end      
         item
           Title.Caption = 'Номер карты'
-          Width = 150
+          Width = 89
           FieldName = 'medcardnum'
         end      
         item
@@ -145,41 +102,67 @@ object Form2: TForm2
           FieldName = 'enddate'
         end>
       DataSource = dsActions
-      Options = [dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
-      TabOrder = 0
+      Options = [dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgAutoSizeColumns]
+      TabOrder = 1
+      TitleImageList = Form1.imgListDBNavigator
       OnDblClick = DBGrid1DblClick
     end
-    object ToolBar1: TToolBar
-      Left = 1
-      Height = 24
-      Top = 1
-      Width = 798
-      ButtonHeight = 22
-      ButtonWidth = 23
-      Caption = 'ToolBar1'
-      ParentShowHint = False
-      ShowHint = True
+  end
+  object GroupBox2: TGroupBox
+    Left = 0
+    Height = 80
+    Top = 0
+    Width = 800
+    Align = alTop
+    Caption = 'Новая оценка'
+    ClientHeight = 60
+    ClientWidth = 796
+    TabOrder = 0
+    object btnAdd: TButton
+      Left = 672
+      Height = 25
+      Top = 17
+      Width = 75
+      Action = actRowAdd
+      Caption = 'Добавить'
+      TabOrder = 0
+    end
+    object dblcDoctor: TDBLookupComboBox
+      Left = 249
+      Height = 23
+      Top = 19
+      Width = 389
+      AutoComplete = True
+      DropDownCount = 10
+      KeyField = 'id'
+      ListField = 'fnp'
+      ListFieldIndex = 0
+      ListSource = dsDoctors
+      LookupCache = True
       TabOrder = 1
-      object ToolButton1: TToolButton
-        Left = 24
-        Hint = 'Удалить запись'
-        Top = 2
-        Action = actRowDelete
-      end
-      object ToolButton2: TToolButton
-        Left = 1
-        Hint = 'Добавить'
-        Top = 2
-        Action = actRowAdd
-        ImageIndex = 4
-      end
-      object ToolButton3: TToolButton
-        Left = 47
-        Hint = 'Обновить'
-        Top = 2
-        Action = actRefresh
-        ImageIndex = 0
-      end
+    end
+    object Label3: TLabel
+      Left = 249
+      Height = 15
+      Top = 0
+      Width = 27
+      Caption = 'Врач'
+      ParentColor = False
+    end
+    object eMedCard: TEdit
+      Left = 25
+      Height = 23
+      Top = 19
+      Width = 210
+      TabOrder = 2
+    end
+    object Label1: TLabel
+      Left = 25
+      Height = 15
+      Top = 0
+      Width = 74
+      Caption = 'Номер карты'
+      ParentColor = False
     end
   end
   object MainMenu1: TMainMenu
@@ -227,7 +210,6 @@ object Form2: TForm2
     end
   end
   object qDoctors: TSQLQuery
-    IndexName = 'DEFAULT_ORDER'
     FieldDefs = <>
     Database = Form1.SQLite3Conn
     Transaction = Form1.SQLTransact

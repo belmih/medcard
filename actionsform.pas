@@ -1,4 +1,4 @@
-unit mform;
+unit actionsform;
 
 {$mode objfpc}{$H+}
 
@@ -7,19 +7,13 @@ interface
 uses
   Classes, SysUtils, sqldb,sqlite3conn, db, FileUtil, Forms, Controls, Graphics, Dialogs,
   ComCtrls, Menus, DbCtrls, StdCtrls, DBGrids, ExtCtrls, ActnList, Buttons,
-  Types,workform;
+  Types;
 
 type
 
-  { TFormMain }
+  { TFormActions }
 
-  TFormMain = class(TForm)
-    actShowUsersForm: TAction;
-    actUsersSave: TAction;
-    actRefresh: TAction;
-    actRowAdd: TAction;
-    actRowDelete: TAction;
-    ActionList1: TActionList;
+  TFormActions = class(TForm)
     btnAdd: TButton;
     DBComboBox1: TDBComboBox;
     DBGrid1: TDBGrid;
@@ -31,20 +25,8 @@ type
     GroupBox2: TGroupBox;
     Label1: TLabel;
     Label3: TLabel;
-    MainMenu1: TMainMenu;
-    MenuItem1: TMenuItem;
-    MenuItem2: TMenuItem;
-    MenuItem3: TMenuItem;
-    MenuItem4: TMenuItem;
-    MenuItem5: TMenuItem;
-    MenuItem6: TMenuItem;
-    MenuItem7: TMenuItem;
-    MenuItem8: TMenuItem;
-    ShowLog: TMenuItem;
-    miShowUsersForm: TMenuItem;
     qActions: TSQLQuery;
     qDoctors: TSQLQuery;
-    StatusBar1: TStatusBar;
     ToolBar1: TToolBar;
     ToolButton1: TToolButton;
     ToolButton2: TToolButton;
@@ -71,32 +53,32 @@ type
   end;
 
 var
-  FormMain: TFormMain;
+  FormActions: TFormActions;
 
 implementation
 
 uses loginform, usersform, aboutform, logform;
 {$R *.lfm}
 
-{ TFormMain }
+{ TFormActions }
 
-procedure TFormMain.FormClose(Sender: TObject; var CloseAction: TCloseAction);
-begin
-  Form1.Close;
-end;
-
-procedure TFormMain.FormCreate(Sender: TObject);
+procedure TFormActions.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
 
 end;
 
-procedure TFormMain.FormShow(Sender: TObject);
+procedure TFormActions.FormCreate(Sender: TObject);
 begin
-  StatusBar1.Panels.Items[0].Width := 250;
-  StatusBar1.Panels.Items[0].Text := userFullName + ' (' + Form1.eLogin.Text+')';
+
 end;
 
-procedure TFormMain.Button1Click(Sender: TObject);
+procedure TFormActions.FormShow(Sender: TObject);
+begin
+  //StatusBar1.Panels.Items[0].Width := 250;
+  //StatusBar1.Panels.Items[0].Text := userFullName + ' (' + Form1.eLogin.Text+')';
+end;
+
+procedure TFormActions.Button1Click(Sender: TObject);
 begin
   ;
 
@@ -104,17 +86,17 @@ begin
 
 end;
 
-procedure TFormMain.DBGrid1DblClick(Sender: TObject);
+procedure TFormActions.DBGrid1DblClick(Sender: TObject);
 var id: Integer;
 begin
     id:=DBGrid1.DataSource.DataSet.FieldByName('id').AsInteger;
     //ShowMessage(IntToStr(id));
-    Form5.tmpID:=id;
-    Form5.Show;
+    //Form5.tmpID:=id;
+    //Form5.Show;
 end;
 
 
-procedure TFormMain.actRowDeleteExecute(Sender: TObject);
+procedure TFormActions.actRowDeleteExecute(Sender: TObject);
 var id: Integer;
 begin
   if MessageDlg('Вопрос', 'Удалить запись?', mtConfirmation,
@@ -127,19 +109,19 @@ begin
   end;
 end;
 
-procedure TFormMain.actShowUsersFormExecute(Sender: TObject);
+procedure TFormActions.actShowUsersFormExecute(Sender: TObject);
 begin
   FormUsers := TFormUsers.Create(self);
-  FormMain.InsertControl(FormUsers);
+  FormActions.InsertControl(FormUsers);
   FormUsers.Show;
 end;
 
-procedure TFormMain.actUsersSaveExecute(Sender: TObject);
+procedure TFormActions.actUsersSaveExecute(Sender: TObject);
 begin
 
 end;
 
-procedure TFormMain.actRowAddExecute(Sender: TObject);
+procedure TFormActions.actRowAddExecute(Sender: TObject);
 var
  query: TSQLQuery;
  key: Integer;
@@ -148,14 +130,14 @@ begin
  key := dblcDoctor.KeyValue;
  try
    query := TSQLQuery.Create(nil);
-   query.DataBase := Form1.SQLite3Conn;
+   query.DataBase := FormLogin.SQLite3Conn;
    query.SQL.Text := 'insert into actions(user_id, doc_id, medcardnum) values(:u,:d,:m)';
    query.Prepare;
    query.ParamByName('u').AsInteger := user_id;
    query.ParamByName('d').AsInteger := key;
    query.ParamByName('m').AsString  := eMedCard.Text;
    query.ExecSQL;
-   Form1.SQLTransact.Commit;
+   FormLogin.SQLTransact.Commit;
  finally
    query.Close;
    query.Free;
@@ -163,31 +145,31 @@ begin
  qDoctors.Open;
  qActions.Open;
  dblcDoctor.KeyValue := key;
- Form5.Show;
+ //Form5.Show;
 end;
 
-procedure TFormMain.FormActivate(Sender: TObject);
+procedure TFormActions.FormActivate(Sender: TObject);
 begin
     qDoctors.Open;
   qActions.Open;
 end;
 
-procedure TFormMain.MenuItem3Click(Sender: TObject);
+procedure TFormActions.MenuItem3Click(Sender: TObject);
 begin
- Form1.Close;
+ FormLogin.Close;
 end;
 
-procedure TFormMain.MenuItem7Click(Sender: TObject);
+procedure TFormActions.MenuItem7Click(Sender: TObject);
 begin
   Form4.Show;
 end;
 
-procedure TFormMain.ShowLogClick(Sender: TObject);
+procedure TFormActions.ShowLogClick(Sender: TObject);
 begin
   FormLog.Show;
 end;
 
-procedure TFormMain.miRowDeleteClick(Sender: TObject);
+procedure TFormActions.miRowDeleteClick(Sender: TObject);
 var id: Integer;
 begin
 
@@ -202,14 +184,14 @@ begin
   end;
 end;
 
-procedure TFormMain.miShowUsersFormClick(Sender: TObject);
+procedure TFormActions.miShowUsersFormClick(Sender: TObject);
 begin
 
 end;
 
 
 
-{ TFormMain }
+{ TFormActions }
 
 
 

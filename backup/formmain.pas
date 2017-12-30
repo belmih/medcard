@@ -1,4 +1,4 @@
-unit mform;
+unit formmain;
 
 {$mode objfpc}{$H+}
 

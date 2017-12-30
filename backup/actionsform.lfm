@@ -1,44 +1,27 @@
-object FormMain: TFormMain
+object FormActions: TFormActions
   Left = 374
   Height = 600
   Top = 124
   Width = 800
   Caption = 'medcard'
-  ClientHeight = 580
+  ClientHeight = 600
   ClientWidth = 800
-  Menu = MainMenu1
   OnActivate = FormActivate
   OnClose = FormClose
   OnCreate = FormCreate
   OnShow = FormShow
   Position = poDesktopCenter
   LCLVersion = '1.8.0.6'
-  object StatusBar1: TStatusBar
-    Left = 0
-    Height = 23
-    Top = 557
-    Width = 800
-    Panels = <    
-      item
-        Text = 'login'
-        Width = 150
-      end    
-      item
-        Text = '2'
-        Width = 50
-      end>
-    SimplePanel = False
-  end
   object GroupBox1: TGroupBox
     Left = 0
-    Height = 477
+    Height = 520
     Top = 80
     Width = 800
     Align = alClient
     Caption = 'Результаты'
-    ClientHeight = 457
+    ClientHeight = 500
     ClientWidth = 796
-    TabOrder = 2
+    TabOrder = 1
     object ToolBar1: TToolBar
       Left = 0
       Height = 24
@@ -47,30 +30,32 @@ object FormMain: TFormMain
       ButtonHeight = 22
       ButtonWidth = 23
       Caption = 'ToolBar1'
-      Images = Form1.imgList
+      Images = FormLogin.imgList
       ParentShowHint = False
       ShowHint = True
       TabOrder = 0
       object ToolButton1: TToolButton
         Left = 24
         Top = 2
-        Action = actRowDelete
+        Caption = 'actRowDelete'
+        ImageIndex = 2
       end
       object ToolButton2: TToolButton
         Left = 1
         Top = 2
-        Action = actRowAdd
+        Caption = 'actRowAdd'
+        ImageIndex = 1
       end
       object ToolButton3: TToolButton
         Left = 47
         Top = 2
-        Action = actRefresh
+        Caption = 'actRefresh'
         ImageIndex = 3
       end
     end
     object DBGrid1: TDBGrid
       Left = 0
-      Height = 433
+      Height = 476
       Top = 24
       Width = 796
       Align = alClient
@@ -104,7 +89,7 @@ object FormMain: TFormMain
       DataSource = dsActions
       Options = [dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgAutoSizeColumns]
       TabOrder = 1
-      TitleImageList = Form1.imgListDBNavigator
+      TitleImageList = FormLogin.imgListDBNavigator
       OnDblClick = DBGrid1DblClick
     end
   end
@@ -123,7 +108,6 @@ object FormMain: TFormMain
       Height = 25
       Top = 17
       Width = 75
-      Action = actRowAdd
       Caption = 'Добавить'
       TabOrder = 0
     end
@@ -165,54 +149,10 @@ object FormMain: TFormMain
       ParentColor = False
     end
   end
-  object MainMenu1: TMainMenu
-    Images = Form1.imgList
-    left = 40
-    top = 424
-    object MenuItem1: TMenuItem
-      Caption = 'Файл'
-      object MenuItem3: TMenuItem
-        Caption = 'Выход'
-        ImageIndex = 7
-        OnClick = MenuItem3Click
-      end
-    end
-    object MenuItem2: TMenuItem
-      Caption = 'Справочники'
-      object miShowUsersForm: TMenuItem
-        Action = actShowUsersForm
-        OnClick = miShowUsersFormClick
-      end
-      object MenuItem4: TMenuItem
-        Caption = 'Справочник врачей'
-        ImageIndex = 5
-      end
-      object MenuItem5: TMenuItem
-        Caption = 'Справочник вопросов'
-        ImageIndex = 6
-      end
-    end
-    object MenuItem8: TMenuItem
-      Caption = 'Отчеты'
-    end
-    object MenuItem6: TMenuItem
-      Caption = 'Справка'
-      object ShowLog: TMenuItem
-        Caption = 'Отладка'
-        ImageIndex = 9
-        OnClick = ShowLogClick
-      end
-      object MenuItem7: TMenuItem
-        Caption = 'О программе'
-        ImageIndex = 8
-        OnClick = MenuItem7Click
-      end
-    end
-  end
   object qDoctors: TSQLQuery
     FieldDefs = <>
-    Database = Form1.SQLite3Conn
-    Transaction = Form1.SQLTransact
+    Database = FormLogin.SQLite3Conn
+    Transaction = FormLogin.SQLTransact
     SQL.Strings = (
       'select id,'
       '       fullname || '', '' || post fnp'
@@ -225,8 +165,8 @@ object FormMain: TFormMain
   end
   object qActions: TSQLQuery
     FieldDefs = <>
-    Database = Form1.SQLite3Conn
-    Transaction = Form1.SQLTransact
+    Database = FormLogin.SQLite3Conn
+    Transaction = FormLogin.SQLTransact
     SQL.Strings = (
       'select a.id,'
       '       datetime(actiondate, ''localtime'') as actiondate,'
@@ -249,32 +189,5 @@ object FormMain: TFormMain
     DataSet = qDoctors
     left = 40
     top = 336
-  end
-  object ActionList1: TActionList
-    Images = Form1.imgList
-    left = 152
-    top = 424
-    object actRowDelete: TAction
-      Caption = 'actRowDelete'
-      ImageIndex = 2
-      OnExecute = actRowDeleteExecute
-    end
-    object actRowAdd: TAction
-      Caption = 'actRowAdd'
-      ImageIndex = 1
-      OnExecute = actRowAddExecute
-    end
-    object actRefresh: TAction
-      Caption = 'actRefresh'
-    end
-    object actUsersSave: TAction
-      Caption = 'actUsersSave'
-      OnExecute = actUsersSaveExecute
-    end
-    object actShowUsersForm: TAction
-      Caption = 'Справочник пользователей'
-      ImageIndex = 4
-      OnExecute = actShowUsersFormExecute
-    end
   end
 end

@@ -1,4 +1,4 @@
-unit mform;
+unit mainform1;
 
 {$mode objfpc}{$H+}
 
@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, sqldb,sqlite3conn, db, FileUtil, Forms, Controls, Graphics, Dialogs,
   ComCtrls, Menus, DbCtrls, StdCtrls, DBGrids, ExtCtrls, ActnList, Buttons,
-  Types,workform;
+  Types;
 
 type
 
@@ -109,8 +109,8 @@ var id: Integer;
 begin
     id:=DBGrid1.DataSource.DataSet.FieldByName('id').AsInteger;
     //ShowMessage(IntToStr(id));
-    Form5.tmpID:=id;
-    Form5.Show;
+    //Form5.tmpID:=id;
+    //Form5.Show;
 end;
 
 
@@ -163,7 +163,7 @@ begin
  qDoctors.Open;
  qActions.Open;
  dblcDoctor.KeyValue := key;
- Form5.Show;
+ //Form5.Show;
 end;
 
 procedure TFormMain.FormActivate(Sender: TObject);

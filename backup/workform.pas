@@ -50,7 +50,6 @@ begin
 
 
   node := Form5.TreeView1.Items.Add(nil,'Критерии качества');
-  node.
   FormLog.AddLogInt(node.Index);
   while not query.EOF do
   begin
@@ -81,11 +80,11 @@ var
   query: TSQLQuery;
   id: Integer;
 begin
-  id := Form1.SQLite3Conn.GetInsertID;
+  id := FormLogin.SQLite3Conn.GetInsertID;
   //ShowMessage(IntToStr(id));
   try
     query := TSQLQuery.Create(nil);
-    query.DataBase := Form1.SQLite3Conn;
+    query.DataBase := FormLogin.SQLite3Conn;
     query.SQL.Text := ''
       + 'insert into results (action_id, level1, level2, level3,'#13#10
       + '                     questiontext,answertext,points,comment)'#13#10

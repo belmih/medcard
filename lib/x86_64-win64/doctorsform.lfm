@@ -1,0 +1,8 @@
+object FormDoctors: TFormDoctors
+  Left = 460
+  Height = 600
+  Top = 274
+  Width = 800
+  Caption = 'FormDoctors'
+  LCLVersion = '1.8.0.6'
+end

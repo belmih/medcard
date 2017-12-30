@@ -10,9 +10,9 @@ uses
 
 type
 
-  { TForm3 }
+  { TFormUsers }
 
-  TForm3 = class(TForm)
+  TFormUsers = class(TForm)
     DBGrid1: TDBGrid;
     DBGrid2: TDBGrid;
     DBNavigator1: TDBNavigator;
@@ -23,6 +23,7 @@ type
     StatusBar1: TStatusBar;
     ToolBar1: TToolBar;
     ToolButton1: TToolButton;
+    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure ToolButton1Click(Sender: TObject);
 
@@ -34,7 +35,7 @@ type
 
 
 var
-  Form3: TForm3;
+  FormUsers: TFormUsers;
 
 implementation
 
@@ -43,9 +44,9 @@ implementation
 {$R *.lfm}
 
 
- { TForm3 }
+ { TFormUsers }
 
- procedure TForm3.FormCreate(Sender: TObject);
+ procedure TFormUsers.FormCreate(Sender: TObject);
  begin
    SQLQUsers.Options := [sqoAutoApplyUpdates,
                          sqoCancelUpdatesOnRefresh,
@@ -58,17 +59,16 @@ implementation
 
  end;
 
-procedure TForm3.ToolButton1Click(Sender: TObject);
+procedure TFormUsers.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
-  SQLQUsers.ApplyUpdates;
-  Form1.SQLTransact.Commit;
+    CloseAction := caFree;
 end;
 
-
-
-
-
-
+procedure TFormUsers.ToolButton1Click(Sender: TObject);
+begin
+  SQLQUsers.ApplyUpdates;
+  FormLogin.SQLTransact.Commit;
+end;
 
 end.
 

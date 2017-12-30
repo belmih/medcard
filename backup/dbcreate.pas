@@ -58,7 +58,7 @@ const
 procedure dbcreate;
 
  implementation
- uses LoginForm;
+ uses loginform;
 
  procedure dbcreate;
  begin

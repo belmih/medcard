@@ -80,11 +80,11 @@ var
   query: TSQLQuery;
   id: Integer;
 begin
-  id := Form1.SQLite3Conn.GetInsertID;
+  id := FormLogin.SQLite3Conn.GetInsertID;
   //ShowMessage(IntToStr(id));
   try
     query := TSQLQuery.Create(nil);
-    query.DataBase := Form1.SQLite3Conn;
+    query.DataBase := FormLogin.SQLite3Conn;
     query.SQL.Text := ''
       + 'insert into results (action_id, level1, level2, level3,'#13#10
       + '                     questiontext,answertext,points,comment)'#13#10
@@ -94,7 +94,7 @@ begin
     query.Prepare;
     query.ParamByName('id').AsInteger := id;
     //query.ExecSQL;
-    Form1.SQLTransact.Commit;
+    FormLogin.SQLTransact.Commit;
     FillTree(query);
   finally
     query.Close;
