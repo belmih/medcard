@@ -8,7 +8,7 @@ uses
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
   Forms, loginform, actionsform, usersform, aboutform, workform, logform,
-  doctorsform, mainform, unit3;
+  doctorsform, mainform, common;
 
 {$R *.res}
 

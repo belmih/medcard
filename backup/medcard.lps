@@ -4,12 +4,12 @@
     <PathDelim Value="\"/>
     <Version Value="10"/>
     <BuildModes Active="Default"/>
-    <Units Count="26">
+    <Units Count="28">
       <Unit0>
         <Filename Value="medcard.lpr"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="12"/>
-        <CursorPos X="32" Y="11"/>
+        <EditorIndex Value="13"/>
+        <CursorPos X="42" Y="11"/>
         <UsageCount Value="84"/>
         <Loaded Value="True"/>
       </Unit0>
@@ -28,7 +28,7 @@
       <Unit2>
         <Filename Value="dbcreate.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="11"/>
+        <EditorIndex Value="12"/>
         <TopLine Value="24"/>
         <CursorPos X="12" Y="37"/>
         <UsageCount Value="84"/>
@@ -40,11 +40,9 @@
         <ComponentName Value="FormActions"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
         <TopLine Value="86"/>
-        <CursorPos X="9" Y="96"/>
-        <ComponentState Value="1"/>
+        <CursorPos X="13" Y="87"/>
         <UsageCount Value="81"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -56,7 +54,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="6"/>
-        <TopLine Value="20"/>
+        <TopLine Value="18"/>
         <CursorPos X="35" Y="17"/>
         <UsageCount Value="80"/>
         <Loaded Value="True"/>
@@ -71,7 +69,6 @@
         <EditorIndex Value="5"/>
         <TopLine Value="9"/>
         <CursorPos X="3" Y="45"/>
-        <ComponentState Value="1"/>
         <UsageCount Value="60"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -97,7 +94,6 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="4"/>
         <CursorPos X="23" Y="20"/>
-        <ComponentState Value="1"/>
         <UsageCount Value="52"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -108,7 +104,7 @@
         <ComponentName Value="FormDoctors"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="10"/>
         <TopLine Value="41"/>
         <CursorPos Y="69"/>
         <UsageCount Value="37"/>
@@ -130,7 +126,6 @@
       </Unit9>
       <Unit10>
         <Filename Value="unit2.pas"/>
-        <IsPartOfProject Value="True"/>
         <ComponentName Value="Form1"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Unit2"/>
@@ -141,7 +136,7 @@
       <Unit11>
         <Filename Value="common.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="8"/>
         <CursorPos X="50" Y="36"/>
         <UsageCount Value="29"/>
         <Loaded Value="True"/>
@@ -175,7 +170,7 @@
         <Filename Value="..\..\..\Downloads\persons-master\persons-master\unit1.pas"/>
         <HasResources Value="True"/>
         <UnitName Value="Unit1"/>
-        <EditorIndex Value="10"/>
+        <EditorIndex Value="11"/>
         <TopLine Value="462"/>
         <CursorPos X="42" Y="431"/>
         <UsageCount Value="41"/>
@@ -232,10 +227,10 @@
       </Unit22>
       <Unit23>
         <Filename Value="C:\lazarus\fpc\3.0.4\source\rtl\win\sysutils.pp"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="9"/>
         <TopLine Value="49"/>
         <CursorPos X="47" Y="80"/>
-        <UsageCount Value="14"/>
+        <UsageCount Value="20"/>
         <Loaded Value="True"/>
       </Unit23>
       <Unit24>
@@ -251,6 +246,23 @@
         <UsageCount Value="10"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit25>
+      <Unit26>
+        <Filename Value="usersform.lfm"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="7"/>
+        <UsageCount Value="20"/>
+        <Loaded Value="True"/>
+        <DefaultSyntaxHighlighter Value="LFM"/>
+      </Unit26>
+      <Unit27>
+        <Filename Value="doctorsform.lfm"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="-1"/>
+        <CursorPos X="-1" Y="-1"/>
+        <UsageCount Value="20"/>
+        <DefaultSyntaxHighlighter Value="LFM"/>
+      </Unit27>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>

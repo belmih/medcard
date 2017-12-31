@@ -80,7 +80,7 @@ var
   query: TSQLQuery;
   id: Integer;
 begin
-  id := FormLogin.SQLite3Conn.GetInsertID;
+ { id := FormLogin.SQLite3Conn.GetInsertID;
   //ShowMessage(IntToStr(id));
   try
     query := TSQLQuery.Create(nil);
@@ -100,7 +100,7 @@ begin
     query.Close;
     query.Free;
   end;
-
+    }
 
 
 

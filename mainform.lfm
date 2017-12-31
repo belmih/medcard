@@ -895,13 +895,13 @@ object FormMain: TFormMain
     Connected = False
     LoginPrompt = False
     KeepConnection = False
-    left = 288
-    top = 488
+    left = 624
+    top = 170
   end
   object SQLTransaction: TSQLTransaction
     Active = False
-    left = 640
-    top = 392
+    left = 712
+    top = 170
   end
   object qUsers: TSQLQuery
     FieldDefs = <>

@@ -37,6 +37,7 @@ object FormDoctors: TFormDoctors
       Top = 0
       Width = 796
       Caption = 'ToolBar1'
+      EdgeBorders = []
       Images = FormMain.imgList
       TabOrder = 1
       object DBNavigator1: TDBNavigator

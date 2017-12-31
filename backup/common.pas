@@ -34,7 +34,6 @@ begin
   for i := 0 to Pred( ds.FieldCount) do
     if ds.Fields[i].DataType in [ftMemo,ftWideMemo] then
       ds.Fields[i].OnGetText := @DBGridOnGetText;
-  DBGrid.AutoAdjustColumns;
 end;
 
 end.

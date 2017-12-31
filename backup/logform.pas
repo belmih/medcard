@@ -40,7 +40,7 @@ procedure TFormLog.AddLog(str: String);
 begin
   memoLog.Lines.Add(str);
 end;
-procedure AddLogInt(i: Integer);
+procedure TFormLog.AddLogInt(i: Integer);
 begin
   memoLog.Lines.Add(IntToStr(i));
 end;
