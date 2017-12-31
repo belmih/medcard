@@ -32,7 +32,6 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure MenuItem3Click(Sender: TObject);
-    procedure MenuItem7Click(Sender: TObject);
     procedure ShowLogClick(Sender: TObject);
     procedure miRowDeleteClick(Sender: TObject);
     procedure miShowUsersFormClick(Sender: TObject);
@@ -147,11 +146,6 @@ end;
 procedure TFormActions.MenuItem3Click(Sender: TObject);
 begin
  FormLogin.Close;
-end;
-
-procedure TFormActions.MenuItem7Click(Sender: TObject);
-begin
-  Form4.Show;
 end;
 
 procedure TFormActions.ShowLogClick(Sender: TObject);

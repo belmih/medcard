@@ -54,7 +54,6 @@ end;
 procedure TFormUsers.ToolButton1Click(Sender: TObject);
 begin
   FormMain.qUsers.ApplyUpdates;
-  FormMain.SQLTransaction.Commit;
 end;
 
 end.

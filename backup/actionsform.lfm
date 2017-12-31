@@ -4,8 +4,8 @@ object FormActions: TFormActions
   Top = 294
   Width = 800
   Caption = 'medcard'
-  ClientHeight = 0
-  ClientWidth = 0
+  ClientHeight = 600
+  ClientWidth = 800
   OnActivate = FormActivate
   OnClose = FormClose
   OnCreate = FormCreate

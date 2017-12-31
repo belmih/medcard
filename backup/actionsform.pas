@@ -149,11 +149,6 @@ begin
  FormLogin.Close;
 end;
 
-procedure TFormActions.MenuItem7Click(Sender: TObject);
-begin
-  Form4.Show;
-end;
-
 procedure TFormActions.ShowLogClick(Sender: TObject);
 begin
   FormLog.Show;

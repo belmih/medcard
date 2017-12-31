@@ -1,7 +1,7 @@
 object FormMain: TFormMain
-  Left = 376
+  Left = 759
   Height = 600
-  Top = 104
+  Top = 314
   Width = 800
   Caption = 'medcard'
   ClientHeight = 580
@@ -126,8 +126,9 @@ object FormMain: TFormMain
     end
   end
   object MainMenu1: TMainMenu
-    left = 68
-    top = 452
+    Images = imgList
+    left = 248
+    top = 168
     object MenuItem1: TMenuItem
       Caption = 'Файл'
       object MenuItem3: TMenuItem
@@ -157,16 +158,17 @@ object FormMain: TFormMain
         Caption = 'Отладка'
         ImageIndex = 9
       end
-      object MenuItem7: TMenuItem
+      object miAboutForm: TMenuItem
         Caption = 'О программе'
         ImageIndex = 8
+        OnClick = miAboutFormClick
       end
     end
   end
   object ActionList1: TActionList
     Images = imgList
-    left = 180
-    top = 452
+    left = 248
+    top = 232
     object actShowUsersForm: TAction
       Caption = 'Справочник пользователей'
       ImageIndex = 4
@@ -187,8 +189,8 @@ object FormMain: TFormMain
   end
   object dsActions: TDataSource
     DataSet = qActions
-    left = 180
-    top = 364
+    left = 120
+    top = 304
   end
   object qActions: TSQLQuery
     FieldDefs = <>
@@ -202,8 +204,8 @@ object FormMain: TFormMain
       ' order by actiondate desc'
     )
     Params = <>
-    left = 180
-    top = 300
+    left = 38
+    top = 304
   end
   object imgListDBNavigator: TImageList
     left = 704
@@ -907,7 +909,12 @@ object FormMain: TFormMain
     FieldDefs = <>
     AfterRefresh = qUsersAfterRefresh
     SQL.Strings = (
-      'select * from users'
+      'select id,'
+      '       login || '''' as login,'
+      '       passwrd || '''' as passwrd,'
+      '       userrole || '''' as userrole,'
+      '       doctor_id'
+      '  from users'
     )
     Params = <>
     left = 38
@@ -931,6 +938,7 @@ object FormMain: TFormMain
   end
   object dsUsers: TDataSource
     DataSet = qUsers
+    OnUpdateData = dsUsersUpdateData
     left = 120
     top = 168
   end

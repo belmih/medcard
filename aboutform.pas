@@ -10,9 +10,9 @@ uses
 
 type
 
-  { TForm4 }
+  { TFormAbout }
 
-  TForm4 = class(TForm)
+  TFormAbout = class(TForm)
     Image1: TImage;
     Label1: TLabel;
     Label2: TLabel;
@@ -27,20 +27,20 @@ type
   end;
 
 var
-  Form4: TForm4;
+  FormAbout: TFormAbout;
 
 implementation
 
 {$R *.lfm}
 
-{ TForm4 }
+{ TFormAbout }
 
-procedure TForm4.Label2Click(Sender: TObject);
+procedure TFormAbout.Label2Click(Sender: TObject);
 begin
 
 end;
 
-procedure TForm4.Image1Click(Sender: TObject);
+procedure TFormAbout.Image1Click(Sender: TObject);
 begin
 
 end;

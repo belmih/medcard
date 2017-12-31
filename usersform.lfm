@@ -1,9 +1,9 @@
 object FormUsers: TFormUsers
-  Left = 843
+  Left = 1024
   Height = 480
-  Top = 268
+  Top = 107
   Width = 640
-  Caption = 'Пользователи'
+  Caption = 'medcard'
   ClientHeight = 480
   ClientWidth = 640
   OnClose = FormClose
@@ -27,49 +27,6 @@ object FormUsers: TFormUsers
     ClientHeight = 437
     ClientWidth = 636
     TabOrder = 1
-    object DBGrid1: TDBGrid
-      Left = 0
-      Height = 411
-      Top = 26
-      Width = 636
-      Align = alClient
-      AutoFillColumns = True
-      Color = clWindow
-      Columns = <      
-        item
-          Title.Caption = 'id'
-          Width = 100
-          FieldName = 'id'
-        end      
-        item
-          Title.Caption = 'login'
-          Width = 100
-          FieldName = 'login'
-        end      
-        item
-          Title.Caption = 'passwrd'
-          Width = 100
-          FieldName = 'passwrd'
-        end      
-        item
-          Title.Caption = 'userrole'
-          Width = 100
-          FieldName = 'userrole'
-        end      
-        item
-          Title.Caption = 'doctor_id'
-          Width = 100
-          FieldName = 'doctor_id'
-        end      
-        item
-          Title.Caption = 'fullname'
-          Width = 103
-          FieldName = 'fullname'
-        end>
-      DataSource = FormMain.dsUsers
-      Options2 = [goScrollToLastRow]
-      TabOrder = 0
-    end
     object ToolBar1: TToolBar
       Left = 0
       Height = 26
@@ -77,7 +34,7 @@ object FormUsers: TFormUsers
       Width = 636
       Caption = 'ToolBar1'
       Images = FormMain.imgList
-      TabOrder = 1
+      TabOrder = 0
       object DBNavigator1: TDBNavigator
         Left = 1
         Height = 22
@@ -101,10 +58,21 @@ object FormUsers: TFormUsers
       object ToolButton1: TToolButton
         Left = 242
         Top = 2
-        Caption = 'ToolButton1'
-        ImageIndex = 0
+        Action = FormMain.actCommit
         OnClick = ToolButton1Click
       end
+    end
+    object DBGrid1: TDBGrid
+      Left = 0
+      Height = 411
+      Top = 26
+      Width = 636
+      Align = alClient
+      Color = clWindow
+      Columns = <>
+      DataSource = FormMain.dsUsers
+      Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgAutoSizeColumns]
+      TabOrder = 1
     end
   end
 end

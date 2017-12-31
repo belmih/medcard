@@ -37,7 +37,7 @@ type
     MenuItem4: TMenuItem;
     MenuItem5: TMenuItem;
     MenuItem6: TMenuItem;
-    MenuItem7: TMenuItem;
+    miAboutForm: TMenuItem;
     MenuItem8: TMenuItem;
     miShowUsersForm: TMenuItem;
     qActions: TSQLQuery;
@@ -54,6 +54,7 @@ type
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure DBConnect();
+    procedure miAboutFormClick(Sender: TObject);
     procedure qDoctorsAfterRefresh(DataSet: TDataSet);
     procedure QueryOpen();
     procedure qUsersAfterRefresh(DataSet: TDataSet);
@@ -70,7 +71,7 @@ var
   FormMain: TFormMain;
 
 implementation
- uses loginform, usersform, doctorsform;
+ uses loginform, usersform, doctorsform, aboutform;
 {$R *.lfm}
 
 { TFormMain }
@@ -106,7 +107,7 @@ end;
 procedure TFormMain.FormCreate(Sender: TObject);
 begin
   DBConnect();
-  QueryOpen()
+  QueryOpen();
 end;
 
 procedure TFormMain.DBConnect();
@@ -129,6 +130,12 @@ begin
   end;
 end;
 
+procedure TFormMain.miAboutFormClick(Sender: TObject);
+begin
+  FormAbout := TFormAbout.Create(self);
+  FormAbout.Show;
+end;
+
 procedure TFormMain.qDoctorsAfterRefresh(DataSet: TDataSet);
 begin
   actCommit.Enabled:=False;
@@ -136,15 +143,9 @@ end;
 
 Procedure TFormMain.QueryOpen();
 begin
-  qUsers.Options := [sqoAutoApplyUpdates,
-                     sqoCancelUpdatesOnRefresh,
-                     sqoRefreshUsingSelect,
-                     sqoKeepOpenOnCommit];
+  qUsers.Options   := [sqoCancelUpdatesOnRefresh, sqoRefreshUsingSelect, sqoKeepOpenOnCommit];
+  qDoctors.Options := [sqoCancelUpdatesOnRefresh, sqoRefreshUsingSelect, sqoKeepOpenOnCommit];
   qUsers.Open;
-
-  qDoctors.Options := [sqoCancelUpdatesOnRefresh,
-                       sqoRefreshUsingSelect,
-                       sqoKeepOpenOnCommit];
   qDoctors.Open;
 end;
 
