@@ -16,11 +16,17 @@ type
   TFormActions = class(TForm)
     btnAdd: TButton;
     DBComboBox1: TDBComboBox;
+    DBGrid1: TDBGrid;
     dblcDoctor: TDBLookupComboBox;
     eMedCard: TEdit;
+    GroupBox1: TGroupBox;
     GroupBox2: TGroupBox;
     Label1: TLabel;
     Label3: TLabel;
+    ToolBar1: TToolBar;
+    ToolButton1: TToolButton;
+    ToolButton2: TToolButton;
+    ToolButton3: TToolButton;
     procedure actRowAddExecute(Sender: TObject);
     procedure actRowDeleteExecute(Sender: TObject);
     procedure actShowUsersFormExecute(Sender: TObject);
@@ -79,7 +85,7 @@ end;
 procedure TFormActions.DBGrid1DblClick(Sender: TObject);
 var id: Integer;
 begin
-    //id:=DBGrid1.DataSource.DataSet.FieldByName('id').AsInteger;
+    id:=DBGrid1.DataSource.DataSet.FieldByName('id').AsInteger;
     //ShowMessage(IntToStr(id));
     //Form5.tmpID:=id;
     //Form5.Show;
@@ -89,14 +95,14 @@ end;
 procedure TFormActions.actRowDeleteExecute(Sender: TObject);
 var id: Integer;
 begin
-  {if MessageDlg('Вопрос', 'Удалить запись?', mtConfirmation,
+  if MessageDlg('Вопрос', 'Удалить запись?', mtConfirmation,
    [mbYes, mbNo],0) = mrYes
   then
   begin
     id:=DBGrid1.DataSource.DataSet.FieldByName('id').AsInteger;
     ShowMessage(IntToStr(id));
     DBGrid1.SelectedRows.Delete;
-  end; }
+  end;
 end;
 
 procedure TFormActions.actShowUsersFormExecute(Sender: TObject);
@@ -162,7 +168,7 @@ end;
 procedure TFormActions.miRowDeleteClick(Sender: TObject);
 var id: Integer;
 begin
-  {
+
   if MessageDlg('Вопрос', 'Удалить запись?', mtConfirmation,
    [mbYes, mbNo],0) = mrYes
   then
@@ -171,7 +177,7 @@ begin
     id:=DBGrid1.DataSource.DataSet.FieldByName('id').AsInteger;
     ShowMessage(IntToStr(id));
     DBGrid1.SelectedRows.Delete;
-  end;   }
+  end;
 end;
 
 procedure TFormActions.miShowUsersFormClick(Sender: TObject);

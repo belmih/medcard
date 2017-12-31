@@ -6,7 +6,7 @@ object FormLogin: TFormLogin
   Caption = 'medcard'
   ClientHeight = 240
   ClientWidth = 320
-  Position = poScreenCenter
+  Position = poDesktopCenter
   LCLVersion = '1.8.0.6'
   object Label1: TLabel
     Left = 68

@@ -4,13 +4,17 @@
     <PathDelim Value="\"/>
     <Version Value="10"/>
     <BuildModes Active="Default"/>
+<<<<<<< HEAD
     <Units Count="26">
+=======
+    <Units Count="20">
+>>>>>>> parent of d3f199b... doctors form
       <Unit0>
         <Filename Value="medcard.lpr"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="12"/>
-        <CursorPos X="32" Y="11"/>
-        <UsageCount Value="84"/>
+        <EditorIndex Value="10"/>
+        <CursorPos X="17" Y="16"/>
+        <UsageCount Value="71"/>
         <Loaded Value="True"/>
       </Unit0>
       <Unit1>
@@ -19,19 +23,18 @@
         <ComponentName Value="FormLogin"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <TopLine Value="17"/>
-        <CursorPos X="31" Y="27"/>
-        <UsageCount Value="84"/>
+        <CursorPos X="34" Y="19"/>
+        <UsageCount Value="71"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
       <Unit2>
         <Filename Value="dbcreate.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="11"/>
+        <EditorIndex Value="9"/>
         <TopLine Value="24"/>
         <CursorPos X="12" Y="37"/>
-        <UsageCount Value="84"/>
+        <UsageCount Value="71"/>
         <Loaded Value="True"/>
       </Unit2>
       <Unit3>
@@ -42,9 +45,15 @@
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
+<<<<<<< HEAD
         <TopLine Value="86"/>
         <CursorPos X="37" Y="102"/>
         <UsageCount Value="81"/>
+=======
+        <TopLine Value="127"/>
+        <CursorPos X="5" Y="150"/>
+        <UsageCount Value="68"/>
+>>>>>>> parent of d3f199b... doctors form
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit3>
@@ -55,9 +64,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="6"/>
-        <TopLine Value="20"/>
-        <CursorPos X="35" Y="17"/>
-        <UsageCount Value="80"/>
+        <TopLine Value="28"/>
+        <CursorPos X="5" Y="68"/>
+        <UsageCount Value="67"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit4>
@@ -68,9 +77,14 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="5"/>
+<<<<<<< HEAD
         <TopLine Value="9"/>
         <CursorPos X="3" Y="45"/>
         <UsageCount Value="60"/>
+=======
+        <CursorPos X="70" Y="21"/>
+        <UsageCount Value="47"/>
+>>>>>>> parent of d3f199b... doctors form
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit5>
@@ -83,7 +97,7 @@
         <EditorIndex Value="3"/>
         <TopLine Value="70"/>
         <CursorPos X="6" Y="103"/>
-        <UsageCount Value="59"/>
+        <UsageCount Value="46"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit6>
@@ -94,12 +108,18 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="4"/>
+        <TopLine Value="5"/>
         <CursorPos X="23" Y="20"/>
+<<<<<<< HEAD
         <UsageCount Value="52"/>
+=======
+        <UsageCount Value="39"/>
+>>>>>>> parent of d3f199b... doctors form
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit7>
       <Unit8>
+<<<<<<< HEAD
         <Filename Value="doctorsform.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FormDoctors"/>
@@ -144,6 +164,8 @@
         <Loaded Value="True"/>
       </Unit11>
       <Unit12>
+=======
+>>>>>>> parent of d3f199b... doctors form
         <Filename Value="form4.pas"/>
         <ComponentName Value="Form4"/>
         <HasResources Value="True"/>
@@ -151,9 +173,9 @@
         <UnitName Value="doctorsform"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="26" Y="13"/>
-        <UsageCount Value="14"/>
-      </Unit12>
-      <Unit13>
+        <UsageCount Value="15"/>
+      </Unit8>
+      <Unit9>
         <Filename Value="form5.pas"/>
         <ComponentName Value="Form5"/>
         <HasResources Value="True"/>
@@ -161,84 +183,92 @@
         <UnitName Value="qform5"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="37" Y="6"/>
-        <UsageCount Value="14"/>
-      </Unit13>
-      <Unit14>
+        <UsageCount Value="15"/>
+      </Unit9>
+      <Unit10>
         <Filename Value="..\..\..\Downloads\persons-master\persons-master\persons.pas"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="5"/>
-      </Unit14>
-      <Unit15>
+        <UsageCount Value="6"/>
+      </Unit10>
+      <Unit11>
         <Filename Value="..\..\..\Downloads\persons-master\persons-master\unit1.pas"/>
         <HasResources Value="True"/>
         <UnitName Value="Unit1"/>
-        <EditorIndex Value="10"/>
-        <TopLine Value="462"/>
+        <EditorIndex Value="8"/>
+        <TopLine Value="463"/>
         <CursorPos X="42" Y="431"/>
-        <UsageCount Value="41"/>
+        <UsageCount Value="35"/>
         <Loaded Value="True"/>
-      </Unit15>
-      <Unit16>
+      </Unit11>
+      <Unit12>
         <Filename Value="C:\lazarus\lcl\include\control.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="3830"/>
         <CursorPos X="13" Y="3834"/>
-        <UsageCount Value="28"/>
-      </Unit16>
-      <Unit17>
+        <UsageCount Value="29"/>
+      </Unit12>
+      <Unit13>
         <Filename Value="C:\lazarus\lcl\include\customedit.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="539"/>
         <CursorPos Y="566"/>
-        <UsageCount Value="4"/>
-      </Unit17>
-      <Unit18>
+        <UsageCount Value="5"/>
+      </Unit13>
+      <Unit14>
         <Filename Value="C:\lazarus\lcl\include\wincontrol.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="8196"/>
         <CursorPos Y="8233"/>
-        <UsageCount Value="4"/>
-      </Unit18>
-      <Unit19>
+        <UsageCount Value="5"/>
+      </Unit14>
+      <Unit15>
+        <Filename Value="mainform.pas"/>
+        <ComponentName Value="MainForm"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="17" Y="6"/>
+        <UsageCount Value="15"/>
+      </Unit15>
+      <Unit16>
         <Filename Value="C:\lazarus\lcl\comctrls.pp"/>
         <UnitName Value="ComCtrls"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="2990"/>
         <CursorPos X="3" Y="2880"/>
-        <UsageCount Value="14"/>
-      </Unit19>
-      <Unit20>
-        <Filename Value="C:\lazarus\lcl\dbgrids.pas"/>
-        <UnitName Value="DBGrids"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="3988"/>
-        <CursorPos X="47" Y="26"/>
-        <UsageCount Value="9"/>
-      </Unit20>
-      <Unit21>
-        <Filename Value="C:\lazarus\lcl\lcltype.pp"/>
-        <UnitName Value="LCLType"/>
-        <EditorIndex Value="-1"/>
-        <UsageCount Value="9"/>
-      </Unit21>
-      <Unit22>
-        <Filename Value="C:\lazarus\fpc\3.0.4\source\packages\rtl-extra\src\inc\matrix.pp"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="5"/>
-        <UsageCount Value="9"/>
-      </Unit22>
-      <Unit23>
-        <Filename Value="C:\lazarus\fpc\3.0.4\source\rtl\win\sysutils.pp"/>
-        <EditorIndex Value="8"/>
-        <TopLine Value="49"/>
-        <CursorPos X="47" Y="80"/>
-        <UsageCount Value="14"/>
+        <UsageCount Value="15"/>
+      </Unit16>
+      <Unit17>
+        <Filename Value="doctorsform.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormDoctors"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="7"/>
+        <CursorPos X="25" Y="2"/>
+        <UsageCount Value="25"/>
         <Loaded Value="True"/>
-      </Unit23>
-      <Unit24>
-        <Filename Value="C:\lazarus\lcl\graphics.pp"/>
-        <UnitName Value="Graphics"/>
+        <LoadedDesigner Value="True"/>
+      </Unit17>
+      <Unit18>
+        <Filename Value="mainform.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormMain"/>
+        <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="72"/>
+        <CursorPos X="17" Y="93"/>
+        <UsageCount Value="24"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit18>
+      <Unit19>
+        <Filename Value="unit2.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="Form1"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="Unit2"/>
         <EditorIndex Value="-1"/>
+<<<<<<< HEAD
         <TopLine Value="214"/>
         <UsageCount Value="9"/>
       </Unit24>
@@ -248,127 +278,132 @@
         <UsageCount Value="10"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit25>
+=======
+        <CursorPos X="25" Y="11"/>
+        <UsageCount Value="22"/>
+      </Unit19>
+>>>>>>> parent of d3f199b... doctors form
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="mainform.pas"/>
-        <Caret Line="88" Column="3" TopLine="86"/>
+        <Filename Value="actionsform.pas"/>
+        <Caret Line="103" Column="18" TopLine="96"/>
       </Position1>
       <Position2>
-        <Filename Value="mainform.pas"/>
-        <Caret Line="87" Column="3" TopLine="85"/>
+        <Filename Value="actionsform.pas"/>
+        <Caret Line="102" Column="18" TopLine="95"/>
       </Position2>
       <Position3>
-        <Filename Value="mainform.pas"/>
-        <Caret Line="86" Column="3" TopLine="84"/>
+        <Filename Value="actionsform.pas"/>
+        <Caret Line="101" Column="18" TopLine="94"/>
       </Position3>
       <Position4>
         <Filename Value="mainform.pas"/>
-        <Caret Line="85" Column="3" TopLine="83"/>
+        <Caret Line="25" Column="16" TopLine="20"/>
       </Position4>
       <Position5>
         <Filename Value="mainform.pas"/>
-        <Caret Line="84" Column="3" TopLine="82"/>
+        <Caret Line="27" Column="16" TopLine="20"/>
       </Position5>
       <Position6>
-        <Filename Value="mainform.pas"/>
-        <Caret Line="85" Column="3" TopLine="83"/>
+        <Filename Value="loginform.pas"/>
+        <Caret Line="99" Column="35" TopLine="93"/>
       </Position6>
       <Position7>
-        <Filename Value="doctorsform.pas"/>
-        <Caret Line="25" Column="45"/>
+        <Filename Value="loginform.pas"/>
+        <Caret Line="98" Column="35" TopLine="92"/>
       </Position7>
       <Position8>
-        <Filename Value="doctorsform.pas"/>
-        <Caret Line="46" Column="14" TopLine="17"/>
+        <Filename Value="loginform.pas"/>
+        <Caret Line="97" Column="35" TopLine="91"/>
       </Position8>
       <Position9>
-        <Filename Value="doctorsform.pas"/>
-        <Caret Line="43" Column="33" TopLine="16"/>
+        <Filename Value="mainform.pas"/>
+        <Caret Line="27" Column="16" TopLine="20"/>
       </Position9>
       <Position10>
-        <Filename Value="doctorsform.pas"/>
-        <Caret Line="35" Column="51" TopLine="30"/>
+        <Filename Value="mainform.pas"/>
+        <Caret Line="29" Column="16" TopLine="20"/>
       </Position10>
       <Position11>
-        <Filename Value="doctorsform.pas"/>
-        <Caret Line="36" Column="29" TopLine="27"/>
+        <Filename Value="loginform.pas"/>
+        <Caret Line="97" Column="35" TopLine="91"/>
       </Position11>
       <Position12>
-        <Filename Value="doctorsform.pas"/>
-        <Caret Line="42" Column="60" TopLine="29"/>
+        <Filename Value="loginform.pas"/>
+        <Caret Line="96" Column="35" TopLine="90"/>
       </Position12>
       <Position13>
-        <Filename Value="doctorsform.pas"/>
-        <Caret Line="75" Column="54" TopLine="39"/>
+        <Filename Value="loginform.pas"/>
+        <Caret Line="95" Column="35" TopLine="89"/>
       </Position13>
       <Position14>
-        <Filename Value="doctorsform.pas"/>
-        <Caret Line="70" Column="36" TopLine="40"/>
+        <Filename Value="mainform.pas"/>
+        <Caret Line="36" Column="20" TopLine="20"/>
       </Position14>
       <Position15>
-        <Filename Value="doctorsform.pas"/>
-        <Caret Line="73" Column="34" TopLine="43"/>
+        <Filename Value="mainform.pas"/>
+        <Caret Line="75" Column="15" TopLine="68"/>
       </Position15>
       <Position16>
-        <Filename Value="mainform.pas"/>
-        <Caret Line="153" Column="76" TopLine="148"/>
+        <Filename Value="usersform.pas"/>
+        <Caret Line="56" Column="5" TopLine="27"/>
       </Position16>
       <Position17>
-        <Filename Value="mainform.pas"/>
-        <Caret Line="109" TopLine="103"/>
+        <Filename Value="usersform.pas"/>
+        <Caret Line="68" Column="5" TopLine="28"/>
       </Position17>
       <Position18>
         <Filename Value="mainform.pas"/>
-        <Caret Line="94" TopLine="63"/>
+        <Caret Line="57" Column="18" TopLine="48"/>
       </Position18>
       <Position19>
         <Filename Value="mainform.pas"/>
-        <Caret Line="166" Column="24" TopLine="131"/>
+        <Caret Line="87" Column="14" TopLine="65"/>
       </Position19>
       <Position20>
-        <Filename Value="mainform.pas"/>
-        <Caret Line="179" Column="27" TopLine="139"/>
+        <Filename Value="loginform.pas"/>
+        <Caret Line="54" Column="11" TopLine="27"/>
       </Position20>
       <Position21>
-        <Filename Value="mainform.pas"/>
-        <Caret Line="173" Column="30" TopLine="143"/>
+        <Filename Value="loginform.pas"/>
+        <Caret Line="76" Column="9" TopLine="41"/>
       </Position21>
       <Position22>
-        <Filename Value="mainform.pas"/>
-        <Caret Line="68" Column="19" TopLine="40"/>
+        <Filename Value="loginform.pas"/>
+        <Caret Line="61" Column="5" TopLine="55"/>
       </Position22>
       <Position23>
-        <Filename Value="mainform.pas"/>
-        <Caret Line="69" Column="19" TopLine="40"/>
+        <Filename Value="loginform.pas"/>
+        <Caret Line="114" Column="10" TopLine="81"/>
       </Position23>
       <Position24>
-        <Filename Value="mainform.pas"/>
-        <Caret Line="188" Column="5" TopLine="152"/>
+        <Filename Value="medcard.lpr"/>
+        <Caret Line="10" Column="21"/>
       </Position24>
       <Position25>
-        <Filename Value="mainform.pas"/>
-        <Caret Line="183" Column="18" TopLine="157"/>
+        <Filename Value="actionsform.pas"/>
+        <Caret Line="144" Column="17" TopLine="107"/>
       </Position25>
       <Position26>
-        <Filename Value="mainform.pas"/>
-        <Caret Line="192" TopLine="152"/>
+        <Filename Value="actionsform.pas"/>
+        <Caret Line="150" Column="5" TopLine="127"/>
       </Position26>
       <Position27>
-        <Filename Value="mainform.pas"/>
-        <Caret Line="173" Column="37" TopLine="160"/>
+        <Filename Value="workform.pas"/>
+        <Caret Line="103" Column="6" TopLine="70"/>
       </Position27>
       <Position28>
         <Filename Value="mainform.pas"/>
-        <Caret Line="165" TopLine="146"/>
+        <Caret Line="89" Column="6" TopLine="68"/>
       </Position28>
       <Position29>
         <Filename Value="mainform.pas"/>
-        <Caret Line="185" TopLine="164"/>
+        <Caret Line="48" Column="21" TopLine="27"/>
       </Position29>
       <Position30>
-        <Filename Value="mainform.pas"/>
-        <Caret Line="202" Column="36" TopLine="164"/>
+        <Filename Value="loginform.pas"/>
+        <Caret Line="45" TopLine="36"/>
       </Position30>
     </JumpHistory>
   </ProjectSession>

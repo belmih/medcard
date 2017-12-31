@@ -5,8 +5,8 @@ unit loginform;
 interface
 
 uses
-  Classes, SysUtils, sqlite3conn, sqldb, FileUtil, Forms, Controls,
-  Graphics, Dialogs, StdCtrls,LCLProc, ExtCtrls;
+  Classes, SysUtils, sqlite3conn, sqldb, sqldblib, FileUtil, Forms, Controls,
+  Graphics, Dialogs, StdCtrls,LCLProc, ExtCtrls, dbcreate;
 
 type
 

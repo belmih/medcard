@@ -1,130 +1,14 @@
 object FormMain: TFormMain
-  Left = 376
+  Left = 368
   Height = 600
-  Top = 104
+  Top = 159
   Width = 800
   Caption = 'medcard'
-  ClientHeight = 580
-  ClientWidth = 800
   Menu = MainMenu1
   OnClose = FormClose
   OnCreate = FormCreate
-  Position = poScreenCenter
+  Position = poDesktopCenter
   LCLVersion = '1.8.0.6'
-  object GroupBox2: TGroupBox
-    Left = 0
-    Height = 80
-    Top = 0
-    Width = 800
-    Align = alTop
-    Caption = 'Новая оценка'
-    ClientHeight = 60
-    ClientWidth = 796
-    TabOrder = 0
-    object btnAdd: TButton
-      Left = 672
-      Height = 25
-      Top = 17
-      Width = 75
-      Caption = 'Добавить'
-      TabOrder = 0
-    end
-    object dblcDoctor: TDBLookupComboBox
-      Left = 249
-      Height = 23
-      Top = 19
-      Width = 389
-      AutoComplete = True
-      DropDownCount = 10
-      KeyField = 'id'
-      ListField = 'fnp'
-      ListFieldIndex = 0
-      LookupCache = True
-      TabOrder = 1
-    end
-    object Label3: TLabel
-      Left = 249
-      Height = 15
-      Top = 0
-      Width = 27
-      Caption = 'Врач'
-      ParentColor = False
-    end
-    object eMedCard: TEdit
-      Left = 25
-      Height = 23
-      Top = 19
-      Width = 210
-      TabOrder = 2
-    end
-    object Label1: TLabel
-      Left = 25
-      Height = 15
-      Top = 0
-      Width = 74
-      Caption = 'Номер карты'
-      ParentColor = False
-    end
-  end
-  object GroupBox1: TGroupBox
-    Left = 0
-    Height = 500
-    Top = 80
-    Width = 800
-    Align = alClient
-    Caption = 'Результаты'
-    ClientHeight = 480
-    ClientWidth = 796
-    TabOrder = 1
-    object ToolBar1: TToolBar
-      Left = 0
-      Height = 24
-      Top = 0
-      Width = 796
-      ButtonHeight = 22
-      ButtonWidth = 23
-      Caption = 'ToolBar1'
-      ParentShowHint = False
-      ShowHint = True
-      TabOrder = 0
-    end
-    object DBGrid1: TDBGrid
-      Left = 0
-      Height = 456
-      Top = 24
-      Width = 796
-      Align = alClient
-      Color = clWindow
-      Columns = <      
-        item
-          Title.Caption = 'id'
-          Width = 25
-          FieldName = 'id'
-        end      
-        item
-          Title.Caption = 'Дата начала'
-          Width = 82
-          FieldName = 'actiondate'
-        end      
-        item
-          Title.Caption = 'Врач'
-          Width = 42
-          FieldName = 'doctor'
-        end      
-        item
-          Title.Caption = 'Номер карты'
-          Width = 89
-          FieldName = 'medcardnum'
-        end      
-        item
-          Title.Caption = 'Дата завершения'
-          Width = 110
-          FieldName = 'enddate'
-        end>
-      Options = [dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgAutoSizeColumns]
-      TabOrder = 1
-    end
-  end
   object MainMenu1: TMainMenu
     left = 68
     top = 452
@@ -141,7 +25,8 @@ object FormMain: TFormMain
         Action = actShowUsersForm
       end
       object MenuItem4: TMenuItem
-        Action = actShowDoctorsForm
+        Caption = 'Справочник врачей'
+        ImageIndex = 5
       end
       object MenuItem5: TMenuItem
         Caption = 'Справочник вопросов'
@@ -164,26 +49,99 @@ object FormMain: TFormMain
     end
   end
   object ActionList1: TActionList
-    Images = imgList
     left = 180
     top = 452
+    object actRowDelete: TAction
+      Caption = 'actRowDelete'
+      ImageIndex = 2
+    end
+    object actRowAdd: TAction
+      Caption = 'actRowAdd'
+      ImageIndex = 1
+    end
+    object actRefresh: TAction
+      Caption = 'actRefresh'
+    end
+    object actUsersSave: TAction
+      Caption = 'actUsersSave'
+    end
     object actShowUsersForm: TAction
       Caption = 'Справочник пользователей'
       ImageIndex = 4
       OnExecute = actShowUsersFormExecute
     end
-    object actShowDoctorsForm: TAction
-      Caption = 'Справочник врачей'
-      ImageIndex = 5
-      OnExecute = actShowDoctorsFormExecute
-    end
-    object actCommit: TAction
-      Caption = 'actCommit'
-      Enabled = False
-      Hint = 'Записать в базу данных'
-      ImageIndex = 0
-      OnExecute = actCommitExecute
-    end
+  end
+  object SQLQUsers: TSQLQuery
+    PacketRecords = -1
+    FieldDefs = <    
+      item
+        Name = 'id'
+        DataType = ftInteger
+        Precision = -1
+      end    
+      item
+        Name = 'login'
+        DataType = ftString
+        Precision = -1
+        Size = 255
+      end    
+      item
+        Name = 'passwrd'
+        DataType = ftString
+        Precision = -1
+        Size = 255
+      end    
+      item
+        Name = 'userrole'
+        DataType = ftString
+        Precision = -1
+        Size = 255
+      end    
+      item
+        Name = 'doctor_id'
+        DataType = ftInteger
+        Precision = -1
+      end    
+      item
+        Name = 'fullname'
+        DataType = ftString
+        Precision = -1
+        Size = 255
+      end>
+    SQL.Strings = (
+      'select u.id,'
+      '       login || '''' login,'
+      '       passwrd || '''' passwrd,'
+      '       userrole || '''' userrole,'
+      '       doctor_id,'
+      '       fullname || '''' fullname'
+      '  from users u left join doctors d on d.id = u.doctor_id'
+    )
+    InsertSQL.Strings = (
+      'insert into users'
+      '(login, passwrd, userrole, doctor_id)'
+      'values'
+      '(:login, :passwrd, :userrole, :doctor_id)'
+    )
+    UpdateSQL.Strings = (
+      'UPDATE users SET'
+      'login = :login,'
+      'passwrd = :passwrd,'
+      'userrole = :userrole,'
+      'doctor_id = :doctor_id'
+      'WHERE id = :id'
+    )
+    DeleteSQL.Strings = (
+      'delete from users where id = :id'
+    )
+    Params = <>
+    left = 60
+    top = 108
+  end
+  object dsUsers: TDataSource
+    DataSet = SQLQUsers
+    left = 132
+    top = 108
   end
   object dsActions: TDataSource
     DataSet = qActions
@@ -205,9 +163,26 @@ object FormMain: TFormMain
     left = 180
     top = 300
   end
+  object qDoctors: TSQLQuery
+    FieldDefs = <>
+    SQL.Strings = (
+      'select id,'
+      '       fullname || '', '' || post fnp'
+      '  from doctors'
+      ' order by fullname'
+    )
+    Params = <>
+    left = 68
+    top = 300
+  end
+  object dsDoctors: TDataSource
+    DataSet = qDoctors
+    left = 68
+    top = 364
+  end
   object imgListDBNavigator: TImageList
-    left = 704
-    top = 504
+    left = 274
+    top = 214
     Bitmap = {
       4C690A0000001000000010000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
       FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
@@ -533,10 +508,10 @@ object FormMain: TFormMain
     }
   end
   object imgList: TImageList
-    left = 600
-    top = 504
+    left = 248
+    top = 108
     Bitmap = {
-      4C690B0000001000000010000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+      4C690A0000001000000010000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
       FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
       FF00FFFFFF00FFFFFF00FFFFFF008F036200900362689003628B7F7F55667F7F
       55667F7F55667F7F55667F7F55667F7F55667F7F55667F7F55667F7F55667F7F
@@ -856,88 +831,19 @@ object FormMain: TFormMain
       0021000C003300340077005000C700340077000C003400000023000000160015
       003D0000000200000000FFFFFF000000000000000001000000050000000B0000
       0011000000160000001A0000001A0000001A00000017000000120000000B0000
-      00060000000100000000FFFFFF00000000000000000000000000090902002727
-      0800090902003A3A260077774E007A7A51007D7D53007F7F55247F7F55667F7F
-      55667F7F55667F7F55667F7F554D000000000000000000000000090902004A4A
-      27007171480074744C0077774E007A7A51007D7D53257D7D5367FFFFFEFFFFFF
-      FEFFFFFFFEFFFFFFFFFF7D7D5367000000000000000033331F00696942006D6D
-      45007171480074744C0077774E007A7A51257A7A5168FFFFFCFFCBCBC1FFA0A0
-      90FFCBCBC1FFFFFFFEFF7A7A51682E2E1C0061613A0065653E00696942006D6D
-      45007171480074744C0077774E2577774E69FFFFFBFFFCFCF9FFBCBCACFFB2B2
-      A100BCBCACFFFFFFFEFF77774E695C5C370061613A0065653E00696942006D6D
-      45007171480074744C2674744C6BFFFFFAFFF8F8F4FFFBFBF7FFDFDFD5FFC9C9
-      B9FFE0E0D6FFFFFFFEFF74744C6B5C5C370061613A0065653E00696942006D6D
-      4500717148267171486CFFFFF8FFF6F6F0FFF7F7F2FFF8F8F4FFFBFBF7FFFCFC
-      F9FFFFFFFCFF7171486C717149265C5C370061613A0065653E00696942006D6D
-      45276D6D456DFFFFF7FFF4F4ECFFF5F5EEFFF6F6F0FFF7F7F2FFF8F8F4FFFFFF
-      FBFF6D6D456D6E6E4627717148005C5C370061613A0065653E00696942276969
-      426FFFFFF5FFF1F1E9FFF3F3EAFFF4F4ECFFF5F5EEFFF6F6F0FFFFFFFAFF6969
-      426F6A6A43276D6D4500717148005C5C370061613A0065653E2865653E71FFFF
-      F4FFEFEFE5FFF0F0E7FFF1F1E9FFF3F3EAFFF4F4ECFFFFFFF8FF65653E715277
-      2F283F892100418B2300428724005C5C370061613A2961613A72FFFFF2FFEDED
-      E1FFEEEEE3FFEFEFE5FFF0F0E7FFF1F1E9FFFFFFF7FF61613A72299610B815A9
-      00CC15A9009914A80000129D00005C5C37295C5C3774FFFFF1FFEBEBDEFFECEC
-      DFFFEDEDE1FFEEEEE3FFEFEFE5FFFFFFF5FF5C5C37744A6D292914A400CC75EE
-      64FF14A400CC13A10000129D000058583376FFFFF0FFE9E9DAFFEAEADCFFEBEB
-      DEFFECECDFFFEDEDE1FFFFFFF4FF58583376258B0EB9129D00CC129D00CC66EB
-      55FF129D00CC129D00CC129C00995555302A54542F77FFFFF0FFE9E9DAFFEAEA
-      DCFFEBEBDEFFFFFFF2FF54542F775555302A109500CC52E741FF52E741FF52E7
-      41FF52E741FF52E741FF109500CC2A2A18004B4B282B4949267BFFFFF0FFE9E9
-      DAFFFFFFF1FF4949267B4B4B282B18380C000E8D00990E8C00CC0E8C00CC3DE2
-      2CFF0E8C00CC0E8C00CC0E8D0099000000030000000F24240F4338381782FFFF
-      F0FF383817822424104000000013000000110000000F0000000C0C8200CE2BDF
-      1AFF0C8200CD0000000300000001000000000000001E000000321515064E2A2A
-      0B871515064B0000002B00000026000000220000001D00000018054F00A10568
-      00CF0550009D0000000000000002
+      00060000000100000000FFFFFF00
     }
   end
   object SQLite3Conn: TSQLite3Connection
     Connected = False
     LoginPrompt = False
     KeepConnection = False
-    left = 288
-    top = 488
+    left = 56
+    top = 16
   end
   object SQLTransaction: TSQLTransaction
     Active = False
-    left = 640
-    top = 392
-  end
-  object qUsers: TSQLQuery
-    FieldDefs = <>
-    AfterRefresh = qUsersAfterRefresh
-    SQL.Strings = (
-      'select * from users'
-    )
-    Params = <>
-    left = 38
-    top = 170
-  end
-  object qDoctors: TSQLQuery
-    FieldDefs = <>
-    AfterRefresh = qDoctorsAfterRefresh
-    SQL.Strings = (
-      'select id,'
-      '       surname || '''' as surname,'
-      '       name || '''' as name,'
-      '       patronymic || '''' as patronymic,'
-      '       fullname || '''' as fullname,'
-      '       post || '''' as post'
-      '  from doctors'
-    )
-    Params = <>
-    left = 38
-    top = 232
-  end
-  object dsUsers: TDataSource
-    DataSet = qUsers
-    left = 120
-    top = 168
-  end
-  object dsDoctors: TDataSource
-    DataSet = qDoctors
-    OnUpdateData = dsDoctorsUpdateData
-    left = 120
-    top = 232
+    left = 160
+    top = 16
   end
 end

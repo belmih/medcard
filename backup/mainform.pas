@@ -6,30 +6,24 @@ interface
 
 uses
   Classes, SysUtils, sqldb, sqlite3conn, db, FileUtil, Forms, Controls,
-  Graphics, Dialogs, Menus, ActnList, ComCtrls, StdCtrls, DbCtrls, DBGrids, Grids;
+  Graphics, Dialogs, Menus, ActnList, ComCtrls;
 
 type
 
   { TFormMain }
 
   TFormMain = class(TForm)
-    actCommit: TAction;
-    actShowDoctorsForm: TAction;
     ActionList1: TActionList;
+    actRefresh: TAction;
+    actRowAdd: TAction;
+    actRowDelete: TAction;
     actShowUsersForm: TAction;
-    btnAdd: TButton;
-    dsUsers: TDataSource;
-    dsDoctors: TDataSource;
-    DBGrid1: TDBGrid;
-    dblcDoctor: TDBLookupComboBox;
+    actUsersSave: TAction;
     dsActions: TDataSource;
-    eMedCard: TEdit;
-    GroupBox1: TGroupBox;
-    GroupBox2: TGroupBox;
+    dsDoctors: TDataSource;
+    dsUsers: TDataSource;
     imgList: TImageList;
     imgListDBNavigator: TImageList;
-    Label1: TLabel;
-    Label3: TLabel;
     MainMenu1: TMainMenu;
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
@@ -41,36 +35,26 @@ type
     MenuItem8: TMenuItem;
     miShowUsersForm: TMenuItem;
     qActions: TSQLQuery;
+    qDoctors: TSQLQuery;
     ShowLog: TMenuItem;
     SQLite3Conn: TSQLite3Connection;
-    qUsers: TSQLQuery;
-    qDoctors: TSQLQuery;
+    SQLQUsers: TSQLQuery;
     SQLTransaction: TSQLTransaction;
-    ToolBar1: TToolBar;
-    procedure actCommitExecute(Sender: TObject);
-    procedure actShowDoctorsFormExecute(Sender: TObject);
     procedure actShowUsersFormExecute(Sender: TObject);
-    procedure dsDoctorsUpdateData(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure DBConnect();
-    procedure qDoctorsAfterRefresh(DataSet: TDataSet);
-    procedure QueryOpen();
-    procedure qUsersAfterRefresh(DataSet: TDataSet);
   private
     FUserID: Integer;
   public
     property UserID: Integer read FUserID write FUserID;
   end;
 
-const
-  version='0.1.0';
-
 var
   FormMain: TFormMain;
 
 implementation
- uses loginform, usersform, doctorsform;
+ uses loginform, usersform;
 {$R *.lfm}
 
 { TFormMain }
@@ -81,23 +65,6 @@ begin
   FormUsers.Show;
 end;
 
-procedure TFormMain.actShowDoctorsFormExecute(Sender: TObject);
-begin
-  FormDoctors := TFormDoctors.Create(self);
-  FormDoctors.Show;
-end;
-
-procedure TFormMain.actCommitExecute(Sender: TObject);
-begin
-  SQLTransaction.Commit;
-  actCommit.Enabled:=False;
-end;
-
-procedure TFormMain.dsDoctorsUpdateData(Sender: TObject);
-begin
- actCommit.Enabled:=True;
-end;
-
 procedure TFormMain.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
   FormLogin.Close;
@@ -106,7 +73,6 @@ end;
 procedure TFormMain.FormCreate(Sender: TObject);
 begin
   DBConnect();
-  QueryOpen()
 end;
 
 procedure TFormMain.DBConnect();
@@ -120,37 +86,30 @@ begin
   SQLite3Conn.DatabaseName := databasefile;
   SQLite3Conn.Transaction := SQLTransaction;
   try
+    ;
+    //SQLite3Conn.Open;
+  //SQLite3Conn.ExecuteDirect('PRAGMA foreign_keys=ON;');
+  {
+
+
+  SQLite3Conn.Options:=;
+  SQLTransaction.DataBase := SQLite3Conn;
+   try
+    newdb := not FileExists(databasefile);
     SQLite3Conn.Open;
-    SQLTransaction.StartTransaction;
-    qUsers.DataBase:=SQLite3Conn;
-    qDoctors.DataBase:=SQLite3Conn;
-  except;
+    SQLTransact.Active := True;
+    if newdb then
+    begin
+      dbcreate.dbcreate;
+      SQLTransact.Commit;
+      ShowMessage('Была создана новая БД!');
+    end;
+    SQLite3Conn.ExecuteDirect('PRAGMA foreign_keys = ON;');
+  }
+  except
     ShowMessage('Ошибка подключения к базе!');
   end;
-end;
 
-procedure TFormMain.qDoctorsAfterRefresh(DataSet: TDataSet);
-begin
-  actCommit.Enabled:=False;
-end;
-
-Procedure TFormMain.QueryOpen();
-begin
-  qUsers.Options := [sqoAutoApplyUpdates,
-                     sqoCancelUpdatesOnRefresh,
-                     sqoRefreshUsingSelect,
-                     sqoKeepOpenOnCommit];
-  qUsers.Open;
-
-  qDoctors.Options := [sqoCancelUpdatesOnRefresh,
-                       sqoRefreshUsingSelect,
-                       sqoKeepOpenOnCommit];
-  qDoctors.Open;
-end;
-
-procedure TFormMain.qUsersAfterRefresh(DataSet: TDataSet);
-begin
-  actCommit.Enabled:=False;
 end;
 
 end.
