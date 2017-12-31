@@ -28,18 +28,25 @@ object FormQuests: TFormQuests
     end
     object TreeView1: TTreeView
       Left = 0
-      Height = 306
+      Height = 166
       Top = 26
-      Width = 544
-      Align = alLeft
+      Width = 796
+      Align = alTop
+      AutoExpand = True
+      ExpandSignType = tvestPlusMinus
       TabOrder = 1
+      OnClick = TreeView1Click
+      Options = [tvoAutoExpand, tvoAutoItemHeight, tvoHideSelection, tvoKeepCollapsedNodes, tvoShowButtons, tvoShowLines, tvoShowRoot, tvoToolTips, tvoThemedDraw]
     end
-    object DBMemo1: TDBMemo
-      Left = 544
-      Height = 306
-      Top = 26
-      Width = 252
+    object DBGrid1: TDBGrid
+      Left = 0
+      Height = 140
+      Top = 192
+      Width = 796
       Align = alClient
+      Color = clWindow
+      Columns = <>
+      DataSource = FormMain.dsQuestions
       TabOrder = 2
     end
   end

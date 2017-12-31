@@ -64,7 +64,7 @@ type
     procedure qDoctorsAfterRefresh(DataSet: TDataSet);
     procedure QueryOpen();
     procedure qUsersAfterRefresh(DataSet: TDataSet);
-    function GetTreeQuestions(nodes:TTreeNodes; rootnode:TTreeNode=nil; id:Integer = 0):TTreeNodes;
+    procedure GetTreeQuestions(nodes:TTreeNodes; rootnode:TTreeNode=nil; id:Integer = 0);
   private
     FUserID: Integer;
     FTreeQuestions: TTreeNode;
@@ -77,6 +77,13 @@ const
 
 var
   FormMain: TFormMain;
+  type
+    TQuestion = Class(TObject)
+    public
+      id:integer;
+      txt:String;
+      parentid:Integer;
+    end;
 
 implementation
  uses loginform, usersform, doctorsform, aboutform, questsform;
@@ -187,39 +194,42 @@ begin
   actCommit.Enabled:=False;
 end;
 
-function TFormMain.GetTreeQuestions(nodes:TTreeNodes; rootnode:TTreeNode=nil; id:Integer = 0):TTreeNodes;
+procedure TFormMain.GetTreeQuestions(nodes:TTreeNodes; rootnode:TTreeNode=nil; id:Integer = 0);
 var
   node: TTreeNode;
   nodes1: TTreeNodes;
   Query: TSQLQuery;
+  txt: String;
 begin
+
   try
     Query := TSQLQuery.Create(nil);
     Query.DataBase := SQLite3Conn;
-    Query.SQL.Text:='select * from questions'#13#10
-                   +' where ifnull(parentid,0) = :p order by parentid,questionorder';
+    Query.SQL.Text:='select id, substr(questiontext,1,100) || "..." txt, parentid from questions'#13#10
+                   +' where ifnull(parentid,0) = :p order by parentid, questionorder';
     Query.Prepare;
     Query.ParamByName('p').AsInteger := id;
     Query.Open;
     Query.First;
     while not Query.EOF do
     begin
-      if id=0 then
-        node := nodes.Add(nil,Query.Fields.FieldByName('questiontext').AsString)
+      txt :=  Query.Fields.FieldByName('id').AsString + '. ' + Query.Fields.FieldByName('txt').AsString;
+       if id=0 then
+        node := nodes.Add(nil, txt)
       else
-        node := nodes.AddChild(rootnode,Query.Fields.FieldByName('questiontext').AsString);
+        node := nodes.AddChild(rootnode, txt);
+
+      node.Data:=TQuestion.Create;
+      TQuestion(node.Data).id := id;
+      TQuestion(node.Data).txt := txt;
 
       GetTreeQuestions(nodes,node,Query.Fields.FieldByName('id').AsInteger);
-      //nodes.AddChild(rootnode,txt);
-      //node := Form5.TreeView1.Items.Add(nil,'Критерии качества');
-      //FormMain.UserID := Query.Fields.FieldByName('id').AsInteger;
       Query.Next;
     end;
   finally
     Query.Close;
     Query.Free;
   end;
-  Result := nodes1;
 end;
 
 
