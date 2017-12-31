@@ -1,0 +1,75 @@
+object FormQuests: TFormQuests
+  Left = 398
+  Height = 600
+  Top = 119
+  Width = 800
+  Caption = 'medcard'
+  ClientHeight = 600
+  ClientWidth = 800
+  OnShow = FormShow
+  LCLVersion = '1.8.0.6'
+  object GroupBox1: TGroupBox
+    Left = 0
+    Height = 352
+    Top = 0
+    Width = 800
+    Align = alClient
+    Caption = 'Вопросы'
+    ClientHeight = 332
+    ClientWidth = 796
+    TabOrder = 0
+    object ToolBar1: TToolBar
+      Left = 0
+      Height = 26
+      Top = 0
+      Width = 796
+      Caption = 'ToolBar1'
+      TabOrder = 0
+    end
+    object TreeView1: TTreeView
+      Left = 0
+      Height = 306
+      Top = 26
+      Width = 544
+      Align = alLeft
+      TabOrder = 1
+    end
+    object DBMemo1: TDBMemo
+      Left = 544
+      Height = 306
+      Top = 26
+      Width = 252
+      Align = alClient
+      TabOrder = 2
+    end
+  end
+  object GroupBox2: TGroupBox
+    Left = 0
+    Height = 248
+    Top = 352
+    Width = 800
+    Align = alBottom
+    Caption = 'Ответы'
+    ClientHeight = 228
+    ClientWidth = 796
+    TabOrder = 1
+    object ToolBar2: TToolBar
+      Left = 0
+      Height = 26
+      Top = 0
+      Width = 796
+      Caption = 'ToolBar2'
+      TabOrder = 0
+    end
+    object DBGrid2: TDBGrid
+      Left = 0
+      Height = 100
+      Top = 26
+      Width = 796
+      Align = alTop
+      Color = clWindow
+      Columns = <>
+      TabOrder = 1
+    end
+  end
+end

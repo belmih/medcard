@@ -22,12 +22,15 @@
         <FormatVersion Value="1"/>
       </local>
     </RunParams>
-    <RequiredPackages Count="1">
+    <RequiredPackages Count="2">
       <Item1>
-        <PackageName Value="LCL"/>
+        <PackageName Value="FCL"/>
       </Item1>
+      <Item2>
+        <PackageName Value="LCL"/>
+      </Item2>
     </RequiredPackages>
-    <Units Count="11">
+    <Units Count="12">
       <Unit0>
         <Filename Value="medcard.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -96,6 +99,12 @@
         <Filename Value="common.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit10>
+      <Unit11>
+        <Filename Value="questsform.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormQuests"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit11>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

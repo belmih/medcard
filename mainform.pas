@@ -14,10 +14,12 @@ type
 
   TFormMain = class(TForm)
     actCommit: TAction;
+    actShowQuestionsForm: TAction;
     actShowDoctorsForm: TAction;
     ActionList1: TActionList;
     actShowUsersForm: TAction;
     btnAdd: TButton;
+    dsQuestions: TDataSource;
     dsUsers: TDataSource;
     dsDoctors: TDataSource;
     DBGrid1: TDBGrid;
@@ -45,22 +47,27 @@ type
     SQLite3Conn: TSQLite3Connection;
     qUsers: TSQLQuery;
     qDoctors: TSQLQuery;
+    qQuestions: TSQLQuery;
     SQLTransaction: TSQLTransaction;
     ToolBar1: TToolBar;
     procedure actCommitExecute(Sender: TObject);
     procedure actShowDoctorsFormExecute(Sender: TObject);
+    procedure actShowQuestionsFormExecute(Sender: TObject);
     procedure actShowUsersFormExecute(Sender: TObject);
     procedure dsDoctorsUpdateData(Sender: TObject);
     procedure dsUsersUpdateData(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure DBConnect();
+    procedure FormShow(Sender: TObject);
     procedure miAboutFormClick(Sender: TObject);
     procedure qDoctorsAfterRefresh(DataSet: TDataSet);
     procedure QueryOpen();
     procedure qUsersAfterRefresh(DataSet: TDataSet);
+    procedure GetTreeQuestions(nodes:TTreeNodes; rootnode:TTreeNode=nil; id:Integer = 0);
   private
     FUserID: Integer;
+    FTreeQuestions: TTreeNode;
   public
     property UserID: Integer read FUserID write FUserID;
   end;
@@ -72,7 +79,7 @@ var
   FormMain: TFormMain;
 
 implementation
- uses loginform, usersform, doctorsform, aboutform;
+ uses loginform, usersform, doctorsform, aboutform, questsform;
 {$R *.lfm}
 
 { TFormMain }
@@ -87,6 +94,12 @@ procedure TFormMain.actShowDoctorsFormExecute(Sender: TObject);
 begin
   FormDoctors := TFormDoctors.Create(self);
   FormDoctors.Show;
+end;
+
+procedure TFormMain.actShowQuestionsFormExecute(Sender: TObject);
+begin
+  FormQuests := TFormQuests.Create(self);
+  FormQuests.Show;
 end;
 
 procedure TFormMain.actCommitExecute(Sender: TObject);
@@ -129,11 +142,14 @@ begin
   try
     SQLite3Conn.Open;
     SQLTransaction.StartTransaction;
-    qUsers.DataBase:=SQLite3Conn;
-    qDoctors.DataBase:=SQLite3Conn;
   except;
     ShowMessage('Ошибка подключения к базе!');
   end;
+end;
+
+procedure TFormMain.FormShow(Sender: TObject);
+begin
+
 end;
 
 procedure TFormMain.miAboutFormClick(Sender: TObject);
@@ -149,16 +165,59 @@ end;
 
 Procedure TFormMain.QueryOpen();
 begin
-  qUsers.Options   := [sqoCancelUpdatesOnRefresh, sqoRefreshUsingSelect, sqoKeepOpenOnCommit];
-  qDoctors.Options := [sqoCancelUpdatesOnRefresh, sqoRefreshUsingSelect, sqoKeepOpenOnCommit];
-  qUsers.Open;
-  qDoctors.Open;
+  qUsers.DataBase:=SQLite3Conn;
+  qDoctors.DataBase:=SQLite3Conn;
+  qQuestions.DataBase:=SQLite3Conn;
+  qUsers.Options     := [sqoCancelUpdatesOnRefresh, sqoRefreshUsingSelect, sqoKeepOpenOnCommit];
+  qDoctors.Options   := [sqoCancelUpdatesOnRefresh, sqoRefreshUsingSelect, sqoKeepOpenOnCommit];
+  qQuestions.Options := [sqoCancelUpdatesOnRefresh, sqoRefreshUsingSelect, sqoKeepOpenOnCommit];
+  try
+    qUsers.Open;
+    qDoctors.Open;
+    qQuestions.Open;
+  except
+    ShowMessage('Ошибка при запуске запроса! Программа будет закрыта!');
+    Application.Terminate;
+  end;
+
 end;
 
 procedure TFormMain.qUsersAfterRefresh(DataSet: TDataSet);
 begin
   actCommit.Enabled:=False;
 end;
+
+procedure TFormMain.GetTreeQuestions(nodes:TTreeNodes; rootnode:TTreeNode=nil; id:Integer = 0);
+var
+  node: TTreeNode;
+  nodes1: TTreeNodes;
+  Query: TSQLQuery;
+begin
+  try
+    Query := TSQLQuery.Create(nil);
+    Query.DataBase := SQLite3Conn;
+    Query.SQL.Text:='select * from questions'#13#10
+                   +' where ifnull(parentid,0) = :p order by parentid,questionorder';
+    Query.Prepare;
+    Query.ParamByName('p').AsInteger := id;
+    Query.Open;
+    Query.First;
+    while not Query.EOF do
+    begin
+      if id=0 then
+        node := nodes.Add(nil,Query.Fields.FieldByName('questiontext').AsString)
+      else
+        node := nodes.AddChild(rootnode,Query.Fields.FieldByName('questiontext').AsString);
+
+      GetTreeQuestions(nodes,node,Query.Fields.FieldByName('id').AsInteger);
+      Query.Next;
+    end;
+  finally
+    Query.Close;
+    Query.Free;
+  end;
+end;
+
 
 end.
 
