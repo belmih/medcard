@@ -4,92 +4,14 @@ object FormActions: TFormActions
   Top = 124
   Width = 800
   Caption = 'medcard'
-  ClientHeight = 600
-  ClientWidth = 800
+  ClientHeight = 0
+  ClientWidth = 0
   OnActivate = FormActivate
   OnClose = FormClose
   OnCreate = FormCreate
   OnShow = FormShow
   Position = poDesktopCenter
   LCLVersion = '1.8.0.6'
-  object GroupBox1: TGroupBox
-    Left = 0
-    Height = 520
-    Top = 80
-    Width = 800
-    Align = alClient
-    Caption = 'Результаты'
-    ClientHeight = 500
-    ClientWidth = 796
-    TabOrder = 1
-    object ToolBar1: TToolBar
-      Left = 0
-      Height = 24
-      Top = 0
-      Width = 796
-      ButtonHeight = 22
-      ButtonWidth = 23
-      Caption = 'ToolBar1'
-      ParentShowHint = False
-      ShowHint = True
-      TabOrder = 0
-      object ToolButton1: TToolButton
-        Left = 24
-        Top = 2
-        Caption = 'actRowDelete'
-        ImageIndex = 2
-      end
-      object ToolButton2: TToolButton
-        Left = 1
-        Top = 2
-        Caption = 'actRowAdd'
-        ImageIndex = 1
-      end
-      object ToolButton3: TToolButton
-        Left = 47
-        Top = 2
-        Caption = 'actRefresh'
-        ImageIndex = 3
-      end
-    end
-    object DBGrid1: TDBGrid
-      Left = 0
-      Height = 476
-      Top = 24
-      Width = 796
-      Align = alClient
-      Color = clWindow
-      Columns = <      
-        item
-          Title.Caption = 'id'
-          Width = 25
-          FieldName = 'id'
-        end      
-        item
-          Title.Caption = 'Дата начала'
-          Width = 82
-          FieldName = 'actiondate'
-        end      
-        item
-          Title.Caption = 'Врач'
-          Width = 42
-          FieldName = 'doctor'
-        end      
-        item
-          Title.Caption = 'Номер карты'
-          Width = 89
-          FieldName = 'medcardnum'
-        end      
-        item
-          Title.Caption = 'Дата завершения'
-          Width = 110
-          FieldName = 'enddate'
-        end>
-      Options = [dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgAutoSizeColumns]
-      TabOrder = 1
-      OnDblClick = DBGrid1DblClick
-    end
-  end
   object GroupBox2: TGroupBox
     Left = 0
     Height = 80
