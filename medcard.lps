@@ -43,11 +43,9 @@
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
         <TopLine Value="86"/>
-        <CursorPos X="9" Y="96"/>
-        <ComponentState Value="1"/>
+        <CursorPos X="37" Y="102"/>
         <UsageCount Value="81"/>
         <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit3>
       <Unit4>
         <Filename Value="usersform.pas"/>
@@ -60,7 +58,6 @@
         <CursorPos X="35" Y="17"/>
         <UsageCount Value="80"/>
         <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit4>
       <Unit5>
         <Filename Value="aboutform.pas"/>
@@ -71,10 +68,8 @@
         <EditorIndex Value="5"/>
         <TopLine Value="9"/>
         <CursorPos X="3" Y="45"/>
-        <ComponentState Value="1"/>
         <UsageCount Value="60"/>
         <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit5>
       <Unit6>
         <Filename Value="workform.pas"/>
@@ -87,7 +82,6 @@
         <CursorPos X="6" Y="103"/>
         <UsageCount Value="59"/>
         <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit6>
       <Unit7>
         <Filename Value="logform.pas"/>
@@ -97,10 +91,8 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="4"/>
         <CursorPos X="23" Y="20"/>
-        <ComponentState Value="1"/>
         <UsageCount Value="52"/>
         <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit7>
       <Unit8>
         <Filename Value="doctorsform.pas"/>
@@ -113,7 +105,6 @@
         <CursorPos Y="69"/>
         <UsageCount Value="37"/>
         <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit8>
       <Unit9>
         <Filename Value="mainform.pas"/>
@@ -126,7 +117,6 @@
         <CursorPos X="57" Y="121"/>
         <UsageCount Value="36"/>
         <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit9>
       <Unit10>
         <Filename Value="unit2.pas"/>
