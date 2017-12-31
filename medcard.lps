@@ -27,7 +27,6 @@
       </Unit1>
       <Unit2>
         <Filename Value="dbcreate.pas"/>
-        <IsPartOfProject Value="True"/>
         <EditorIndex Value="11"/>
         <TopLine Value="24"/>
         <CursorPos X="12" Y="37"/>
@@ -36,11 +35,9 @@
       </Unit2>
       <Unit3>
         <Filename Value="actionsform.pas"/>
-        <IsPartOfProject Value="True"/>
         <ComponentName Value="FormActions"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
         <TopLine Value="86"/>
         <CursorPos X="9" Y="96"/>
@@ -51,12 +48,11 @@
       </Unit3>
       <Unit4>
         <Filename Value="usersform.pas"/>
-        <IsPartOfProject Value="True"/>
         <ComponentName Value="FormUsers"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="6"/>
-        <TopLine Value="20"/>
+        <TopLine Value="19"/>
         <CursorPos X="35" Y="17"/>
         <UsageCount Value="80"/>
         <Loaded Value="True"/>
@@ -64,7 +60,6 @@
       </Unit4>
       <Unit5>
         <Filename Value="aboutform.pas"/>
-        <IsPartOfProject Value="True"/>
         <ComponentName Value="Form4"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
@@ -78,7 +73,6 @@
       </Unit5>
       <Unit6>
         <Filename Value="workform.pas"/>
-        <IsPartOfProject Value="True"/>
         <ComponentName Value="Form5"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
@@ -91,7 +85,6 @@
       </Unit6>
       <Unit7>
         <Filename Value="logform.pas"/>
-        <IsPartOfProject Value="True"/>
         <ComponentName Value="FormLog"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
@@ -104,7 +97,6 @@
       </Unit7>
       <Unit8>
         <Filename Value="doctorsform.pas"/>
-        <IsPartOfProject Value="True"/>
         <ComponentName Value="FormDoctors"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
@@ -117,10 +109,10 @@
       </Unit8>
       <Unit9>
         <Filename Value="mainform.pas"/>
-        <IsPartOfProject Value="True"/>
         <ComponentName Value="FormMain"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
         <TopLine Value="112"/>
         <CursorPos X="57" Y="121"/>
@@ -130,7 +122,6 @@
       </Unit9>
       <Unit10>
         <Filename Value="unit2.pas"/>
-        <IsPartOfProject Value="True"/>
         <ComponentName Value="Form1"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Unit2"/>
@@ -140,7 +131,6 @@
       </Unit10>
       <Unit11>
         <Filename Value="common.pas"/>
-        <IsPartOfProject Value="True"/>
         <EditorIndex Value="7"/>
         <CursorPos X="50" Y="36"/>
         <UsageCount Value="29"/>
