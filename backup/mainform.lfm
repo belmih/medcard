@@ -1,7 +1,7 @@
 object FormMain: TFormMain
-  Left = 759
+  Left = 515
   Height = 600
-  Top = 314
+  Top = 149
   Width = 800
   Caption = 'medcard'
   ClientHeight = 580
@@ -298,6 +298,15 @@ object FormMain: TFormMain
       Caption = 'Справочник вопросов'
       ImageIndex = 6
       OnExecute = actShowQuestionsFormExecute
+    end
+    object actQuestionAdd: TAction
+      Caption = 'actQuestionAdd'
+      ImageIndex = 1
+      OnExecute = actQuestionAddExecute
+    end
+    object actQuestionDelete: TAction
+      Caption = 'actQuestionDelete'
+      ImageIndex = 2
     end
   end
   object dsActions: TDataSource

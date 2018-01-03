@@ -6,14 +6,16 @@ interface
 
 uses
   Classes, SysUtils, sqldb, sqlite3conn, db, FileUtil, Forms, Controls,
-  Graphics, Dialogs, Menus, ActnList, ComCtrls, StdCtrls, DbCtrls, DBGrids, Grids;
-
+  Graphics, Dialogs, Menus, ActnList, ComCtrls, StdCtrls, DbCtrls, DBGrids, Grids,
+  LazUtf8 ;
 type
 
   { TFormMain }
 
   TFormMain = class(TForm)
     actCommit: TAction;
+    actQuestionDelete: TAction;
+    actQuestionAdd: TAction;
     actShowQuestionsForm: TAction;
     actShowDoctorsForm: TAction;
     ActionList1: TActionList;
@@ -51,6 +53,7 @@ type
     SQLTransaction: TSQLTransaction;
     ToolBar1: TToolBar;
     procedure actCommitExecute(Sender: TObject);
+    procedure actQuestionAddExecute(Sender: TObject);
     procedure actShowDoctorsFormExecute(Sender: TObject);
     procedure actShowQuestionsFormExecute(Sender: TObject);
     procedure actShowUsersFormExecute(Sender: TObject);
@@ -81,12 +84,12 @@ var
     TQuestion = Class(TObject)
     public
       id:integer;
-      txt:String;
+      txt:WideString;
       parentid:Integer;
     end;
 
 implementation
- uses loginform, usersform, doctorsform, aboutform, questsform;
+ uses loginform, usersform, doctorsform, aboutform, questsform, addquestionform;
 {$R *.lfm}
 
 { TFormMain }
@@ -113,6 +116,12 @@ procedure TFormMain.actCommitExecute(Sender: TObject);
 begin
   SQLTransaction.Commit;
   actCommit.Enabled:=False;
+end;
+
+procedure TFormMain.actQuestionAddExecute(Sender: TObject);
+begin
+  FormAddQuest := TFormAddQuest.Create(self);
+  FormAddQuest.Show;
 end;
 
 procedure TFormMain.dsDoctorsUpdateData(Sender: TObject);
@@ -205,7 +214,8 @@ begin
   try
     Query := TSQLQuery.Create(nil);
     Query.DataBase := SQLite3Conn;
-    Query.SQL.Text:='select id, substr(questiontext,1,100) || "..." txt, parentid from questions'#13#10
+    Query.SQL.Text:='select id, questiontext, substr(questiontext,1,60) txt,'#13#10
+                   +' parentid, questionorder from questions'#13#10
                    +' where ifnull(parentid,0) = :p order by parentid, questionorder';
     Query.Prepare;
     Query.ParamByName('p').AsInteger := id;
@@ -213,15 +223,21 @@ begin
     Query.First;
     while not Query.EOF do
     begin
-      txt :=  Query.Fields.FieldByName('id').AsString + '. ' + Query.Fields.FieldByName('txt').AsString;
+       txt := Query.FieldByName('txt').AsString;
+       if UTF8Length(Query.Fields.FieldByName('questiontext').AsString)>60 then
+       txt:=txt+' [...]';
        if id=0 then
         node := nodes.Add(nil, txt)
       else
-        node := nodes.AddChild(rootnode, txt);
+        begin
+          txt :=  Query.Fields.FieldByName('questionorder').AsString + '. ' + txt;
+          node := nodes.AddChild(rootnode, txt);
+        end;
 
       node.Data:=TQuestion.Create;
-      TQuestion(node.Data).id := id;
-      TQuestion(node.Data).txt := txt;
+      TQuestion(node.Data).id := Query.FieldByName('id').AsInteger;
+      TQuestion(node.Data).txt := Query.FieldByName('questiontext').AsWideString;
+      TQuestion(node.Data).parentid := Query.FieldByName('parentid').AsInteger;
 
       GetTreeQuestions(nodes,node,Query.Fields.FieldByName('id').AsInteger);
       Query.Next;

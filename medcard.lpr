@@ -8,7 +8,7 @@ uses
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
   Forms, loginform, actionsform, usersform, aboutform, workform, logform,
-  doctorsform, mainform, common, dbcreate, questsform;
+  doctorsform, mainform, common, dbcreate, questsform, addquestionform;
 
 {$R *.res}
 
@@ -19,6 +19,7 @@ begin
   Application.CreateForm(TFormLogin, FormLogin);
   Application.CreateForm(TFormMain, FormMain);
   Application.CreateForm(TFormQuests, FormQuests);
+  Application.CreateForm(TFormAddQuest, FormAddQuest);
   Application.Run;
 end.
 

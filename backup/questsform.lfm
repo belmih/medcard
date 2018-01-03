@@ -1,82 +1,127 @@
 object FormQuests: TFormQuests
-  Left = 398
-  Height = 600
-  Top = 119
-  Width = 800
+  Left = 209
+  Height = 540
+  Top = 42
+  Width = 960
   Caption = 'medcard'
-  ClientHeight = 600
-  ClientWidth = 800
+  ClientHeight = 540
+  ClientWidth = 960
   OnShow = FormShow
   LCLVersion = '1.8.0.6'
   object GroupBox1: TGroupBox
     Left = 0
-    Height = 352
+    Height = 292
     Top = 0
-    Width = 800
-    Align = alClient
+    Width = 848
     Caption = 'Вопросы'
-    ClientHeight = 332
-    ClientWidth = 796
+    ClientHeight = 272
+    ClientWidth = 844
     TabOrder = 0
     object ToolBar1: TToolBar
       Left = 0
       Height = 26
       Top = 0
-      Width = 796
+      Width = 844
       Caption = 'ToolBar1'
       TabOrder = 0
     end
     object TreeView1: TTreeView
       Left = 0
-      Height = 166
+      Height = 174
       Top = 26
-      Width = 796
-      Align = alTop
+      Width = 552
       AutoExpand = True
+      DragMode = dmAutomatic
       ExpandSignType = tvestPlusMinus
+      Images = FormMain.imgList
+      PopupMenu = pmQuestions
+      ReadOnly = True
       TabOrder = 1
       OnClick = TreeView1Click
-      Options = [tvoAutoExpand, tvoAutoItemHeight, tvoHideSelection, tvoKeepCollapsedNodes, tvoShowButtons, tvoShowLines, tvoShowRoot, tvoToolTips, tvoThemedDraw]
+      OnSelectionChanged = TreeView1SelectionChanged
+      Options = [tvoAutoExpand, tvoAutoItemHeight, tvoHideSelection, tvoKeepCollapsedNodes, tvoReadOnly, tvoShowButtons, tvoShowLines, tvoShowRoot, tvoToolTips, tvoNoDoubleClickExpand, tvoThemedDraw]
     end
-    object DBGrid1: TDBGrid
-      Left = 0
-      Height = 140
-      Top = 192
-      Width = 796
-      Align = alClient
-      Color = clWindow
-      Columns = <>
-      DataSource = FormMain.dsQuestions
+    object memoAnswer: TMemo
+      Left = 694
+      Height = 246
+      Top = 26
+      Width = 150
+      Align = alRight
       TabOrder = 2
     end
   end
   object GroupBox2: TGroupBox
-    Left = 0
+    Left = 312
     Height = 248
-    Top = 352
-    Width = 800
-    Align = alBottom
+    Top = 304
+    Width = 672
     Caption = 'Ответы'
     ClientHeight = 228
-    ClientWidth = 796
+    ClientWidth = 668
     TabOrder = 1
     object ToolBar2: TToolBar
       Left = 0
       Height = 26
       Top = 0
-      Width = 796
+      Width = 668
       Caption = 'ToolBar2'
       TabOrder = 0
     end
-    object DBGrid2: TDBGrid
+    object DBGrid1: TDBGrid
       Left = 0
-      Height = 100
+      Height = 202
       Top = 26
-      Width = 796
-      Align = alTop
+      Width = 552
+      Align = alLeft
       Color = clWindow
       Columns = <>
       TabOrder = 1
     end
+    object DBMemo1: TDBMemo
+      Left = 552
+      Height = 202
+      Top = 26
+      Width = 116
+      Align = alClient
+      TabOrder = 2
+    end
+  end
+  object pmQuestions: TPopupMenu
+    left = 88
+    top = 208
+    object miQuestionAdd: TMenuItem
+      Action = FormMain.actQuestionAdd
+    end
+    object miQuestionDelete: TMenuItem
+      Action = FormMain.actQuestionDelete
+    end
+  end
+  object qAnswersQ: TSQLQuery
+    FieldDefs = <>
+    Database = FormMain.SQLite3Conn
+    Transaction = FormMain.SQLTransaction
+    SQL.Strings = (
+      'select id,'
+      '       answertype,'
+      '       answerorder,'
+      '       question_id,'
+      '       answertext || '''' as answertext,'
+      '       points'
+      '  from answers'
+      ' where id = :id'
+      ' order by answerorder, id'
+    )
+    Params = <    
+      item
+        DataType = ftInteger
+        Name = 'id'
+        ParamType = ptInput
+      end>
+    left = 392
+    top = 352
+  end
+  object dsAnswersQ: TDataSource
+    left = 480
+    top = 352
   end
 end

@@ -1,0 +1,60 @@
+object FormAddQuest: TFormAddQuest
+  Left = 354
+  Height = 480
+  Top = 118
+  Width = 640
+  Caption = 'FormAddQuest'
+  ClientHeight = 480
+  ClientWidth = 640
+  OnClose = FormClose
+  OnShow = FormShow
+  LCLVersion = '1.8.0.6'
+  object GroupBox1: TGroupBox
+    Left = 0
+    Height = 430
+    Top = 0
+    Width = 640
+    Align = alClient
+    Caption = 'GroupBox1'
+    ClientHeight = 410
+    ClientWidth = 636
+    TabOrder = 0
+    object Memo1: TMemo
+      Left = 0
+      Height = 410
+      Top = 0
+      Width = 636
+      Align = alClient
+      TabOrder = 0
+    end
+  end
+  object Panel1: TPanel
+    Left = 0
+    Height = 50
+    Top = 430
+    Width = 640
+    Align = alBottom
+    Caption = 'Panel1'
+    ClientHeight = 50
+    ClientWidth = 640
+    TabOrder = 1
+    object btnAdd: TButton
+      Left = 376
+      Height = 25
+      Top = 8
+      Width = 75
+      Caption = 'btnAdd'
+      OnClick = btnAddClick
+      TabOrder = 0
+    end
+    object btnCancel: TButton
+      Left = 480
+      Height = 25
+      Top = 8
+      Width = 75
+      Caption = 'btnCancel'
+      OnClick = btnCancelClick
+      TabOrder = 1
+    end
+  end
+end
