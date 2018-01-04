@@ -33,8 +33,12 @@ type
     ToolButton1: TToolButton;
     ToolButton2: TToolButton;
     TreeView1: TTreeView;
+     procedure dsAnswersQUpdateData(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure qAnswersQBeforeInsert(DataSet: TDataSet);
+    procedure qAnswersQNewRecord(DataSet: TDataSet);
     procedure ToolButton1Click(Sender: TObject);
+    procedure ToolButton2Click(Sender: TObject);
     procedure TreeView1Click(Sender: TObject);
     procedure TreeView1SelectionChanged(Sender: TObject);
 
@@ -66,14 +70,35 @@ begin
   end;
 end;
 
+procedure TFormQuests.qAnswersQBeforeInsert(DataSet: TDataSet);
+begin
+
+end;
+
+procedure TFormQuests.qAnswersQNewRecord(DataSet: TDataSet);
+begin
+  qAnswersQ.FieldByName('question_id').AsInteger := FormMain.qQuestions.FieldByName('id').AsInteger;
+end;
+
+
+procedure TFormQuests.dsAnswersQUpdateData(Sender: TObject);
+begin
+  FormMain.actCommit.Enabled:=True;
+end;
+
 procedure TFormQuests.ToolButton1Click(Sender: TObject);
 begin
-  FormMain.qQuestions.ApplyUpdates();
+  FormMain.qQuestions.ApplyUpdates;
   while FormMain.qQuestions.State = dsEdit do
     Sleep(1000);
   FormMain.qQuestions.Refresh;
   TreeView1.Items.Clear;
   FormMain.GetTreeQuestions(TreeView1.Items);
+end;
+
+procedure TFormQuests.ToolButton2Click(Sender: TObject);
+begin
+   qAnswersQ.ApplyUpdates;
 end;
 
 procedure TFormQuests.TreeView1Click(Sender: TObject);

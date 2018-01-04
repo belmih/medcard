@@ -327,7 +327,7 @@ object FormMain: TFormMain
       ' order by actiondate desc'
     )
     Params = <>
-    left = 38
+    left = 40
     top = 304
   end
   object imgListDBNavigator: TImageList
@@ -1019,12 +1019,15 @@ object FormMain: TFormMain
   object SQLite3Conn: TSQLite3Connection
     Connected = False
     LoginPrompt = False
+    DatabaseName = 'C:\Users\Миша\Documents\GitHub\medcard\database.db'
     KeepConnection = False
+    Transaction = SQLTransaction
     left = 624
     top = 170
   end
   object SQLTransaction: TSQLTransaction
     Active = False
+    Database = SQLite3Conn
     left = 712
     top = 170
   end
@@ -1082,10 +1085,38 @@ object FormMain: TFormMain
     top = 384
   end
   object qQuestions: TSQLQuery
-    FieldDefs = <>
-    AutoCalcFields = False
+    IndexName = 'DEFAULT_ORDER'
+    FieldDefs = <    
+      item
+        Name = 'id'
+        DataType = ftAutoInc
+        Precision = -1
+      end    
+      item
+        Name = 'questionorder'
+        DataType = ftInteger
+        Precision = -1
+      end    
+      item
+        Name = 'questiontext'
+        DataType = ftMemo
+        Precision = -1
+      end    
+      item
+        Name = 'questiontextcut'
+        DataType = ftString
+        Precision = -1
+        Size = 255
+      end    
+      item
+        Name = 'parentid'
+        DataType = ftInteger
+        Precision = -1
+      end>
     AfterDelete = qQuestionsAfterDelete
     AfterRefresh = qQuestionsAfterRefresh
+    Database = SQLite3Conn
+    Transaction = SQLTransaction
     SQL.Strings = (
       'select id,'
       '       questionorder,'

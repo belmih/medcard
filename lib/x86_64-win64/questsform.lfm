@@ -1,7 +1,7 @@
 object FormQuests: TFormQuests
-  Left = 187
+  Left = 182
   Height = 540
-  Top = 154
+  Top = 98
   Width = 1168
   Caption = 'medcard'
   ClientHeight = 540
@@ -65,19 +65,23 @@ object FormQuests: TFormQuests
         Columns = <        
           item
             Title.Caption = 'id'
+            Width = 27
             FieldName = 'id'
           end        
           item
             Title.Caption = 'questionorder'
+            Width = 89
             FieldName = 'questionorder'
           end        
           item
             ReadOnly = True
             Title.Caption = 'questiontextcut'
+            Width = 328
             FieldName = 'questiontextcut'
           end        
           item
             Title.Caption = 'parentid'
+            Width = 59
             FieldName = 'parentid'
           end>
         DataSource = FormMain.dsQuestions
@@ -105,9 +109,10 @@ object FormQuests: TFormQuests
         TabOrder = 2
         object DBNavigator1: TDBNavigator
           Left = 1
-          Height = 22
+          Height = 20
           Top = 2
-          Width = 241
+          Width = 200
+          AutoSize = True
           BevelOuter = bvNone
           ChildSizing.EnlargeHorizontal = crsScaleChilds
           ChildSizing.EnlargeVertical = crsScaleChilds
@@ -115,8 +120,8 @@ object FormQuests: TFormQuests
           ChildSizing.ShrinkVertical = crsScaleChilds
           ChildSizing.Layout = cclLeftToRightThenTopToBottom
           ChildSizing.ControlsPerLine = 100
-          ClientHeight = 22
-          ClientWidth = 241
+          ClientHeight = 20
+          ClientWidth = 200
           DataSource = FormMain.dsQuestions
           Flat = True
           Options = []
@@ -124,7 +129,7 @@ object FormQuests: TFormQuests
           Images = FormMain.imgListDBNavigator
         end
         object ToolButton1: TToolButton
-          Left = 242
+          Left = 201
           Top = 2
           Action = FormMain.actCommit
           OnClick = ToolButton1Click
@@ -148,7 +153,39 @@ object FormQuests: TFormQuests
         Width = 658
         Align = alClient
         Color = clWindow
-        Columns = <>
+        Columns = <        
+          item
+            Title.Caption = 'id'
+            Width = 25
+            FieldName = 'id'
+          end        
+          item
+            Title.Caption = 'answertype'
+            Width = 75
+            FieldName = 'answertype'
+          end        
+          item
+            Title.Caption = 'answerorder'
+            Width = 80
+            FieldName = 'answerorder'
+          end        
+          item
+            Title.Caption = 'question_id'
+            Width = 76
+            FieldName = 'question_id'
+          end        
+          item
+            Title.Caption = 'answertext'
+            Width = 71
+            FieldName = 'answertext'
+          end        
+          item
+            Title.Caption = 'points'
+            Width = 48
+            FieldName = 'points'
+          end>
+        DataSource = dsAnswersQ
+        Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgAutoSizeColumns]
         TabOrder = 0
       end
       object DBMemo1: TDBMemo
@@ -157,6 +194,8 @@ object FormQuests: TFormQuests
         Top = 168
         Width = 658
         Align = alBottom
+        DataField = 'answertext'
+        DataSource = dsAnswersQ
         ScrollBars = ssAutoVertical
         TabOrder = 1
       end
@@ -172,7 +211,7 @@ object FormQuests: TFormQuests
           Left = 1
           Height = 22
           Top = 2
-          Width = 241
+          Width = 200
           BevelOuter = bvNone
           ChildSizing.EnlargeHorizontal = crsScaleChilds
           ChildSizing.EnlargeVertical = crsScaleChilds
@@ -181,16 +220,18 @@ object FormQuests: TFormQuests
           ChildSizing.Layout = cclLeftToRightThenTopToBottom
           ChildSizing.ControlsPerLine = 100
           ClientHeight = 22
-          ClientWidth = 241
+          ClientWidth = 200
+          DataSource = dsAnswersQ
           Flat = True
           Options = []
           TabOrder = 0
           Images = FormMain.imgListDBNavigator
         end
         object ToolButton2: TToolButton
-          Left = 242
+          Left = 201
           Top = 2
           Action = FormMain.actCommit
+          OnClick = ToolButton2Click
         end
       end
     end
@@ -206,7 +247,41 @@ object FormQuests: TFormQuests
     end
   end
   object qAnswersQ: TSQLQuery
-    FieldDefs = <>
+    IndexName = 'DEFAULT_ORDER'
+    FieldDefs = <    
+      item
+        Name = 'id'
+        DataType = ftAutoInc
+        Precision = -1
+      end    
+      item
+        Name = 'answertype'
+        DataType = ftInteger
+        Precision = -1
+      end    
+      item
+        Name = 'answerorder'
+        DataType = ftInteger
+        Precision = -1
+      end    
+      item
+        Name = 'question_id'
+        DataType = ftInteger
+        Precision = -1
+      end    
+      item
+        Name = 'answertext'
+        DataType = ftString
+        Precision = -1
+        Size = 255
+      end    
+      item
+        Name = 'points'
+        DataType = ftInteger
+        Precision = -1
+      end>
+    BeforeInsert = qAnswersQBeforeInsert
+    OnNewRecord = qAnswersQNewRecord
     Database = FormMain.SQLite3Conn
     Transaction = FormMain.SQLTransaction
     SQL.Strings = (
@@ -220,19 +295,26 @@ object FormQuests: TFormQuests
       ' where question_id = :id'
       ' order by answerorder, id'
     )
+    InsertSQL.Strings = (
+      'insert into answers (answertype,answerorder,question_id,answertext,points )'
+      'values (:answertype,:answerorder,:question_id,:answertext,:points)'
+      ''
+    )
     Params = <    
       item
-        DataType = ftInteger
+        DataType = ftAutoInc
         Name = 'id'
         ParamType = ptInput
+        Size = 4
       end>
     DataSource = FormMain.dsQuestions
-    left = 880
-    top = 336
+    left = 848
+    top = 368
   end
   object dsAnswersQ: TDataSource
     DataSet = qAnswersQ
-    left = 936
-    top = 336
+    OnUpdateData = dsAnswersQUpdateData
+    left = 920
+    top = 368
   end
 end
