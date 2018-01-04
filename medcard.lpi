@@ -110,6 +110,7 @@
         <Filename Value="addquestionform.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FormAddQuest"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit12>
     </Units>

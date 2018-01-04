@@ -1,7 +1,7 @@
 object FormMain: TFormMain
-  Left = 515
+  Left = 410
   Height = 600
-  Top = 149
+  Top = 118
   Width = 800
   Caption = 'medcard'
   ClientHeight = 580
@@ -307,6 +307,7 @@ object FormMain: TFormMain
     object actQuestionDelete: TAction
       Caption = 'actQuestionDelete'
       ImageIndex = 2
+      OnExecute = actQuestionDeleteExecute
     end
   end
   object dsActions: TDataSource
@@ -1029,6 +1030,7 @@ object FormMain: TFormMain
   end
   object qUsers: TSQLQuery
     FieldDefs = <>
+    AfterDelete = qUsersAfterDelete
     AfterRefresh = qUsersAfterRefresh
     SQL.Strings = (
       'select id,'
@@ -1044,6 +1046,7 @@ object FormMain: TFormMain
   end
   object qDoctors: TSQLQuery
     FieldDefs = <>
+    AfterDelete = qDoctorsAfterDelete
     AfterRefresh = qDoctorsAfterRefresh
     SQL.Strings = (
       'select id,'
@@ -1055,7 +1058,7 @@ object FormMain: TFormMain
       '  from doctors'
     )
     Params = <>
-    left = 38
+    left = 40
     top = 232
   end
   object dsUsers: TDataSource
@@ -1066,24 +1069,47 @@ object FormMain: TFormMain
   end
   object dsDoctors: TDataSource
     DataSet = qDoctors
+    OnStateChange = dsDoctorsStateChange
+    OnDataChange = dsDoctorsDataChange
     OnUpdateData = dsDoctorsUpdateData
     left = 120
     top = 232
   end
   object dsQuestions: TDataSource
     DataSet = qQuestions
+    OnUpdateData = dsQuestionsUpdateData
     left = 120
     top = 384
   end
   object qQuestions: TSQLQuery
     FieldDefs = <>
+    AutoCalcFields = False
+    AfterDelete = qQuestionsAfterDelete
+    AfterRefresh = qQuestionsAfterRefresh
     SQL.Strings = (
       'select id,'
       '       questionorder,'
-      '       questiontext || '''' as questiontext,'
+      '       questiontext,'
+      '       substr(questiontext,1,50) questiontextcut,'
       '       parentid'
       '  from questions'
       '  order by parentid, questionorder'
+    )
+    InsertSQL.Strings = (
+      'insert into questions'
+      '(questionorder,questiontext,parentid)'
+      'values (:questionorder,:questiontext,:parentid)'
+      ''
+    )
+    UpdateSQL.Strings = (
+      'update questions set'
+      'questionorder = :questionorder,'
+      'questiontext = :questiontext,'
+      'parentid = :parentid'
+      'where id = :id'
+    )
+    DeleteSQL.Strings = (
+      'delete from questions where id = :id'
     )
     Params = <>
     left = 38

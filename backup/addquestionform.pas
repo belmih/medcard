@@ -66,7 +66,7 @@ begin
    query.Prepare;
    query.ParamByName('qo').AsInteger := TQuestion(FormQuests.TreeView1.Selected.Data).questionorder;
    query.ParamByName('qt').AsString := Memo1.Lines.Text;
-   query.ParamByName('pid').AsInteger  := TQuestion(FormQuests.TreeView1.Selected.Data).id;
+   query.ParamByName('pid').AsInteger := TQuestion(FormQuests.TreeView1.Selected.Data).id;
    query.ExecSQL;
    FormMain.SQLTransaction.Commit;
    FormMain.qQuestions.Refresh;

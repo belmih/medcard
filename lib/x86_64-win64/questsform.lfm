@@ -1,92 +1,198 @@
 object FormQuests: TFormQuests
-  Left = 357
+  Left = 187
   Height = 540
-  Top = 206
-  Width = 960
+  Top = 154
+  Width = 1168
   Caption = 'medcard'
   ClientHeight = 540
-  ClientWidth = 960
+  ClientWidth = 1168
   OnShow = FormShow
   LCLVersion = '1.8.0.6'
-  object GroupBox1: TGroupBox
+  object GroupBox3: TGroupBox
     Left = 0
-    Height = 292
+    Height = 540
     Top = 0
-    Width = 960
-    Align = alClient
-    Caption = 'Вопросы'
-    ClientHeight = 272
-    ClientWidth = 956
+    Width = 504
+    Align = alLeft
+    Caption = 'GroupBox3'
+    ClientHeight = 520
+    ClientWidth = 500
     TabOrder = 0
-    object ToolBar1: TToolBar
-      Left = 0
-      Height = 26
-      Top = 0
-      Width = 956
-      Caption = 'ToolBar1'
-      TabOrder = 0
-    end
     object TreeView1: TTreeView
       Left = 0
-      Height = 246
-      Top = 26
-      Width = 552
-      Align = alLeft
+      Height = 520
+      Top = 0
+      Width = 500
+      Align = alClient
       AutoExpand = True
       DragMode = dmAutomatic
       ExpandSignType = tvestPlusMinus
       Images = FormMain.imgList
       PopupMenu = pmQuestions
       ReadOnly = True
-      TabOrder = 1
+      TabOrder = 0
       OnClick = TreeView1Click
       OnSelectionChanged = TreeView1SelectionChanged
       Options = [tvoAutoExpand, tvoAutoItemHeight, tvoHideSelection, tvoKeepCollapsedNodes, tvoReadOnly, tvoShowButtons, tvoShowLines, tvoShowRoot, tvoToolTips, tvoNoDoubleClickExpand, tvoThemedDraw]
     end
-    object memoAnswer: TMemo
-      Left = 552
-      Height = 246
-      Top = 26
-      Width = 404
-      Align = alClient
-      TabOrder = 2
-    end
   end
-  object GroupBox2: TGroupBox
-    Left = 0
-    Height = 248
-    Top = 292
-    Width = 960
-    Align = alBottom
-    Caption = 'Ответы'
-    ClientHeight = 228
-    ClientWidth = 956
+  object Panel1: TPanel
+    Left = 504
+    Height = 540
+    Top = 0
+    Width = 664
+    Align = alClient
+    ClientHeight = 540
+    ClientWidth = 664
     TabOrder = 1
-    object ToolBar2: TToolBar
-      Left = 0
-      Height = 26
-      Top = 0
-      Width = 956
-      Caption = 'ToolBar2'
+    object GroupBox1: TGroupBox
+      Left = 1
+      Height = 272
+      Top = 1
+      Width = 662
+      Align = alTop
+      Caption = 'Вопросы'
+      ClientHeight = 252
+      ClientWidth = 658
       TabOrder = 0
+      object DBGrid2: TDBGrid
+        Left = 0
+        Height = 150
+        Top = 26
+        Width = 658
+        Align = alClient
+        Color = clWindow
+        Columns = <        
+          item
+            Title.Caption = 'id'
+            FieldName = 'id'
+          end        
+          item
+            Title.Caption = 'questionorder'
+            FieldName = 'questionorder'
+          end        
+          item
+            ReadOnly = True
+            Title.Caption = 'questiontextcut'
+            FieldName = 'questiontextcut'
+          end        
+          item
+            Title.Caption = 'parentid'
+            FieldName = 'parentid'
+          end>
+        DataSource = FormMain.dsQuestions
+        Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgAutoSizeColumns]
+        TabOrder = 0
+      end
+      object DBMemo2: TDBMemo
+        Left = 0
+        Height = 76
+        Top = 176
+        Width = 658
+        Align = alBottom
+        DataField = 'questiontext'
+        DataSource = FormMain.dsQuestions
+        ScrollBars = ssAutoVertical
+        TabOrder = 1
+      end
+      object ToolBar1: TToolBar
+        Left = 0
+        Height = 26
+        Top = 0
+        Width = 658
+        Caption = 'ToolBar1'
+        Images = FormMain.imgList
+        TabOrder = 2
+        object DBNavigator1: TDBNavigator
+          Left = 1
+          Height = 22
+          Top = 2
+          Width = 241
+          BevelOuter = bvNone
+          ChildSizing.EnlargeHorizontal = crsScaleChilds
+          ChildSizing.EnlargeVertical = crsScaleChilds
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 100
+          ClientHeight = 22
+          ClientWidth = 241
+          DataSource = FormMain.dsQuestions
+          Flat = True
+          Options = []
+          TabOrder = 0
+          Images = FormMain.imgListDBNavigator
+        end
+        object ToolButton1: TToolButton
+          Left = 242
+          Top = 2
+          Action = FormMain.actCommit
+          OnClick = ToolButton1Click
+        end
+      end
     end
-    object DBGrid1: TDBGrid
-      Left = 0
-      Height = 202
-      Top = 26
-      Width = 552
-      Align = alLeft
-      Color = clWindow
-      Columns = <>
-      TabOrder = 1
-    end
-    object DBMemo1: TDBMemo
-      Left = 552
-      Height = 202
-      Top = 26
-      Width = 404
+    object GroupBox2: TGroupBox
+      Left = 1
+      Height = 266
+      Top = 273
+      Width = 662
       Align = alClient
-      TabOrder = 2
+      Caption = 'Ответы'
+      ClientHeight = 246
+      ClientWidth = 658
+      TabOrder = 1
+      object DBGrid1: TDBGrid
+        Left = 0
+        Height = 142
+        Top = 26
+        Width = 658
+        Align = alClient
+        Color = clWindow
+        Columns = <>
+        TabOrder = 0
+      end
+      object DBMemo1: TDBMemo
+        Left = 0
+        Height = 78
+        Top = 168
+        Width = 658
+        Align = alBottom
+        ScrollBars = ssAutoVertical
+        TabOrder = 1
+      end
+      object ToolBar2: TToolBar
+        Left = 0
+        Height = 26
+        Top = 0
+        Width = 658
+        Caption = 'ToolBar2'
+        Images = FormMain.imgList
+        TabOrder = 2
+        object DBNavigator2: TDBNavigator
+          Left = 1
+          Height = 22
+          Top = 2
+          Width = 241
+          BevelOuter = bvNone
+          ChildSizing.EnlargeHorizontal = crsScaleChilds
+          ChildSizing.EnlargeVertical = crsScaleChilds
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 100
+          ClientHeight = 22
+          ClientWidth = 241
+          Flat = True
+          Options = []
+          TabOrder = 0
+          Images = FormMain.imgListDBNavigator
+        end
+        object ToolButton2: TToolButton
+          Left = 242
+          Top = 2
+          Action = FormMain.actCommit
+        end
+      end
     end
   end
   object pmQuestions: TPopupMenu
@@ -111,7 +217,7 @@ object FormQuests: TFormQuests
       '       answertext || '''' as answertext,'
       '       points'
       '  from answers'
-      ' where id = :id'
+      ' where question_id = :id'
       ' order by answerorder, id'
     )
     Params = <    
@@ -120,11 +226,13 @@ object FormQuests: TFormQuests
         Name = 'id'
         ParamType = ptInput
       end>
-    left = 392
-    top = 352
+    DataSource = FormMain.dsQuestions
+    left = 880
+    top = 336
   end
   object dsAnswersQ: TDataSource
-    left = 480
-    top = 352
+    DataSet = qAnswersQ
+    left = 936
+    top = 336
   end
 end

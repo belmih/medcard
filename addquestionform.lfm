@@ -15,7 +15,7 @@ object FormAddQuest: TFormAddQuest
     Top = 0
     Width = 640
     Align = alClient
-    Caption = 'GroupBox1'
+    Caption = 'Добавление вопроса'
     ClientHeight = 410
     ClientWidth = 636
     TabOrder = 0
@@ -34,25 +34,24 @@ object FormAddQuest: TFormAddQuest
     Top = 430
     Width = 640
     Align = alBottom
-    Caption = 'Panel1'
     ClientHeight = 50
     ClientWidth = 640
     TabOrder = 1
     object btnAdd: TButton
-      Left = 376
+      Left = 421
       Height = 25
-      Top = 8
+      Top = 12
       Width = 75
-      Caption = 'btnAdd'
+      Caption = 'Добавить'
       OnClick = btnAddClick
       TabOrder = 0
     end
     object btnCancel: TButton
-      Left = 480
+      Left = 525
       Height = 25
-      Top = 8
+      Top = 12
       Width = 75
-      Caption = 'btnCancel'
+      Caption = 'Отмена'
       OnClick = btnCancelClick
       TabOrder = 1
     end

@@ -6,29 +6,35 @@ interface
 
 uses
   Classes, SysUtils, sqldb, db, FileUtil, Forms, Controls, Graphics, Dialogs,
-  StdCtrls, ComCtrls, DBGrids, DbCtrls, Menus;
+  StdCtrls, ComCtrls, DBGrids, DbCtrls, Menus, ExtCtrls;
 
 type
 
   { TFormQuests }
 
   TFormQuests = class(TForm)
-    DBGrid2: TDBGrid;
-    DBMemo2: TDBMemo;
-    dsAnswersQ: TDataSource;
     DBGrid1: TDBGrid;
+    DBGrid2: TDBGrid;
     DBMemo1: TDBMemo;
+    DBMemo2: TDBMemo;
+    DBNavigator1: TDBNavigator;
+    DBNavigator2: TDBNavigator;
+    dsAnswersQ: TDataSource;
     GroupBox1: TGroupBox;
     GroupBox2: TGroupBox;
-    memoAnswer: TMemo;
+    GroupBox3: TGroupBox;
     miQuestionDelete: TMenuItem;
     miQuestionAdd: TMenuItem;
+    Panel1: TPanel;
     pmQuestions: TPopupMenu;
     qAnswersQ: TSQLQuery;
     ToolBar1: TToolBar;
     ToolBar2: TToolBar;
+    ToolButton1: TToolButton;
+    ToolButton2: TToolButton;
     TreeView1: TTreeView;
     procedure FormShow(Sender: TObject);
+    procedure ToolButton1Click(Sender: TObject);
     procedure TreeView1Click(Sender: TObject);
     procedure TreeView1SelectionChanged(Sender: TObject);
 
@@ -60,6 +66,16 @@ begin
   end;
 end;
 
+procedure TFormQuests.ToolButton1Click(Sender: TObject);
+begin
+  FormMain.qQuestions.ApplyUpdates();
+  while FormMain.qQuestions.State = dsEdit do
+    Sleep(1000);
+  FormMain.qQuestions.Refresh;
+  TreeView1.Items.Clear;
+  FormMain.GetTreeQuestions(TreeView1.Items);
+end;
+
 procedure TFormQuests.TreeView1Click(Sender: TObject);
 begin
   //ShowMessage(TQuestion(TreeView1.Selected.Data).txt);
@@ -70,8 +86,7 @@ procedure TFormQuests.TreeView1SelectionChanged(Sender: TObject);
 begin
   if TreeView1.Selected <> nil then
   begin
-    memoAnswer.Lines.Clear;
-    memoAnswer.Lines.AddText(TQuestion(TreeView1.Selected.Data).txt);
+    FormMain.qQuestions.locate('id',TQuestion(TreeView1.Selected.Data).id,[]);
   end;
 
   //ShowMessage(IntToStr(TQuestion(TreeView1.Selected.Data).id));
