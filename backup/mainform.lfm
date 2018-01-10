@@ -27,19 +27,22 @@ object FormMain: TFormMain
       Height = 25
       Top = 17
       Width = 75
-      Caption = 'Добавить'
+      Action = actActionAdd
       TabOrder = 0
     end
     object dblcDoctor: TDBLookupComboBox
       Left = 249
       Height = 23
-      Top = 19
+      Top = 17
       Width = 389
       AutoComplete = True
+      DataField = 'id'
+      DataSource = dsDoctors
       DropDownCount = 10
       KeyField = 'id'
       ListField = 'fnp'
       ListFieldIndex = 0
+      ListSource = dsDoctors
       LookupCache = True
       TabOrder = 1
     end
@@ -85,9 +88,25 @@ object FormMain: TFormMain
       ButtonHeight = 22
       ButtonWidth = 23
       Caption = 'ToolBar1'
+      Images = imgList
       ParentShowHint = False
       ShowHint = True
       TabOrder = 0
+      object ToolButton1: TToolButton
+        Left = 1
+        Top = 2
+        Action = actActionDelete
+      end
+      object ToolButton2: TToolButton
+        Left = 24
+        Top = 2
+        Action = actBlock
+      end
+      object ToolButton3: TToolButton
+        Left = 47
+        Top = 2
+        Action = actUnblock
+      end
     end
     object DBGrid1: TDBGrid
       Left = 0
@@ -122,7 +141,9 @@ object FormMain: TFormMain
           Width = 110
           FieldName = 'enddate'
         end>
+      DataSource = dsActions
       Options = [dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgAutoSizeColumns]
+      PopupMenu = pmActions
       TabOrder = 1
     end
   end
@@ -309,6 +330,26 @@ object FormMain: TFormMain
       ImageIndex = 2
       OnExecute = actQuestionDeleteExecute
     end
+    object actActionAdd: TAction
+      Caption = 'Добавить'
+      ImageIndex = 1
+      OnExecute = actActionAddExecute
+    end
+    object actActionDelete: TAction
+      Caption = 'actActionDelete'
+      ImageIndex = 2
+      OnExecute = actActionDeleteExecute
+    end
+    object actBlock: TAction
+      Caption = 'actBlock'
+      ImageIndex = 11
+      OnExecute = actBlockExecute
+    end
+    object actUnblock: TAction
+      Caption = 'Разблокировать запись'
+      ImageIndex = 12
+      OnExecute = actUnblockExecute
+    end
   end
   object dsActions: TDataSource
     DataSet = qActions
@@ -323,7 +364,7 @@ object FormMain: TFormMain
       '       d.fullname || '', '' || post as doctor,'
       '       medcardnum || '''' as medcardnum,'
       '       datetime(enddate, ''localtime'') as enddate'
-      '  from actions a inner join doctors d on a.doc_id=d.id'
+      '  from actions a left join doctors d on a.doc_id=d.id'
       ' order by actiondate desc'
     )
     Params = <>
@@ -661,7 +702,7 @@ object FormMain: TFormMain
     left = 600
     top = 504
     Bitmap = {
-      4C690B0000001000000010000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+      4C690D0000001000000010000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
       FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
       FF00FFFFFF00FFFFFF00FFFFFF008F036200900362689003628B7F7F55667F7F
       55667F7F55667F7F55667F7F55667F7F55667F7F55667F7F55667F7F55667F7F
@@ -1013,13 +1054,77 @@ object FormMain: TFormMain
       F0FF383817822424104000000013000000110000000F0000000C0C8200CE2BDF
       1AFF0C8200CD0000000300000001000000000000001E000000321515064E2A2A
       0B871515064B0000002B00000026000000220000001D00000018054F00A10568
-      00CF0550009D0000000000000002
+      00CF0550009D0000000000000002FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF00013C5A00025A87000278B3000278B300037A
+      B6000380BE330380BF720380BF890380BF890380BF720380BE33037AB6000278
+      B3000278B300025A8700013C5A000278B3000278B3000278B3000278B3000379
+      B5351D8CC29B7ECDEBE16AB5D1EA6AB5D1EA7ECDEBE11D8CC29B0379B5350278
+      B3000278B3000278B3000278B3000272AA000272AA000272AA000272AA000272
+      AA7A7CC8E7E6388AB2D5015B8891015B8891388AB2D57CC8E7E60272AA7A0272
+      AA000272AA000272AA000272AA000376B0000376B0000376B00002699D000269
+      9D9784C9E6FD066594B9015F8E00015F8E00066594B984C9E6FD02699D970269
+      9D000375AE000375AF000375AF000381C0000381C0000381BF000377B1000160
+      90A376BADBFF016494B201689A00015A8700016494B278BCDDFF016090A30272
+      AA00037EBB00037FBD00037FBD000381C0000381C0000381BF69037DBA8F0059
+      86A865AACCFF016698AD01699CA9005783CA016698AD4B91B5FF005986A80276
+      B09B037EBB6D037FBD00037FBD000381C0000381C0000381BF8BA5E9FFFF9CDF
+      FAFF94D7F4FF8CCEEEFF83C7E8FF5EB4D7FF5EBADEFF5EC2E8FF5ECAF2FF62D6
+      FBFF037EBB90037FBD00037FBD000381C0000381C0000381BF8B66AACAFF68AC
+      CEFF6CB0D2FF6EB1D3FF6AAED0FF559DBFFF55A0C2FF55A5CAFF55ABD3FF5AB8
+      DEFF037EBB90037FBD00037FBD000381C0000381C0000381BF8BA5E9FFFF9CDF
+      FAFF94D7F4FF8CCEEEFF83C7E8FF5EB4D7FF5EBADEFF5EC2E8FF5ECAF2FF62D6
+      FBFF037EBB90037FBD00037FBD00037DBB00037DBB00037DBA8A66AACAFF68AC
+      CEFF6CB0D2FF6EB1D3FF6AAED0FF559DBFFF55A0C2FF55A5CAFF55ABD3FF5AB8
+      DEFF037AB68F037BB800037BB80002669F0002669F0002669F87A5E9FFFF9CDF
+      FAFF94D7F4FF8CCEEEFF83C7E8FF5EB4D7FF5EBADEFF5EC2E8FF5ECAF2FF62D6
+      FBFF02659C8A02659D0002659D0001152100014B7C00014B7C8D66AACAFF68AC
+      CEFF6CB0D2FF6EB1D3FF6AAED0FF559DBFFF55A0C2FF55A5CAFF55ABD3FF5AB8
+      DEFF014A7B8F014A7C000115210000000000010F1A00013763A0A9EDFFFFA4E7
+      FCFF9CDFF8FF94D6F4FF8BCFF0FF66BCDEFF66C2E4FF66CAECFF66D2F4FF66DA
+      FCFF013763A0010F1A0000000000000000120000002C002141A2002F5AB30037
+      649E0146769301578895016294A2002D57BD002D57BC002D57BC002D58BC002D
+      58BC002242970000002C0000001200000000000000160000001A0000001A0000
+      001A0000001A0000001A0000001A0000001A0000001A0000001A0000001A0000
+      001A0000001A0000001600000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF000381C0000381BF00037DBA000278B3000273
+      AB000278B3000278B3000278B300037AB6000380BE330380BF720380BF890380
+      BF890380BF720380BE33037AB6000381C0000381BF00037DBA000278B3000273
+      AB000278B3000278B3000278B3000379B5351D8CC29B7ECDEBE16AB5D1EA6AB5
+      D1EA7ECDEBE11D8CC29B0379B5350381C0000381BF00037DBA000278B3000273
+      AB000270A6000272AA000272AA000272AA7A7CC8E7E6388AB2D5015B8891015B
+      8891388AB2D57CC8E7E60272AA7A0381C0000381BF00037DBA000278B3000273
+      AB00026EA300026A9E0002699D0002699D9784C9E6FD066594B9015F8E00015F
+      8E00066594B984C9E6FD02699D970381C0000381BF00037DBA000278B3000273
+      AB00026EA30001699C00015A8700016090A378BCDDFF016494B20272AA000377
+      B10001649486016090A30161927A0381C0000381BF69037DBA8F0278B3950273
+      AB9C026EA3A201699CA9005783CA005986A84B91B5FF016698AD0276B09B037E
+      BB6D0272A900015E8D00016090000381C0000381BF8BA5E9FFFF9CDFFAFF94D7
+      F4FF8CCEEEFF83C7E8FF5EB4D7FF5EBADEFF5EC2E8FF5ECAF2FF62D6FBFF037E
+      BB90037FBD0002679900016090000381C0000381BF8B66AACAFF68ACCEFF6CB0
+      D2FF6EB1D3FF6AAED0FF559DBFFF55A0C2FF55A5CAFF55ABD3FF5AB8DEFF037E
+      BB90037FBD00037FBD000270A7000381C0000381BF8BA5E9FFFF9CDFFAFF94D7
+      F4FF8CCEEEFF83C7E8FF5EB4D7FF5EBADEFF5EC2E8FF5ECAF2FF62D6FBFF037E
+      BB90037FBD00037FBD00037FBD00037DBB00037DBA8A66AACAFF68ACCEFF6CB0
+      D2FF6EB1D3FF6AAED0FF559DBFFF55A0C2FF55A5CAFF55ABD3FF5AB8DEFF037A
+      B68F037BB800037BB800037BB80002669F0002669F87A5E9FFFF9CDFFAFF94D7
+      F4FF8CCEEEFF83C7E8FF5EB4D7FF5EBADEFF5EC2E8FF5ECAF2FF62D6FBFF0265
+      9C8A02659D0002659D00011B2A00014B7C00014B7C8D66AACAFF68ACCEFF6CB0
+      D2FF6EB1D3FF6AAED0FF559DBFFF55A0C2FF55A5CAFF55ABD3FF5AB8DEFF014A
+      7B8F014A7C000115210000000000010F1A00013763A0A9EDFFFFA4E7FCFF9CDF
+      F8FF94D6F4FF8BCFF0FF66BCDEFF66C2E4FF66CAECFF66D2F4FF66DAFCFF0137
+      63A0010F1A00000000000000000000000033002141A2002F5AB30037649E0146
+      769301578895016294A2002D57BD002D57BC002D57BC002D58BC002D58BC0022
+      4297000000330000002C00000012000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000001600000009
     }
   end
   object SQLite3Conn: TSQLite3Connection
     Connected = True
     LoginPrompt = False
-    DatabaseName = 'C:\Users\Миша\Documents\GitHub\medcard\database.db'
+    DatabaseName = 'C:\Users\ййй\Documents\GitHub\medcard\database.db'
     KeepConnection = False
     Transaction = SQLTransaction
     left = 624
@@ -1048,16 +1153,60 @@ object FormMain: TFormMain
     top = 170
   end
   object qDoctors: TSQLQuery
-    FieldDefs = <>
+    FieldDefs = <    
+      item
+        Name = 'id'
+        DataType = ftAutoInc
+        Precision = -1
+      end    
+      item
+        Name = 'surname'
+        DataType = ftString
+        Precision = -1
+        Size = 255
+      end    
+      item
+        Name = 'name'
+        DataType = ftString
+        Precision = -1
+        Size = 255
+      end    
+      item
+        Name = 'patronymic'
+        DataType = ftString
+        Precision = -1
+        Size = 255
+      end    
+      item
+        Name = 'fullname'
+        DataType = ftString
+        Precision = -1
+        Size = 255
+      end    
+      item
+        Name = 'post'
+        DataType = ftString
+        Precision = -1
+        Size = 255
+      end    
+      item
+        Name = 'fnp'
+        DataType = ftString
+        Precision = -1
+        Size = 255
+      end>
     AfterDelete = qDoctorsAfterDelete
     AfterRefresh = qDoctorsAfterRefresh
+    Database = SQLite3Conn
+    Transaction = SQLTransaction
     SQL.Strings = (
       'select id,'
       '       surname || '''' as surname,'
       '       name || '''' as name,'
       '       patronymic || '''' as patronymic,'
       '       fullname || '''' as fullname,'
-      '       post || '''' as post'
+      '       post || '''' as post,'
+      '       fullname || '', '' || post as fnp'
       '  from doctors'
     )
     Params = <>
@@ -1085,7 +1234,6 @@ object FormMain: TFormMain
     top = 384
   end
   object qQuestions: TSQLQuery
-    IndexName = 'DEFAULT_ORDER'
     FieldDefs = <    
       item
         Name = 'id'
@@ -1145,5 +1293,21 @@ object FormMain: TFormMain
     Params = <>
     left = 38
     top = 384
+  end
+  object pmActions: TPopupMenu
+    Images = imgList
+    left = 320
+    top = 371
+    object MenuItem7: TMenuItem
+      Action = actActionDelete
+      Caption = 'Удалить запись'
+    end
+    object MenuItem9: TMenuItem
+      Action = actBlock
+      Caption = 'Заблокировать запись'
+    end
+    object MenuItem10: TMenuItem
+      Action = actUnblock
+    end
   end
 end

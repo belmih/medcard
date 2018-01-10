@@ -14,6 +14,10 @@ type
 
   TFormMain = class(TForm)
     actCommit: TAction;
+    actActionAdd: TAction;
+    actActionDelete: TAction;
+    actBlock: TAction;
+    actUnblock: TAction;
     actQuestionDelete: TAction;
     actQuestionAdd: TAction;
     actShowQuestionsForm: TAction;
@@ -36,14 +40,18 @@ type
     Label3: TLabel;
     MainMenu1: TMainMenu;
     MenuItem1: TMenuItem;
+    MenuItem10: TMenuItem;
     MenuItem2: TMenuItem;
     MenuItem3: TMenuItem;
     MenuItem4: TMenuItem;
     MenuItem5: TMenuItem;
     MenuItem6: TMenuItem;
+    MenuItem7: TMenuItem;
+    MenuItem9: TMenuItem;
     miAboutForm: TMenuItem;
     MenuItem8: TMenuItem;
     miShowUsersForm: TMenuItem;
+    pmActions: TPopupMenu;
     qActions: TSQLQuery;
     ShowLog: TMenuItem;
     SQLite3Conn: TSQLite3Connection;
@@ -52,12 +60,19 @@ type
     qQuestions: TSQLQuery;
     SQLTransaction: TSQLTransaction;
     ToolBar1: TToolBar;
+    ToolButton1: TToolButton;
+    ToolButton2: TToolButton;
+    ToolButton3: TToolButton;
+    procedure actActionAddExecute(Sender: TObject);
+    procedure actActionDeleteExecute(Sender: TObject);
+    procedure actBlockExecute(Sender: TObject);
     procedure actCommitExecute(Sender: TObject);
     procedure actQuestionAddExecute(Sender: TObject);
     procedure actQuestionDeleteExecute(Sender: TObject);
     procedure actShowDoctorsFormExecute(Sender: TObject);
     procedure actShowQuestionsFormExecute(Sender: TObject);
     procedure actShowUsersFormExecute(Sender: TObject);
+    procedure actUnblockExecute(Sender: TObject);
     procedure dsDoctorsDataChange(Sender: TObject; Field: TField);
     procedure dsDoctorsStateChange(Sender: TObject);
     procedure dsDoctorsUpdateData(Sender: TObject);
@@ -109,6 +124,28 @@ begin
   FormUsers.Show;
 end;
 
+procedure TFormMain.actUnblockExecute(Sender: TObject);
+var
+   Query: TSQLQuery;
+   id: Integer;
+ begin
+   try
+     id := qActions.FieldByName('id').AsInteger;
+     Query := TSQLQuery.Create(nil);
+     Query.DataBase := SQLite3Conn;
+     Query.SQL.Text := 'update actions set enddate = null where id = :id and enddate is not null';
+     Query.Prepare;
+     Query.ParamByName('id').AsInteger := id;
+     Query.ExecSQL;
+     SQLTransaction.Commit;
+     qActions.Refresh;
+     qActions.Locate('id',id,[]);
+   finally
+     Query.Close;
+     Query.Free;
+   end;
+end;
+
 procedure TFormMain.dsDoctorsDataChange(Sender: TObject; Field: TField);
 begin
 
@@ -136,6 +173,77 @@ begin
 
   SQLTransaction.Commit;
   actCommit.Enabled:=False;
+end;
+
+procedure TFormMain.actActionAddExecute(Sender: TObject);
+var
+  query: TSQLQuery;
+  key: Integer;
+  id: Integer;
+begin
+ key := dblcDoctor.KeyValue;
+ try
+   query := TSQLQuery.Create(nil);
+   query.DataBase := SQLite3Conn;
+   query.SQL.Text := 'insert into actions(user_id, doc_id, medcardnum) values(:u,:d,:m)';
+   query.Prepare;
+   query.ParamByName('u').AsInteger := UserID;
+   query.ParamByName('d').AsInteger := key;
+   query.ParamByName('m').AsString  := eMedCard.Text;
+   query.ExecSQL;
+   SQLTransaction.Commit;
+ finally
+   query.Close;
+   query.Free;
+ end;
+ dblcDoctor.KeyValue := key;
+ qActions.Refresh;
+end;
+
+procedure TFormMain.actActionDeleteExecute(Sender: TObject);
+var
+  Query: TSQLQuery;
+begin
+ if MessageDlg('Вопрос', 'Удалить запись?', mtConfirmation,
+   [mbYes, mbNo],0) = mrYes
+  then
+  begin
+    try
+      Query := TSQLQuery.Create(nil);
+      Query.DataBase := SQLite3Conn;
+      Query.SQL.Text := 'delete from actions where id = :id';
+      Query.Prepare;
+      Query.ParamByName('id').AsInteger := qActions.FieldByName('id').AsInteger;
+      Query.ExecSQL;
+      SQLTransaction.Commit;
+      qActions.Refresh;
+    finally
+      Query.Close;
+      Query.Free;
+    end;
+  end;
+end;
+
+procedure TFormMain.actBlockExecute(Sender: TObject);
+ var
+   Query: TSQLQuery;
+   id: Integer;
+ begin
+   try
+     id := qActions.FieldByName('id').AsInteger;
+     Query := TSQLQuery.Create(nil);
+     Query.DataBase := SQLite3Conn;
+     Query.SQL.Text := 'update actions set enddate = datetime("now") where id = :id and enddate is null';
+     Query.Prepare;
+     Query.ParamByName('id').AsInteger := id;
+     Query.ExecSQL;
+     SQLTransaction.Commit;
+     qActions.Refresh;
+     qActions.Locate('id',id,[]);
+   finally
+     Query.Close;
+     Query.Free;
+   end;
 end;
 
 procedure TFormMain.actQuestionAddExecute(Sender: TObject);
@@ -182,7 +290,10 @@ end;
 
 procedure TFormMain.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
+  SQLTransaction.Active:=False;
+  SQLite3Conn.Close();
   FormLogin.Close;
+  CloseAction := caFree;
 end;
 
 procedure TFormMain.FormCreate(Sender: TObject);
@@ -202,6 +313,7 @@ begin
   SQLite3Conn.DatabaseName := databasefile;
   SQLite3Conn.Transaction := SQLTransaction;
   try
+    SQLite3Conn.Close();
     SQLite3Conn.Open;
     SQLTransaction.StartTransaction;
   except;
@@ -245,13 +357,16 @@ begin
   qUsers.DataBase:=SQLite3Conn;
   qDoctors.DataBase:=SQLite3Conn;
   qQuestions.DataBase:=SQLite3Conn;
+  qActions.DataBase:=SQLite3Conn;
   qUsers.Options     := [sqoCancelUpdatesOnRefresh, sqoRefreshUsingSelect, sqoKeepOpenOnCommit];
   qDoctors.Options   := [sqoCancelUpdatesOnRefresh, sqoRefreshUsingSelect, sqoKeepOpenOnCommit];
   qQuestions.Options := [sqoCancelUpdatesOnRefresh, sqoRefreshUsingSelect, sqoKeepOpenOnCommit];
+  qActions.Options   := [sqoCancelUpdatesOnRefresh, sqoRefreshUsingSelect, sqoKeepOpenOnCommit];
   try
     qUsers.Open;
     qDoctors.Open;
     qQuestions.Open;
+    qActions.Open;
   except
     ShowMessage('Ошибка при запуске запроса! Программа будет закрыта!');
     Application.Terminate;

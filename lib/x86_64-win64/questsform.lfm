@@ -12,17 +12,17 @@ object FormQuests: TFormQuests
     Left = 0
     Height = 540
     Top = 0
-    Width = 504
+    Width = 520
     Align = alLeft
     Caption = 'GroupBox3'
     ClientHeight = 520
-    ClientWidth = 500
+    ClientWidth = 516
     TabOrder = 0
     object TreeView1: TTreeView
       Left = 0
       Height = 520
       Top = 0
-      Width = 500
+      Width = 516
       Align = alClient
       AutoExpand = True
       DragMode = dmAutomatic
@@ -37,29 +37,29 @@ object FormQuests: TFormQuests
     end
   end
   object Panel1: TPanel
-    Left = 504
+    Left = 520
     Height = 540
     Top = 0
-    Width = 664
+    Width = 648
     Align = alClient
     ClientHeight = 540
-    ClientWidth = 664
+    ClientWidth = 648
     TabOrder = 1
     object GroupBox1: TGroupBox
       Left = 1
       Height = 272
       Top = 1
-      Width = 662
+      Width = 646
       Align = alTop
       Caption = 'Вопросы'
       ClientHeight = 252
-      ClientWidth = 658
+      ClientWidth = 642
       TabOrder = 0
       object DBGrid2: TDBGrid
         Left = 0
         Height = 150
         Top = 26
-        Width = 658
+        Width = 642
         Align = alClient
         Color = clWindow
         Columns = <        
@@ -92,7 +92,7 @@ object FormQuests: TFormQuests
         Left = 0
         Height = 76
         Top = 176
-        Width = 658
+        Width = 642
         Align = alBottom
         DataField = 'questiontext'
         DataSource = FormMain.dsQuestions
@@ -103,7 +103,7 @@ object FormQuests: TFormQuests
         Left = 0
         Height = 26
         Top = 0
-        Width = 658
+        Width = 642
         Caption = 'ToolBar1'
         Images = FormMain.imgList
         TabOrder = 2
@@ -140,17 +140,17 @@ object FormQuests: TFormQuests
       Left = 1
       Height = 266
       Top = 273
-      Width = 662
+      Width = 646
       Align = alClient
       Caption = 'Ответы'
       ClientHeight = 246
-      ClientWidth = 658
+      ClientWidth = 642
       TabOrder = 1
       object DBGrid1: TDBGrid
         Left = 0
         Height = 142
         Top = 26
-        Width = 658
+        Width = 642
         Align = alClient
         Color = clWindow
         Columns = <        
@@ -192,7 +192,7 @@ object FormQuests: TFormQuests
         Left = 0
         Height = 78
         Top = 168
-        Width = 658
+        Width = 642
         Align = alBottom
         DataField = 'answertext'
         DataSource = dsAnswersQ
@@ -203,7 +203,7 @@ object FormQuests: TFormQuests
         Left = 0
         Height = 26
         Top = 0
-        Width = 658
+        Width = 642
         Caption = 'ToolBar2'
         Images = FormMain.imgList
         TabOrder = 2
@@ -237,8 +237,8 @@ object FormQuests: TFormQuests
     end
   end
   object pmQuestions: TPopupMenu
-    left = 88
-    top = 208
+    left = 440
+    top = 464
     object miQuestionAdd: TMenuItem
       Action = FormMain.actQuestionAdd
     end
@@ -308,13 +308,13 @@ object FormQuests: TFormQuests
         Size = 4
       end>
     DataSource = FormMain.dsQuestions
-    left = 848
-    top = 368
+    left = 552
+    top = 384
   end
   object dsAnswersQ: TDataSource
     DataSet = qAnswersQ
     OnUpdateData = dsAnswersQUpdateData
-    left = 920
-    top = 368
+    left = 624
+    top = 384
   end
 end
