@@ -29,7 +29,6 @@ type
 var
   FormLogin: TFormLogin;
   databasefile: String;
-  user_id: Integer;
   userFullName: String;
   CurDir: String;
 

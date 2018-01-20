@@ -1,7 +1,7 @@
 object FormDoctors: TFormDoctors
   Left = 376
   Height = 480
-  Top = 106
+  Top = 61
   Width = 640
   Caption = 'medcard'
   ClientHeight = 480

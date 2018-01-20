@@ -19,7 +19,7 @@ begin
   Application.CreateForm(TFormLogin, FormLogin);
   Application.CreateForm(TFormMain, FormMain);
   Application.CreateForm(TFormQuests, FormQuests);
-  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TFormAddQuest, FormAddQuest);
   Application.Run;
 end.
 

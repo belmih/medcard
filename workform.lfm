@@ -1,10 +1,10 @@
 object Form5: TForm5
   Left = 375
-  Height = 600
-  Top = 193
+  Height = 531
+  Top = 0
   Width = 800
   Caption = 'Form5'
-  ClientHeight = 600
+  ClientHeight = 531
   ClientWidth = 800
   OnShow = FormShow
   Position = poDesktopCenter

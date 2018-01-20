@@ -19,6 +19,7 @@ type
     DBMemo2: TDBMemo;
     DBNavigator1: TDBNavigator;
     DBNavigator2: TDBNavigator;
+    DBRadioGroup1: TDBRadioGroup;
     dsAnswersQ: TDataSource;
     GroupBox1: TGroupBox;
     GroupBox2: TGroupBox;
@@ -93,7 +94,9 @@ begin
     Sleep(1000);
   FormMain.qQuestions.Refresh;
   TreeView1.Items.Clear;
+  FormMain.SQLIte3Conn.ExecuteDirect('delete from quest_template',FormMain.SQLTransaction);
   FormMain.GetTreeQuestions(TreeView1.Items);
+  FormMain.SQLTransaction.Commit;
 end;
 
 procedure TFormQuests.ToolButton2Click(Sender: TObject);

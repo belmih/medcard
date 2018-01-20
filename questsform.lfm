@@ -1,26 +1,26 @@
 object FormQuests: TFormQuests
-  Left = 182
-  Height = 540
-  Top = 98
+  Left = 25
+  Height = 531
+  Top = 0
   Width = 1168
   Caption = 'medcard'
-  ClientHeight = 540
+  ClientHeight = 531
   ClientWidth = 1168
   OnShow = FormShow
   LCLVersion = '1.8.0.6'
   object GroupBox3: TGroupBox
     Left = 0
-    Height = 540
+    Height = 531
     Top = 0
     Width = 520
     Align = alLeft
     Caption = 'GroupBox3'
-    ClientHeight = 520
+    ClientHeight = 511
     ClientWidth = 516
     TabOrder = 0
     object TreeView1: TTreeView
       Left = 0
-      Height = 520
+      Height = 511
       Top = 0
       Width = 516
       Align = alClient
@@ -35,14 +35,36 @@ object FormQuests: TFormQuests
       OnSelectionChanged = TreeView1SelectionChanged
       Options = [tvoAutoExpand, tvoAutoItemHeight, tvoHideSelection, tvoKeepCollapsedNodes, tvoReadOnly, tvoShowButtons, tvoShowLines, tvoShowRoot, tvoToolTips, tvoNoDoubleClickExpand, tvoThemedDraw]
     end
+    object DBRadioGroup1: TDBRadioGroup
+      Left = 403
+      Height = 149
+      Top = 235
+      Width = 185
+      Caption = 'DBRadioGroup1'
+      DataField = 'questionorder'
+      DataSource = FormMain.dsQuestions
+      Items.Strings = (
+        '1'
+        '2'
+        '3'
+        '4'
+      )
+      TabOrder = 1
+      Values.Strings = (
+        '10'
+        '20'
+        '30'
+        '40'
+      )
+    end
   end
   object Panel1: TPanel
     Left = 520
-    Height = 540
+    Height = 531
     Top = 0
     Width = 648
     Align = alClient
-    ClientHeight = 540
+    ClientHeight = 531
     ClientWidth = 648
     TabOrder = 1
     object GroupBox1: TGroupBox
@@ -65,7 +87,7 @@ object FormQuests: TFormQuests
         Columns = <        
           item
             Title.Caption = 'id'
-            Width = 27
+            Width = 25
             FieldName = 'id'
           end        
           item
@@ -76,7 +98,7 @@ object FormQuests: TFormQuests
           item
             ReadOnly = True
             Title.Caption = 'questiontextcut'
-            Width = 328
+            Width = 97
             FieldName = 'questiontextcut'
           end        
           item
@@ -138,17 +160,17 @@ object FormQuests: TFormQuests
     end
     object GroupBox2: TGroupBox
       Left = 1
-      Height = 266
+      Height = 257
       Top = 273
       Width = 646
       Align = alClient
       Caption = 'Ответы'
-      ClientHeight = 246
+      ClientHeight = 237
       ClientWidth = 642
       TabOrder = 1
       object DBGrid1: TDBGrid
         Left = 0
-        Height = 142
+        Height = 133
         Top = 26
         Width = 642
         Align = alClient
@@ -191,7 +213,7 @@ object FormQuests: TFormQuests
       object DBMemo1: TDBMemo
         Left = 0
         Height = 78
-        Top = 168
+        Top = 159
         Width = 642
         Align = alBottom
         DataField = 'answertext'
@@ -247,7 +269,6 @@ object FormQuests: TFormQuests
     end
   end
   object qAnswersQ: TSQLQuery
-    IndexName = 'DEFAULT_ORDER'
     FieldDefs = <    
       item
         Name = 'id'

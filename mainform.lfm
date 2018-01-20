@@ -1,10 +1,10 @@
 object FormMain: TFormMain
   Left = 410
-  Height = 600
-  Top = 118
+  Height = 531
+  Top = 0
   Width = 800
   Caption = 'medcard'
-  ClientHeight = 580
+  ClientHeight = 511
   ClientWidth = 800
   Menu = MainMenu1
   OnClose = FormClose
@@ -72,12 +72,12 @@ object FormMain: TFormMain
   end
   object GroupBox1: TGroupBox
     Left = 0
-    Height = 500
+    Height = 431
     Top = 80
     Width = 800
     Align = alClient
     Caption = 'Результаты'
-    ClientHeight = 480
+    ClientHeight = 411
     ClientWidth = 796
     TabOrder = 1
     object ToolBar1: TToolBar
@@ -107,10 +107,15 @@ object FormMain: TFormMain
         Top = 2
         Action = actUnblock
       end
+      object ToolButton4: TToolButton
+        Left = 70
+        Top = 2
+        Action = actStartTest
+      end
     end
     object DBGrid1: TDBGrid
       Left = 0
-      Height = 456
+      Height = 387
       Top = 24
       Width = 796
       Align = alClient
@@ -1159,7 +1164,7 @@ object FormMain: TFormMain
     }
   end
   object SQLite3Conn: TSQLite3Connection
-    Connected = True
+    Connected = False
     LoginPrompt = False
     DatabaseName = 'C:\Users\ййй\Documents\GitHub\medcard\database.db'
     KeepConnection = False
@@ -1168,7 +1173,7 @@ object FormMain: TFormMain
     top = 170
   end
   object SQLTransaction: TSQLTransaction
-    Active = True
+    Active = False
     Database = SQLite3Conn
     left = 712
     top = 170
@@ -1274,7 +1279,7 @@ object FormMain: TFormMain
     FieldDefs = <    
       item
         Name = 'id'
-        DataType = ftAutoInc
+        DataType = ftInteger
         Precision = -1
       end    
       item

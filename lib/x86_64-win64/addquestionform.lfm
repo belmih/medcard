@@ -1,7 +1,7 @@
 object FormAddQuest: TFormAddQuest
   Left = 354
   Height = 480
-  Top = 118
+  Top = 61
   Width = 640
   Caption = 'FormAddQuest'
   ClientHeight = 480

@@ -1,0 +1,187 @@
+object Form1: TForm1
+  Left = 417
+  Height = 600
+  Top = 78
+  Width = 800
+  Caption = 'Критерии'
+  ClientHeight = 600
+  ClientWidth = 800
+  OnShow = FormShow
+  LCLVersion = '1.8.0.6'
+  object DBGrid1: TDBGrid
+    Left = 0
+    Height = 116
+    Top = 26
+    Width = 800
+    Align = alTop
+    AutoEdit = False
+    Color = clWindow
+    Columns = <    
+      item
+        Title.Caption = 'id'
+        Width = 50
+        FieldName = 'id'
+      end    
+      item
+        Title.Caption = 'lvl'
+        Width = 60
+        FieldName = 'lvl'
+      end    
+      item
+        Title.Caption = 'questiontext1'
+        Width = 200
+        FieldName = 'questiontext1'
+      end    
+      item
+        Title.Caption = 'answertext'
+        Width = 200
+        FieldName = 'answertext'
+      end    
+      item
+        Title.Caption = 'points'
+        Width = 50
+        FieldName = 'points'
+      end    
+      item
+        Title.Caption = 'comment'
+        Width = 200
+        FieldName = 'comment'
+      end>
+    DataSource = dsQuestTemplate
+    ReadOnly = True
+    TabOrder = 0
+    OnCellClick = DBGrid1CellClick
+  end
+  object ToolBar1: TToolBar
+    Left = 0
+    Height = 26
+    Top = 0
+    Width = 800
+    Caption = 'ToolBar1'
+    TabOrder = 1
+    object DBNavigator1: TDBNavigator
+      Left = 1
+      Height = 22
+      Top = 2
+      Width = 241
+      BevelOuter = bvNone
+      ChildSizing.EnlargeHorizontal = crsScaleChilds
+      ChildSizing.EnlargeVertical = crsScaleChilds
+      ChildSizing.ShrinkHorizontal = crsScaleChilds
+      ChildSizing.ShrinkVertical = crsScaleChilds
+      ChildSizing.Layout = cclLeftToRightThenTopToBottom
+      ChildSizing.ControlsPerLine = 100
+      ClientHeight = 22
+      ClientWidth = 241
+      DataSource = dsQuestTemplate
+      Flat = True
+      Options = []
+      TabOrder = 0
+      VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbRefresh]
+      Images = FormMain.imgListDBNavigator
+    end
+  end
+  object DBGroupBox1: TDBGroupBox
+    Left = 0
+    Height = 458
+    Top = 142
+    Width = 800
+    Align = alClient
+    ClientHeight = 438
+    ClientWidth = 796
+    DataField = 'lvl'
+    DataSource = dsQuestTemplate
+    TabOrder = 2
+    object DBMemo1: TDBMemo
+      Left = 0
+      Height = 438
+      Top = 0
+      Width = 448
+      Align = alLeft
+      DataField = 'questiontext'
+      DataSource = dsQuestTemplate
+      TabOrder = 0
+    end
+    object DBRadioGroup1: TDBRadioGroup
+      Left = 448
+      Height = 438
+      Top = 0
+      Width = 348
+      Align = alClient
+      Caption = 'DBRadioGroup1'
+      DataField = 'points'
+      DataSource = dsQuestTemplate
+      TabOrder = 1
+    end
+  end
+  object qQuestTemplate: TSQLQuery
+    IndexName = 'DEFAULT_ORDER'
+    FieldDefs = <    
+      item
+        Name = 'id'
+        DataType = ftAutoInc
+        Precision = -1
+      end    
+      item
+        Name = 'lvl'
+        DataType = ftString
+        Precision = -1
+        Size = 255
+      end    
+      item
+        Name = 'questiontext'
+        DataType = ftMemo
+        Precision = -1
+      end    
+      item
+        Name = 'questiontext1'
+        DataType = ftString
+        Precision = -1
+        Size = 255
+      end    
+      item
+        Name = 'answertext'
+        DataType = ftString
+        Precision = -1
+        Size = 255
+      end    
+      item
+        Name = 'points'
+        DataType = ftInteger
+        Precision = -1
+      end    
+      item
+        Name = 'comment'
+        DataType = ftString
+        Precision = -1
+        Size = 255
+      end>
+    Database = FormMain.SQLite3Conn
+    Transaction = FormMain.SQLTransaction
+    SQL.Strings = (
+      'select id,'
+      '       lvl || '''' as lvl,'
+      '       questiontext,'
+      '       questiontext || '''' as questiontext1,'
+      '       answertext || '''' as answertext,'
+      '       points,'
+      '       comment || '''' as comment'
+      '  from results'
+      ' where action_id = :a'
+      ''
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'a'
+        ParamType = ptInput
+      end>
+    left = 672
+    top = 72
+  end
+  object dsQuestTemplate: TDataSource
+    DataSet = qQuestTemplate
+    left = 560
+    top = 72
+  end
+end

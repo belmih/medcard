@@ -73,7 +73,7 @@ begin
    FormQuests.TreeView1.Items.Clear;
    FormMain.GetTreeQuestions(FormQuests.TreeView1.Items);
    Close;
-   finally
+ finally
    query.Close;
    query.Free;
  end;

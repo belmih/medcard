@@ -1,9 +1,9 @@
 object FormDoctors: TFormDoctors
   Left = 376
   Height = 480
-  Top = 106
+  Top = 51
   Width = 640
-  Caption = 'FormDoctors'
+  Caption = 'medcard'
   ClientHeight = 480
   ClientWidth = 640
   OnClose = FormClose
