@@ -21,12 +21,12 @@ type
     DBNavigator2: TDBNavigator;
     dsResultAnswers: TDataSource;
     dsResults: TDataSource;
-    DBGroupBox1: TDBGroupBox;
     DBNavigator1: TDBNavigator;
     gbQuestions: TGroupBox;
     GroupBox2: TGroupBox;
     GroupBox3: TGroupBox;
     GroupBox4: TGroupBox;
+    Panel1: TPanel;
     qResults: TSQLQuery;
     qResultsAnswers: TSQLQuery;
     StatusBar1: TStatusBar;
@@ -68,7 +68,6 @@ begin
   qResultsAnswers.DataBase:= FormMain.SQLite3Conn;
   qResultsAnswers.Options:=[sqoCancelUpdatesOnRefresh, sqoRefreshUsingSelect, sqoKeepOpenOnCommit];
   qResultsAnswers.OPen;
-
 end;
 
 procedure TForm1.qResultsAfterRefresh(DataSet: TDataSet);
@@ -78,7 +77,10 @@ end;
 
 procedure TForm1.ToolButton2Click(Sender: TObject);
 begin
-  gbQuestions.Hide := not gbQuestions.Showing;
+  if gbQuestions.Showing then
+    gbQuestions.Hide
+  else
+    gbQuestions.Show;
 end;
 
 procedure TForm1.DBGrid1CellClick(Column: TColumn);

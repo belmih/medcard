@@ -1,18 +1,18 @@
 object Form1: TForm1
-  Left = 161
-  Height = 601
-  Top = 41
-  Width = 1097
+  Left = 290
+  Height = 600
+  Top = 26
+  Width = 945
   Caption = 'Критерии'
-  ClientHeight = 601
-  ClientWidth = 1097
+  ClientHeight = 600
+  ClientWidth = 945
   OnShow = FormShow
   LCLVersion = '1.8.0.6'
   object ToolBar1: TToolBar
     Left = 0
     Height = 26
     Top = 0
-    Width = 1097
+    Width = 945
     Caption = 'ToolBar1'
     Images = FormMain.imgList
     TabOrder = 0
@@ -49,128 +49,21 @@ object Form1: TForm1
       OnClick = ToolButton2Click
     end
   end
-  object DBGroupBox1: TDBGroupBox
-    Left = 0
-    Height = 304
-    Top = 152
-    Width = 1097
-    Align = alTop
-    ClientHeight = 284
-    ClientWidth = 1093
-    DataField = 'lvl'
-    DataSource = dsResults
-    TabOrder = 1
-    object GroupBox2: TGroupBox
-      Left = 512
-      Height = 284
-      Top = 0
-      Width = 484
-      Caption = 'Список ответов'
-      ClientHeight = 264
-      ClientWidth = 480
-      TabOrder = 0
-      object ToolBar2: TToolBar
-        Left = 0
-        Height = 26
-        Top = 0
-        Width = 480
-        Caption = 'ToolBar2'
-        TabOrder = 0
-        object DBNavigator2: TDBNavigator
-          Left = 1
-          Height = 22
-          Top = 2
-          Width = 72
-          BevelOuter = bvNone
-          ChildSizing.EnlargeHorizontal = crsScaleChilds
-          ChildSizing.EnlargeVertical = crsScaleChilds
-          ChildSizing.ShrinkHorizontal = crsScaleChilds
-          ChildSizing.ShrinkVertical = crsScaleChilds
-          ChildSizing.Layout = cclLeftToRightThenTopToBottom
-          ChildSizing.ControlsPerLine = 100
-          ClientHeight = 22
-          ClientWidth = 72
-          DataSource = dsResultAnswers
-          Flat = True
-          Options = []
-          TabOrder = 0
-          VisibleButtons = [nbPrior, nbNext]
-          Images = FormMain.imgListDBNavigator
-        end
-      end
-      object DBGrid2: TDBGrid
-        Left = 0
-        Height = 166
-        Top = 26
-        Width = 480
-        Align = alTop
-        Color = clWindow
-        Columns = <        
-          item
-            Title.Caption = 'answtext1'
-            Width = 200
-            FieldName = 'answtext1'
-          end        
-          item
-            Title.Caption = 'points'
-            Width = 60
-            FieldName = 'points'
-          end>
-        DataSource = dsResultAnswers
-        ReadOnly = True
-        TabAdvance = aaDown
-        TabOrder = 1
-      end
-      object DBMemo3: TDBMemo
-        Left = 0
-        Height = 72
-        Top = 192
-        Width = 480
-        Align = alClient
-        DataField = 'answertext'
-        DataSource = dsResultAnswers
-        ReadOnly = True
-        TabOrder = 2
-      end
-    end
-    object GroupBox4: TGroupBox
-      Left = 0
-      Height = 284
-      Top = 0
-      Width = 508
-      Align = alLeft
-      Caption = 'Вопрос'
-      ClientHeight = 264
-      ClientWidth = 504
-      TabOrder = 1
-      object DBMemo1: TDBMemo
-        Left = 0
-        Height = 264
-        Top = 0
-        Width = 504
-        Align = alClient
-        DataField = 'questiontext'
-        DataSource = dsResults
-        OnChange = DBMemo1Change
-        TabOrder = 0
-      end
-    end
-  end
   object gbQuestions: TGroupBox
     Left = 0
     Height = 126
     Top = 26
-    Width = 1097
+    Width = 945
     Align = alTop
     Caption = 'Список вопросов'
     ClientHeight = 106
-    ClientWidth = 1093
-    TabOrder = 2
+    ClientWidth = 941
+    TabOrder = 1
     object DBGrid1: TDBGrid
       Left = 0
       Height = 106
       Top = 0
-      Width = 1093
+      Width = 941
       Align = alClient
       AutoEdit = False
       Color = clWindow
@@ -199,19 +92,18 @@ object Form1: TForm1
   end
   object GroupBox3: TGroupBox
     Left = 0
-    Height = 122
-    Top = 456
-    Width = 512
-    Align = alLeft
+    Height = 217
+    Top = 360
+    Width = 480
     Caption = 'Комментарий'
-    ClientHeight = 102
-    ClientWidth = 508
-    TabOrder = 3
+    ClientHeight = 197
+    ClientWidth = 476
+    TabOrder = 2
     object DBMemo2: TDBMemo
       Left = 0
-      Height = 102
+      Height = 197
       Top = 0
-      Width = 508
+      Width = 476
       Align = alClient
       DataField = 'comment'
       DataSource = dsResults
@@ -221,9 +113,116 @@ object Form1: TForm1
   object StatusBar1: TStatusBar
     Left = 0
     Height = 23
-    Top = 578
-    Width = 1097
+    Top = 577
+    Width = 945
     Panels = <>
+  end
+  object Panel1: TPanel
+    Left = 0
+    Height = 200
+    Top = 152
+    Width = 945
+    Align = alTop
+    Caption = 'Panel1'
+    ClientHeight = 200
+    ClientWidth = 945
+    TabOrder = 4
+    object GroupBox2: TGroupBox
+      Left = 480
+      Height = 198
+      Top = 1
+      Width = 464
+      Align = alClient
+      Caption = 'Список ответов'
+      ClientHeight = 178
+      ClientWidth = 460
+      TabOrder = 0
+      object ToolBar2: TToolBar
+        Left = 0
+        Height = 26
+        Top = 0
+        Width = 460
+        Caption = 'ToolBar2'
+        TabOrder = 0
+        object DBNavigator2: TDBNavigator
+          Left = 1
+          Height = 22
+          Top = 2
+          Width = 87
+          BevelOuter = bvNone
+          ChildSizing.EnlargeHorizontal = crsScaleChilds
+          ChildSizing.EnlargeVertical = crsScaleChilds
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 100
+          ClientHeight = 22
+          ClientWidth = 87
+          DataSource = dsResultAnswers
+          Flat = True
+          Options = []
+          TabOrder = 0
+          VisibleButtons = [nbPrior, nbNext]
+          Images = FormMain.imgListDBNavigator
+        end
+      end
+      object DBGrid2: TDBGrid
+        Left = 0
+        Height = 166
+        Top = 26
+        Width = 460
+        Align = alTop
+        Color = clWindow
+        Columns = <        
+          item
+            Title.Caption = 'answtext1'
+            Width = 280
+            FieldName = 'answtext1'
+          end        
+          item
+            Title.Caption = 'points'
+            Width = 60
+            FieldName = 'points'
+          end>
+        DataSource = dsResultAnswers
+        ReadOnly = True
+        TabAdvance = aaDown
+        TabOrder = 1
+      end
+      object DBMemo3: TDBMemo
+        Left = 0
+        Height = 0
+        Top = 178
+        Width = 460
+        Align = alClient
+        DataField = 'answertext'
+        DataSource = dsResultAnswers
+        ReadOnly = True
+        TabOrder = 2
+      end
+    end
+    object GroupBox4: TGroupBox
+      Left = 1
+      Height = 198
+      Top = 1
+      Width = 479
+      Align = alLeft
+      Caption = 'Вопрос'
+      ClientHeight = 178
+      ClientWidth = 475
+      TabOrder = 1
+      object DBMemo1: TDBMemo
+        Left = 0
+        Height = 178
+        Top = 0
+        Width = 475
+        Align = alClient
+        DataField = 'questiontext'
+        DataSource = dsResults
+        OnChange = DBMemo1Change
+        TabOrder = 0
+      end
+    end
   end
   object qResults: TSQLQuery
     FieldDefs = <    
@@ -283,17 +282,17 @@ object Form1: TForm1
       item
         DataType = ftUnknown
         Name = 'a'
-        ParamType = ptUnknown
+        ParamType = ptInput
       end>
-    left = 920
-    top = 72
+    left = 608
+    top = 88
   end
   object dsResults: TDataSource
     DataSet = qResults
     OnDataChange = dsResultsDataChange
     OnUpdateData = dsResultsUpdateData
-    left = 800
-    top = 80
+    left = 504
+    top = 88
   end
   object qResultsAnswers: TSQLQuery
     FieldDefs = <    
@@ -342,12 +341,12 @@ object Form1: TForm1
         ParamType = ptInput
       end>
     DataSource = dsResults
-    left = 920
-    top = 256
+    left = 608
+    top = 264
   end
   object dsResultAnswers: TDataSource
     DataSet = qResultsAnswers
-    left = 800
-    top = 256
+    left = 504
+    top = 264
   end
 end
