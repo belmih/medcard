@@ -1,7 +1,7 @@
 object FormDoctors: TFormDoctors
   Left = 376
   Height = 480
-  Top = 51
+  Top = 61
   Width = 640
   Caption = 'medcard'
   ClientHeight = 480
@@ -26,7 +26,37 @@ object FormDoctors: TFormDoctors
       Width = 636
       Align = alClient
       Color = clWindow
-      Columns = <>
+      Columns = <      
+        item
+          Title.Caption = 'id'
+          Width = 25
+          FieldName = 'id'
+        end      
+        item
+          Title.Caption = 'Фамилия'
+          Width = 81
+          FieldName = 'surname'
+        end      
+        item
+          Title.Caption = 'Имя'
+          Width = 56
+          FieldName = 'name'
+        end      
+        item
+          Title.Caption = 'Отчество'
+          Width = 84
+          FieldName = 'patronymic'
+        end      
+        item
+          Title.Caption = 'ФИО'
+          Width = 192
+          FieldName = 'fullname'
+        end      
+        item
+          Title.Caption = 'Должность'
+          Width = 97
+          FieldName = 'post'
+        end>
       DataSource = FormMain.dsDoctors
       Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgAutoSizeColumns]
       TabOrder = 0

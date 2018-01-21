@@ -1,9 +1,9 @@
-object FormReports: TFormReports
+object Form2: TForm2
   Left = 262
   Height = 600
   Top = 32
   Width = 800
-  Caption = 'Отчеты'
+  Caption = 'Form2'
   Position = poDesktopCenter
   LCLVersion = '1.8.0.6'
 end

@@ -133,9 +133,12 @@ var
   id: Integer;
 begin
   id := qActions.FieldByName('id').AsInteger;
-  Form1 := TForm1.Create(self);
-  Form1.ActionID:=id;
-  Form1.Show;
+  if (id > 0) then
+  begin
+    Form1 := TForm1.Create(self);
+    Form1.ActionID:=id;
+    Form1.Show;
+  end;
 end;
 
 procedure TFormMain.actUnblockExecute(Sender: TObject);
@@ -184,7 +187,6 @@ end;
 
 procedure TFormMain.actCommitExecute(Sender: TObject);
 begin
-
   SQLTransaction.Commit;
   actCommit.Enabled:=False;
 end;

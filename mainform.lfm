@@ -33,7 +33,7 @@ object FormMain: TFormMain
     object dblcDoctor: TDBLookupComboBox
       Left = 249
       Height = 23
-      Top = 17
+      Top = 19
       Width = 389
       AutoComplete = True
       DataField = 'id'
@@ -123,17 +123,17 @@ object FormMain: TFormMain
       Columns = <      
         item
           Title.Caption = 'id'
-          Width = 25
+          Width = 27
           FieldName = 'id'
         end      
         item
           Title.Caption = 'Дата начала'
-          Width = 82
+          Width = 118
           FieldName = 'actiondate'
         end      
         item
           Title.Caption = 'Врач'
-          Width = 42
+          Width = 263
           FieldName = 'doctor'
         end      
         item
@@ -367,7 +367,39 @@ object FormMain: TFormMain
     top = 304
   end
   object qActions: TSQLQuery
-    FieldDefs = <>
+    IndexName = 'DEFAULT_ORDER'
+    FieldDefs = <    
+      item
+        Name = 'id'
+        DataType = ftInteger
+        Precision = -1
+      end    
+      item
+        Name = 'actiondate'
+        DataType = ftString
+        Precision = -1
+        Size = 255
+      end    
+      item
+        Name = 'doctor'
+        DataType = ftString
+        Precision = -1
+        Size = 255
+      end    
+      item
+        Name = 'medcardnum'
+        DataType = ftString
+        Precision = -1
+        Size = 255
+      end    
+      item
+        Name = 'enddate'
+        DataType = ftString
+        Precision = -1
+        Size = 255
+      end>
+    Database = SQLite3Conn
+    Transaction = SQLTransaction
     SQL.Strings = (
       'select a.id,'
       '       datetime(actiondate, ''localtime'') as actiondate,'
@@ -1196,7 +1228,7 @@ object FormMain: TFormMain
     }
   end
   object SQLite3Conn: TSQLite3Connection
-    Connected = False
+    Connected = True
     LoginPrompt = False
     DatabaseName = 'C:\Users\ййй\Documents\GitHub\medcard\database.db'
     KeepConnection = False
@@ -1205,15 +1237,46 @@ object FormMain: TFormMain
     top = 168
   end
   object SQLTransaction: TSQLTransaction
-    Active = False
+    Active = True
     Database = SQLite3Conn
     left = 712
     top = 170
   end
   object qUsers: TSQLQuery
-    FieldDefs = <>
+    IndexName = 'DEFAULT_ORDER'
+    FieldDefs = <    
+      item
+        Name = 'id'
+        DataType = ftAutoInc
+        Precision = -1
+      end    
+      item
+        Name = 'login'
+        DataType = ftString
+        Precision = -1
+        Size = 255
+      end    
+      item
+        Name = 'passwrd'
+        DataType = ftString
+        Precision = -1
+        Size = 255
+      end    
+      item
+        Name = 'userrole'
+        DataType = ftString
+        Precision = -1
+        Size = 255
+      end    
+      item
+        Name = 'doctor_id'
+        DataType = ftInteger
+        Precision = -1
+      end>
     AfterDelete = qUsersAfterDelete
     AfterRefresh = qUsersAfterRefresh
+    Database = SQLite3Conn
+    Transaction = SQLTransaction
     SQL.Strings = (
       'select id,'
       '       login || '''' as login,'
@@ -1227,6 +1290,7 @@ object FormMain: TFormMain
     top = 170
   end
   object qDoctors: TSQLQuery
+    IndexName = 'DEFAULT_ORDER'
     FieldDefs = <    
       item
         Name = 'id'
@@ -1283,6 +1347,15 @@ object FormMain: TFormMain
       '       fullname || '', '' || post as fnp'
       '  from doctors'
     )
+    UpdateSQL.Strings = (
+      'update doctors'
+      '   set surname = :surname,'
+      '       name = :name,'
+      '       patronymic = :patronymic,'
+      '       fullname = :fullname,'
+      '       post = :post'
+      ' where id = :id'
+    )
     Params = <>
     left = 40
     top = 232
@@ -1308,10 +1381,11 @@ object FormMain: TFormMain
     top = 384
   end
   object qQuestions: TSQLQuery
+    IndexName = 'DEFAULT_ORDER'
     FieldDefs = <    
       item
         Name = 'id'
-        DataType = ftInteger
+        DataType = ftAutoInc
         Precision = -1
       end    
       item
@@ -1338,6 +1412,7 @@ object FormMain: TFormMain
       item
         Name = 'answertype'
         DataType = ftInteger
+        Precision = -1
       end>
     AfterDelete = qQuestionsAfterDelete
     AfterRefresh = qQuestionsAfterRefresh

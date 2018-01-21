@@ -1,7 +1,7 @@
 object FormUsers: TFormUsers
-  Left = 1024
+  Left = 426
   Height = 480
-  Top = 107
+  Top = 126
   Width = 640
   Caption = 'medcard'
   ClientHeight = 480
@@ -69,7 +69,37 @@ object FormUsers: TFormUsers
       Width = 636
       Align = alClient
       Color = clWindow
-      Columns = <>
+      Columns = <      
+        item
+          Title.Caption = 'id'
+          Width = 25
+          FieldName = 'id'
+        end      
+        item
+          Title.Caption = 'login'
+          Width = 87
+          FieldName = 'login'
+        end      
+        item
+          Title.Caption = 'Пароль'
+          Width = 58
+          FieldName = 'passwrd'
+        end      
+        item
+          ButtonStyle = cbsPickList
+          PickList.Strings = (
+            'admin'
+            'user'
+          )
+          Title.Caption = 'Роль'
+          Width = 57
+          FieldName = 'userrole'
+        end      
+        item
+          Title.Caption = 'doctor_id'
+          Width = 65
+          FieldName = 'doctor_id'
+        end>
       DataSource = FormMain.dsUsers
       Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgAutoSizeColumns]
       TabOrder = 1

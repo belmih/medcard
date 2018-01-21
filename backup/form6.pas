@@ -10,9 +10,9 @@ uses
 
 type
 
-  { TFormReports }
+  { TForm2 }
 
-  TFormReports = class(TForm)
+  TForm2 = class(TForm)
   private
 
   public
@@ -20,7 +20,7 @@ type
   end;
 
 var
-  FormReports: TFormReports;
+  Form2: TForm2;
 
 implementation
 

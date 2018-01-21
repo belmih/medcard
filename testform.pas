@@ -18,6 +18,7 @@ type
     DBMemo1: TDBMemo;
     DBMemo2: TDBMemo;
     DBMemo3: TDBMemo;
+    DBNavigator2: TDBNavigator;
     dsResultAnswers: TDataSource;
     dsResults: TDataSource;
     DBNavigator1: TDBNavigator;
@@ -30,27 +31,24 @@ type
     qResultsAnswers: TSQLQuery;
     StatusBar1: TStatusBar;
     ToolBar1: TToolBar;
+    ToolBar2: TToolBar;
     ToolButton1: TToolButton;
     ToolButton2: TToolButton;
     procedure DBGrid1CellClick(Column: TColumn);
     procedure DBGrid1ColEnter(Sender: TObject);
-    procedure DBGrid1MouseDown(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer);
-    procedure DBGrid1MouseUp(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer);
-    procedure DBGrid1PrepareCanvas(sender: TObject; DataCol: Integer;
-      Column: TColumn; AState: TGridDrawState);
     procedure DBGrid2CellClick(Column: TColumn);
-    procedure DBGrid2PrepareCanvas(sender: TObject; DataCol: Integer;
-      Column: TColumn; AState: TGridDrawState);
-    procedure DBMemo1Change(Sender: TObject);
-    procedure dsResultAnswersDataChange(Sender: TObject; Field: TField);
+    procedure dsResultAnswersUpdateData(Sender: TObject);
+
+
     procedure dsResultsDataChange(Sender: TObject; Field: TField);
+    procedure dsResultsStateChange(Sender: TObject);
     procedure dsResultsUpdateData(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCloseQuery(Sender: TObject; var CanClose: boolean);
     procedure FormShow(Sender: TObject);
+    procedure qResultsAfterPost(DataSet: TDataSet);
     procedure qResultsAfterRefresh(DataSet: TDataSet);
+    procedure qResultsAnswersAfterPost(DataSet: TDataSet);
     procedure ToolButton1Click(Sender: TObject);
     procedure ToolButton2Click(Sender: TObject);
     procedure ToolButton3Click(Sender: TObject);
@@ -62,6 +60,7 @@ type
 
 var
   Form1: TForm1;
+  AfterShow: Boolean = False;
 
 implementation
    uses mainform ;
@@ -79,7 +78,12 @@ begin
   qResultsAnswers.DataBase:= FormMain.SQLite3Conn;
   qResultsAnswers.Options:=[sqoCancelUpdatesOnRefresh, sqoRefreshUsingSelect, sqoKeepOpenOnCommit];
   qResultsAnswers.Open;
+  AfterShow := True;
+end;
 
+procedure TForm1.qResultsAfterPost(DataSet: TDataSet);
+begin
+  qResults.ApplyUpdates;
 end;
 
 procedure TForm1.qResultsAfterRefresh(DataSet: TDataSet);
@@ -87,9 +91,15 @@ begin
   FormMain.actCommit.Enabled:=False;
 end;
 
+procedure TForm1.qResultsAnswersAfterPost(DataSet: TDataSet);
+begin
+ qResultsAnswers.ApplyUpdates;
+
+end;
+
 procedure TForm1.ToolButton1Click(Sender: TObject);
 begin
-  qResults.ApplyUpdates();
+  qResultsAnswers.ApplyUpdates;
 end;
 
 procedure TForm1.ToolButton2Click(Sender: TObject);
@@ -107,26 +117,11 @@ end;
 
 procedure TForm1.DBGrid1CellClick(Column: TColumn);
 begin
-
-end;
-
-procedure TForm1.DBGrid1ColEnter(Sender: TObject);
-begin
-
-end;
-
-procedure TForm1.DBGrid1MouseDown(Sender: TObject; Button: TMouseButton;
-  Shift: TShiftState; X, Y: Integer);
-begin
-
-end;
-
-procedure TForm1.DBGrid1MouseUp(Sender: TObject; Button: TMouseButton;
-  Shift: TShiftState; X, Y: Integer);
-var
+{var
 id: Integer;
 query : TSQLQuery;
 begin
+if  AfterShow then
 try
 query := TSQLQuery.Create(nil);
 query.DataBase := FormMain.SQLite3Conn;
@@ -137,55 +132,62 @@ query.ParamByName('p').AsInteger := qResults.FieldByName('points').AsInteger;
 query.Open;
 
 id:= query.FieldByName('id').AsInteger;
-qResultsAnswers.locate('id',id,[]);
+if id>0 then
+  qResultsAnswers.locate('id',id,[]);
 
 finally
  query.close;
  query.Free;
+ end;
+}
 end;
-end;
 
-
-
-procedure TForm1.DBGrid1PrepareCanvas(sender: TObject; DataCol: Integer;
-  Column: TColumn; AState: TGridDrawState);
+procedure TForm1.DBGrid1ColEnter(Sender: TObject);
 begin
 
 end;
-
 
 procedure TForm1.DBGrid2CellClick(Column: TColumn);
 var
     id: Integer;
  begin
+ if (AfterShow)  then
+ begin
    id := qResultsAnswers.FieldByName('id').AsInteger;
    qResults.Edit;
    qResults.FieldByName('points').AsInteger:=qResultsAnswers.FieldByName('points').AsInteger;
    qResultsAnswers.locate('id',id,[]);
+   end;
 end;
 
-procedure TForm1.DBGrid2PrepareCanvas(sender: TObject; DataCol: Integer;
-  Column: TColumn; AState: TGridDrawState);
+procedure TForm1.dsResultAnswersUpdateData(Sender: TObject);
 begin
-
+  FormMain.actCommit.Enabled:=True;
 end;
 
 
 
-procedure TForm1.DBMemo1Change(Sender: TObject);
-begin
 
-end;
 
-procedure TForm1.dsResultAnswersDataChange(Sender: TObject; Field: TField);
-begin
 
-end;
+
+
+
+
+
+
+
 
 procedure TForm1.dsResultsDataChange(Sender: TObject; Field: TField);
 begin
 
 end;
+
+procedure TForm1.dsResultsStateChange(Sender: TObject);
+begin
+
+end;
+
 
 
 procedure TForm1.dsResultsUpdateData(Sender: TObject);

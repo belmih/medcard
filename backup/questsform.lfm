@@ -1,7 +1,7 @@
 object FormQuests: TFormQuests
-  Left = 192
+  Left = 122
   Height = 550
-  Top = 58
+  Top = 57
   Width = 1100
   Caption = 'medcard'
   ClientHeight = 550
@@ -71,27 +71,22 @@ object FormQuests: TFormQuests
             FieldName = 'id'
           end        
           item
-            Title.Caption = 'questionorder'
-            Width = 89
+            Title.Caption = 'Порядок'
+            Width = 60
             FieldName = 'questionorder'
           end        
           item
             ReadOnly = True
-            Title.Caption = 'questiontextcut'
-            Width = 97
+            Title.Caption = 'Текст вопроса'
+            Width = 320
             FieldName = 'questiontextcut'
           end        
           item
-            Title.Caption = 'parentid'
-            Width = 59
+            Title.Caption = 'id вопроса-родителя'
+            Width = 130
             FieldName = 'parentid'
-          end        
-          item
-            Title.Caption = 'answertype'
-            FieldName = 'answertype'
           end>
         DataSource = FormMain.dsQuestions
-        Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgAutoSizeColumns]
         TabOrder = 0
       end
       object DBMemo2: TDBMemo
@@ -166,24 +161,23 @@ object FormQuests: TFormQuests
             FieldName = 'id'
           end        
           item
-            Title.Caption = 'answerorder'
-            Width = 80
+            Title.Caption = 'Порядок'
+            Width = 60
             FieldName = 'answerorder'
           end        
           item
-            Title.Caption = 'question_id'
-            Width = 76
+            Title.Caption = 'id вопроса'
+            Width = 70
             FieldName = 'question_id'
           end        
           item
-            Title.Caption = 'answertext'
-            Width = 71
+            Title.Caption = 'Текст ответа'
+            Width = 300
             FieldName = 'answertext'
           end        
           item
-            ButtonStyle = cbsCheckboxColumn
-            Title.Caption = 'points'
-            Width = 48
+            Title.Caption = 'Баллы'
+            Width = 60
             FieldName = 'points'
           end>
         DataSource = dsAnswersQ

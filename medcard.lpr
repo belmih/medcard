@@ -21,7 +21,7 @@ begin
   Application.CreateForm(TFormQuests, FormQuests);
   Application.CreateForm(TFormAddQuest, FormAddQuest);
   Application.CreateForm(TForm1, Form1);
-  Application.CreateForm(TForm2, Form2);
+  Application.CreateForm(TFormReports, FormReports);
   Application.Run;
 end.
 

@@ -1,11 +1,11 @@
 object FormDoctors: TFormDoctors
-  Left = 376
+  Left = 384
   Height = 480
   Top = 61
-  Width = 640
+  Width = 632
   Caption = 'medcard'
   ClientHeight = 480
-  ClientWidth = 640
+  ClientWidth = 632
   OnClose = FormClose
   OnCloseQuery = FormCloseQuery
   LCLVersion = '1.8.0.6'
@@ -13,20 +13,50 @@ object FormDoctors: TFormDoctors
     Left = 0
     Height = 480
     Top = 0
-    Width = 640
+    Width = 632
     Align = alClient
     Caption = 'Список врачей'
     ClientHeight = 460
-    ClientWidth = 636
+    ClientWidth = 628
     TabOrder = 0
     object DBGrid2: TDBGrid
       Left = 0
       Height = 434
       Top = 26
-      Width = 636
+      Width = 628
       Align = alClient
       Color = clWindow
-      Columns = <>
+      Columns = <      
+        item
+          Title.Caption = 'id'
+          Width = 25
+          FieldName = 'id'
+        end      
+        item
+          Title.Caption = 'Фамилия'
+          Width = 81
+          FieldName = 'surname'
+        end      
+        item
+          Title.Caption = 'Имя'
+          Width = 56
+          FieldName = 'name'
+        end      
+        item
+          Title.Caption = 'Отчество'
+          Width = 84
+          FieldName = 'patronymic'
+        end      
+        item
+          Title.Caption = 'ФИО'
+          Width = 192
+          FieldName = 'fullname'
+        end      
+        item
+          Title.Caption = 'Должность'
+          Width = 97
+          FieldName = 'post'
+        end>
       DataSource = FormMain.dsDoctors
       Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgAutoSizeColumns]
       TabOrder = 0
@@ -35,7 +65,7 @@ object FormDoctors: TFormDoctors
       Left = 0
       Height = 26
       Top = 0
-      Width = 636
+      Width = 628
       Caption = 'ToolBar1'
       EdgeBorders = []
       Images = FormMain.imgList
@@ -68,10 +98,13 @@ object FormDoctors: TFormDoctors
       end
       object ToolButton2: TToolButton
         Left = 265
+        Hint = 'Заполнить ФИО автоматически'
         Top = 0
         Caption = 'ToolButton2'
         ImageIndex = 10
         OnClick = ToolButton2Click
+        ParentShowHint = False
+        ShowHint = True
       end
     end
   end

@@ -1,10 +1,10 @@
 object FormMain: TFormMain
   Left = 410
-  Height = 531
+  Height = 600
   Top = 0
   Width = 800
   Caption = 'medcard'
-  ClientHeight = 511
+  ClientHeight = 580
   ClientWidth = 800
   Menu = MainMenu1
   OnClose = FormClose
@@ -33,7 +33,7 @@ object FormMain: TFormMain
     object dblcDoctor: TDBLookupComboBox
       Left = 249
       Height = 23
-      Top = 17
+      Top = 19
       Width = 389
       AutoComplete = True
       DataField = 'id'
@@ -72,12 +72,12 @@ object FormMain: TFormMain
   end
   object GroupBox1: TGroupBox
     Left = 0
-    Height = 431
+    Height = 500
     Top = 80
     Width = 800
     Align = alClient
     Caption = 'Результаты'
-    ClientHeight = 411
+    ClientHeight = 480
     ClientWidth = 796
     TabOrder = 1
     object ToolBar1: TToolBar
@@ -115,7 +115,7 @@ object FormMain: TFormMain
     end
     object DBGrid1: TDBGrid
       Left = 0
-      Height = 387
+      Height = 456
       Top = 24
       Width = 796
       Align = alClient
@@ -123,17 +123,17 @@ object FormMain: TFormMain
       Columns = <      
         item
           Title.Caption = 'id'
-          Width = 25
+          Width = 27
           FieldName = 'id'
         end      
         item
           Title.Caption = 'Дата начала'
-          Width = 82
+          Width = 118
           FieldName = 'actiondate'
         end      
         item
           Title.Caption = 'Врач'
-          Width = 42
+          Width = 263
           FieldName = 'doctor'
         end      
         item
@@ -367,7 +367,40 @@ object FormMain: TFormMain
     top = 304
   end
   object qActions: TSQLQuery
-    FieldDefs = <>
+    IndexName = 'DEFAULT_ORDER'
+    FieldDefs = <    
+      item
+        Name = 'id'
+        DataType = ftInteger
+        Precision = -1
+      end    
+      item
+        Name = 'actiondate'
+        DataType = ftString
+        Precision = -1
+        Size = 255
+      end    
+      item
+        Name = 'doctor'
+        DataType = ftString
+        Precision = -1
+        Size = 255
+      end    
+      item
+        Name = 'medcardnum'
+        DataType = ftString
+        Precision = -1
+        Size = 255
+      end    
+      item
+        Name = 'enddate'
+        DataType = ftString
+        Precision = -1
+        Size = 255
+      end>
+    Active = True
+    Database = SQLite3Conn
+    Transaction = SQLTransaction
     SQL.Strings = (
       'select a.id,'
       '       datetime(actiondate, ''localtime'') as actiondate,'
@@ -382,8 +415,8 @@ object FormMain: TFormMain
     top = 304
   end
   object imgListDBNavigator: TImageList
-    left = 704
-    top = 504
+    left = 584
+    top = 371
     Bitmap = {
       4C690A0000001000000010000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
       FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
@@ -709,10 +742,10 @@ object FormMain: TFormMain
     }
   end
   object imgList: TImageList
-    left = 600
-    top = 504
+    left = 528
+    top = 371
     Bitmap = {
-      4C690E0000001000000010000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+      4C690F0000001000000010000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
       FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
       FF00FFFFFF00FFFFFF00FFFFFF008F036200900362689003628B7F7F55667F7F
       55667F7F55667F7F55667F7F55667F7F55667F7F55667F7F55667F7F55667F7F
@@ -1160,11 +1193,43 @@ object FormMain: TFormMain
       FFFFFFFFFFFFFFFFFEFF80B6C7FFD9F4FFFF419FAFFFBBD9DDFFFCFCF8FFFEFE
       F9FF383817820000001600000009000000000000002C212109722A2A0B872A2A
       0B872A2A0B872A2A0B87000000FF0A4755D81D382AA42A2A0B872A2A0B872A2A
-      0B87212109720000002C00000000
+      0B87212109720000002C00000000ED8765C0E6805EFFDC7755FFD16D4BFFC561
+      3FFFBB5735FFB14E2CFFAC4725FFAB4422FFAE4523FFB54725FFBF4D2BFFCB53
+      31FFD65937FFE15F3DFFEA6442C0ED8765FFF8CFC2FFF8CFC2FFF8CFC2FFF8CF
+      C2FFF8CFC2FFF8CFC2FFF8CFC2FFF8CFC2FFF8CFC2FFF8CFC2FFF8CFC2FFF8CF
+      C2FFF8CFC2FFF8CFC2FFEA6442FFED8765FFE6805EFFDC7755FFD16D4BFFC561
+      3FFFBB5735FFB14E2CFFAC4725FFAB4422FFAE4523FFB54725FFBF4D2BFFCB53
+      31FFD65937FFE15F3DFFEA6442FF74747468FDFDFDFFFCFCFCFFFCFCFCFFFDFD
+      FDFF76767666FDFDFDFFFCFCFCFFFCFCFCFFFCFCFCFFFCFCFCFFFCFCFCFFFCFC
+      FCFFFCFCFCFFFDFDFDFF7474746870707069FAFAFAFFF8F8F8FFF8F8F8FFFAFA
+      FAFF6F6F6F66FAFAFAFFF8F8F8FFF8F8F8FFF8F8F8FFF8F8F8FFF8F8F8FFF8F8
+      F8FFF8F8F8FFFAFAFAFF707070696B6B6B69F8F8F8FFF5F5F5FFF5F5F5FFF8F8
+      F8FF68686866F8F8F8FFF5F5F5FFF5F5F5FFF5F5F5FFF5F5F5FFF5F5F5FFF5F5
+      F5FFF5F5F5FFF8F8F8FF6B6B6B696565656AF6F6F6FFF2F2F2FFF2F2F2FFF6F6
+      F6FF60606066F6F6F6FFF2F2F2FFF2F2F2FFF2F2F2FFF2F2F2FFF2F2F2FFF2F2
+      F2FFF2F2F2FFF6F6F6FF6565656A6060606BF3F3F3FFEFEFEFFFEFEFEFFFF3F3
+      F3FF58585866F3F3F3FFEFEFEFFFEFEFEFFFEFEFEFFFEFEFEFFFEFEFEFFFEFEF
+      EFFFEFEFEFFFF3F3F3FF6060606B5A5A5A6CF1F1F1FFECECECFFECECECFFF1F1
+      F1FF4F4F4F66F1F1F1FFECECECFFECECECFFECECECFFECECECFFECECECFFECEC
+      ECFFECECECFFF1F1F1FF5A5A5A6C5353536DEFEFEFFFE9E9E9FFE9E9E9FFEFEF
+      EFFF47474766EFEFEFFFE9E9E9FFE9E9E9FFE9E9E9FFE9E9E9FFE9E9E9FFE9E9
+      E9FFE9E9E9FFEFEFEFFF5353536D4D4D4D6EEDEDEDFFE6E6E6FFE6E6E6FFEDED
+      EDFF40404066EDEDEDFFE6E6E6FFE6E6E6FFE6E6E6FFE6E6E6FFE6E6E6FFE6E6
+      E6FFE6E6E6FFEDEDEDFF4D4D4D6E4646466FEDEDEDFFEAEAEAFFEAEAEAFFEDED
+      EDFF39393966EDEDEDFFEAEAEAFFEAEAEAFFEAEAEAFFEAEAEAFFEAEAEAFFEAEA
+      EAFFEAEAEAFFEDEDEDFF4646466F3B3B3B703333336633333366333333663333
+      3366333333663333336633333366333333663333336633333366333333663333
+      336633333366333333663B3B3B7022222274EBEBEBFFE7E7E7FFE7E7E7FFE7E7
+      E7FFE7E7E7FFE7E7E7FFE7E7E7FFE7E7E7FFE7E7E7FFE7E7E7FFE7E7E7FFE7E7
+      E7FFE7E7E7FFEBEBEBFF222222740B0B0B5C0D0D0D770D0D0D770D0D0D770D0D
+      0D770D0D0D770D0D0D770D0D0D770D0D0D770D0D0D770D0D0D770D0D0D770D0D
+      0D770D0D0D770D0D0D770B0B0B5C00000000000000160000001A0000001A0000
+      001A0000001A0000001A0000001A0000001A0000001A0000001A0000001A0000
+      001A0000001A0000001600000000
     }
   end
   object SQLite3Conn: TSQLite3Connection
-    Connected = False
+    Connected = True
     LoginPrompt = False
     DatabaseName = 'C:\Users\ййй\Documents\GitHub\medcard\database.db'
     KeepConnection = False
@@ -1173,15 +1238,46 @@ object FormMain: TFormMain
     top = 168
   end
   object SQLTransaction: TSQLTransaction
-    Active = False
+    Active = True
     Database = SQLite3Conn
     left = 712
     top = 170
   end
   object qUsers: TSQLQuery
-    FieldDefs = <>
+    IndexName = 'DEFAULT_ORDER'
+    FieldDefs = <    
+      item
+        Name = 'id'
+        DataType = ftAutoInc
+        Precision = -1
+      end    
+      item
+        Name = 'login'
+        DataType = ftString
+        Precision = -1
+        Size = 255
+      end    
+      item
+        Name = 'passwrd'
+        DataType = ftString
+        Precision = -1
+        Size = 255
+      end    
+      item
+        Name = 'userrole'
+        DataType = ftString
+        Precision = -1
+        Size = 255
+      end    
+      item
+        Name = 'doctor_id'
+        DataType = ftInteger
+        Precision = -1
+      end>
     AfterDelete = qUsersAfterDelete
     AfterRefresh = qUsersAfterRefresh
+    Database = SQLite3Conn
+    Transaction = SQLTransaction
     SQL.Strings = (
       'select id,'
       '       login || '''' as login,'
@@ -1195,6 +1291,7 @@ object FormMain: TFormMain
     top = 170
   end
   object qDoctors: TSQLQuery
+    IndexName = 'DEFAULT_ORDER'
     FieldDefs = <    
       item
         Name = 'id'
@@ -1251,6 +1348,15 @@ object FormMain: TFormMain
       '       fullname || '', '' || post as fnp'
       '  from doctors'
     )
+    UpdateSQL.Strings = (
+      'update doctors'
+      '   set surname = :surname,'
+      '       name = :name,'
+      '       patronymic = :patronymic,'
+      '       fullname = :fullname,'
+      '       post = :post'
+      ' where id = :id'
+    )
     Params = <>
     left = 40
     top = 232
@@ -1276,10 +1382,11 @@ object FormMain: TFormMain
     top = 384
   end
   object qQuestions: TSQLQuery
+    IndexName = 'DEFAULT_ORDER'
     FieldDefs = <    
       item
         Name = 'id'
-        DataType = ftInteger
+        DataType = ftAutoInc
         Precision = -1
       end    
       item
@@ -1306,6 +1413,7 @@ object FormMain: TFormMain
       item
         Name = 'answertype'
         DataType = ftInteger
+        Precision = -1
       end>
     AfterDelete = qQuestionsAfterDelete
     AfterRefresh = qQuestionsAfterRefresh
