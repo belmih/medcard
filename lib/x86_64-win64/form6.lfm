@@ -1,47 +1,171 @@
-object Form2: TForm2
-  Left = 262
-  Height = 600
-  Top = 32
+object FormReports: TFormReports
+  Left = 249
+  Height = 531
+  Top = 106
   Width = 800
-  Caption = 'Form2'
-  ClientHeight = 0
-  ClientWidth = 0
+  Caption = 'Отчеты'
+  ClientHeight = 531
+  ClientWidth = 800
+  Position = poDesktopCenter
   LCLVersion = '1.8.0.6'
-  object Panel1: TPanel
+  object ToolBar1: TToolBar
     Left = 0
-    Height = 550
+    Height = 26
     Top = 0
     Width = 800
-    Align = alClient
-    Caption = 'Panel1'
-    ClientHeight = 550
-    ClientWidth = 800
+    Caption = 'ToolBar1'
     TabOrder = 0
-    object DBCheckBox1: TDBCheckBox
-      Left = 84
+  end
+  object StatusBar1: TStatusBar
+    Left = 0
+    Height = 23
+    Top = 508
+    Width = 800
+    Panels = <>
+  end
+  object GroupBox1: TGroupBox
+    Left = 0
+    Height = 482
+    Top = 26
+    Width = 304
+    Align = alLeft
+    Caption = 'Параметры'
+    ClientHeight = 462
+    ClientWidth = 300
+    TabOrder = 2
+    object DateTimePicker1: TDateTimePicker
+      Left = 72
       Height = 23
-      Top = 82
-      Width = 90
-      Caption = 'DBCheckBox1'
+      Top = 0
+      Width = 79
+      CenturyFrom = 1941
+      MaxDate = 2958465
+      MinDate = -53780
       TabOrder = 0
-      ValueChecked = 'True'
-      ValueUnchecked = 'False'
+      TrailingSeparator = False
+      TextForNullDate = 'NULL'
+      LeadingZeros = True
+      Kind = dtkDate
+      TimeFormat = tf24
+      TimeDisplay = tdHMS
+      DateMode = dmComboBox
+      Date = 43121
+      Time = 0.866330150463909
+      UseDefaultSeparators = True
+      HideDateTimeParts = []
+      MonthNames = 'Long'
     end
-    object DBText1: TDBText
-      Left = 75
+    object DateTimePicker2: TDateTimePicker
+      Left = 184
+      Height = 23
+      Top = 0
+      Width = 79
+      CenturyFrom = 1941
+      MaxDate = 2958465
+      MinDate = -53780
+      TabOrder = 1
+      TrailingSeparator = False
+      TextForNullDate = 'NULL'
+      LeadingZeros = True
+      Kind = dtkDate
+      TimeFormat = tf24
+      TimeDisplay = tdHMS
+      DateMode = dmComboBox
+      Date = 43121
+      Time = 0.866375902776781
+      UseDefaultSeparators = True
+      HideDateTimeParts = []
+      MonthNames = 'Long'
+    end
+    object dblcDoctor: TDBLookupComboBox
+      Left = 8
+      Height = 23
+      Top = 48
+      Width = 288
+      AutoComplete = True
+      DataField = 'id'
+      DataSource = FormMain.dsDoctors
+      DropDownCount = 10
+      KeyField = 'id'
+      ListField = 'fnp'
+      ListFieldIndex = 0
+      ListSource = FormMain.dsDoctors
+      LookupCache = True
+      TabOrder = 2
+    end
+    object RadioGroup1: TRadioGroup
+      Left = 0
+      Height = 332
+      Top = 80
+      Width = 300
+      Align = alBottom
+      AutoFill = False
+      Caption = 'Отчет'
+      ChildSizing.LeftRightSpacing = 6
+      ChildSizing.ShrinkHorizontal = crsScaleChilds
+      ChildSizing.ShrinkVertical = crsScaleChilds
+      ChildSizing.Layout = cclLeftToRightThenTopToBottom
+      ChildSizing.ControlsPerLine = 1
+      ClientHeight = 312
+      ClientWidth = 296
+      ItemIndex = 0
+      Items.Strings = (
+        'Отчет 1'
+        'Отчет 2'
+      )
+      TabOrder = 3
+    end
+    object Label1: TLabel
+      Left = 8
       Height = 15
-      Top = 150
-      Width = 41
+      Top = 8
+      Width = 51
+      Caption = 'Период с'
+      ParentColor = False
+      OnClick = Label1Click
+    end
+    object Label2: TLabel
+      Left = 160
+      Height = 15
+      Top = 8
+      Width = 14
+      Caption = 'по'
+      ParentColor = False
+    end
+    object Panel1: TPanel
+      Left = 0
+      Height = 50
+      Top = 412
+      Width = 300
+      Align = alBottom
+      ClientHeight = 50
+      ClientWidth = 300
+      TabOrder = 4
+      object Button1: TButton
+        Left = 160
+        Height = 25
+        Top = 8
+        Width = 104
+        Caption = 'Сформировать'
+        OnClick = Button1Click
+        TabOrder = 0
+      end
+    end
+    object Label3: TLabel
+      Left = 8
+      Height = 15
+      Top = 31
+      Width = 27
+      Caption = 'Врач'
       ParentColor = False
     end
   end
-  object Panel2: TPanel
-    Left = 0
-    Height = 50
-    Top = 550
-    Width = 800
-    Align = alBottom
-    Caption = 'Panel2'
-    TabOrder = 1
+  object memoReport: TMemo
+    Left = 304
+    Height = 482
+    Top = 26
+    Width = 496
+    Align = alClient
+    TabOrder = 3
   end
 end

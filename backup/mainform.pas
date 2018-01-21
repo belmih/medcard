@@ -17,6 +17,7 @@ type
     actActionAdd: TAction;
     actActionDelete: TAction;
     actBlock: TAction;
+    actShowReportForm: TAction;
     actStartTest: TAction;
     actUnblock: TAction;
     actQuestionDelete: TAction;
@@ -42,6 +43,7 @@ type
     MainMenu1: TMainMenu;
     MenuItem1: TMenuItem;
     MenuItem10: TMenuItem;
+    miShowReports: TMenuItem;
     MenuItem2: TMenuItem;
     MenuItem3: TMenuItem;
     MenuItem4: TMenuItem;
@@ -73,6 +75,7 @@ type
     procedure actQuestionDeleteExecute(Sender: TObject);
     procedure actShowDoctorsFormExecute(Sender: TObject);
     procedure actShowQuestionsFormExecute(Sender: TObject);
+    procedure actShowReportFormExecute(Sender: TObject);
     procedure actShowUsersFormExecute(Sender: TObject);
     procedure actStartTestExecute(Sender: TObject);
     procedure actUnblockExecute(Sender: TObject);
@@ -117,7 +120,7 @@ var
     end;
 
 implementation
- uses loginform, usersform, doctorsform, aboutform, questsform, addquestionform, testform;
+ uses loginform, usersform, doctorsform, aboutform, questsform, addquestionform, testform, form6;
 {$R *.lfm}
 
 { TFormMain }
@@ -183,6 +186,11 @@ procedure TFormMain.actShowQuestionsFormExecute(Sender: TObject);
 begin
   FormQuests := TFormQuests.Create(self);
   FormQuests.Show;
+end;
+
+procedure TFormMain.actShowReportFormExecute(Sender: TObject);
+begin
+  FormReports.Show;
 end;
 
 procedure TFormMain.actCommitExecute(Sender: TObject);

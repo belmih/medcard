@@ -7,8 +7,8 @@ uses
   cthreads,
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, loginform, actionsform, usersform, aboutform, workform, logform,
-  doctorsform, mainform, common, dbcreate, questsform, addquestionform,
+  Forms, datetimectrls, loginform, actionsform, usersform, aboutform, workform,
+  logform, doctorsform, mainform, common, dbcreate, questsform, addquestionform,
   testform, form6;
 
 {$R *.res}

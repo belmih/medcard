@@ -6,8 +6,8 @@ interface
 
 uses
   Classes, SysUtils, sqldb, db, FileUtil, Forms, Controls, Graphics, Dialogs,
-  DBGrids, DbCtrls, ComCtrls, ExtCtrls, StdCtrls, Grids;
-
+  DBGrids, DbCtrls, ComCtrls, ExtCtrls, StdCtrls, Grids,
+  LCLType;
 type
 
   { TForm1 }
@@ -15,17 +15,18 @@ type
   TForm1 = class(TForm)
     DBGrid1: TDBGrid;
     DBGrid2: TDBGrid;
+    DBGroupBox1: TDBGroupBox;
     DBMemo1: TDBMemo;
     DBMemo2: TDBMemo;
     DBMemo3: TDBMemo;
     DBNavigator2: TDBNavigator;
+    DBText1: TDBText;
     dsResultAnswers: TDataSource;
     dsResults: TDataSource;
     DBNavigator1: TDBNavigator;
     gbQuestions: TGroupBox;
     GroupBox2: TGroupBox;
     GroupBox3: TGroupBox;
-    GroupBox4: TGroupBox;
     Panel1: TPanel;
     qResults: TSQLQuery;
     qResultsAnswers: TSQLQuery;
@@ -45,9 +46,11 @@ type
     procedure dsResultsUpdateData(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCloseQuery(Sender: TObject; var CanClose: boolean);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormShow(Sender: TObject);
     procedure qResultsAfterPost(DataSet: TDataSet);
     procedure qResultsAfterRefresh(DataSet: TDataSet);
+
     procedure qResultsAnswersAfterPost(DataSet: TDataSet);
     procedure ToolButton1Click(Sender: TObject);
     procedure ToolButton2Click(Sender: TObject);
@@ -76,7 +79,7 @@ begin
   qResults.ParamByName('a').AsInteger := ActionID;
   qResults.Open;
   qResultsAnswers.DataBase:= FormMain.SQLite3Conn;
-  qResultsAnswers.Options:=[sqoCancelUpdatesOnRefresh, sqoRefreshUsingSelect, sqoKeepOpenOnCommit];
+  qResultsAnswers.Options:=[sqoCancelUpdatesOnRefresh, sqoRefreshUsingSelect, sqoKeepOpenOnCommit, sqoAutoApplyUpdates];
   qResultsAnswers.Open;
   AfterShow := True;
 end;
@@ -91,10 +94,16 @@ begin
   FormMain.actCommit.Enabled:=False;
 end;
 
-procedure TForm1.qResultsAnswersAfterPost(DataSet: TDataSet);
-begin
- qResultsAnswers.ApplyUpdates;
 
+
+procedure TForm1.qResultsAnswersAfterPost(DataSet: TDataSet);
+var id: Integer;
+begin
+ FormMain.actCommit.Enabled:=True;
+ id := qResults.FieldByName('id').AsInteger;
+ qResultsAnswers.ApplyUpdates;
+ qResults.Refresh;
+ qResults.Locate('id',id,[]);
 end;
 
 procedure TForm1.ToolButton1Click(Sender: TObject);
@@ -148,7 +157,7 @@ begin
 end;
 
 procedure TForm1.DBGrid2CellClick(Column: TColumn);
-var
+{var
     id: Integer;
  begin
  if (AfterShow)  then
@@ -157,7 +166,8 @@ var
    qResults.Edit;
    qResults.FieldByName('points').AsInteger:=qResultsAnswers.FieldByName('points').AsInteger;
    qResultsAnswers.locate('id',id,[]);
-   end;
+   end;}
+ begin
 end;
 
 procedure TForm1.dsResultAnswersUpdateData(Sender: TObject);
@@ -214,6 +224,13 @@ begin
    else
      CanClose:=False;
 end;
+
+procedure TForm1.FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState
+  );
+begin
+  if Key = VK_F2 then DBNavigator1.BtnClick(TNavigateBtn.nbNext);
+  if Key = VK_F1 then DBNavigator1.BtnClick(TNavigateBtn.nbPrior);
+  end;
 
 end.
 

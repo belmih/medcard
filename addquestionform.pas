@@ -39,7 +39,7 @@ implementation
 
 procedure TFormAddQuest.FormShow(Sender: TObject);
 begin
-  ShowMessage(IntToStr(TQuestion(FormQuests.TreeView1.Selected.Data).id));
+  //ShowMessage(IntToStr(TQuestion(FormQuests.TreeView1.Selected.Data).id));
 end;
 
 procedure TFormAddQuest.FormClose(Sender: TObject; var CloseAction: TCloseAction

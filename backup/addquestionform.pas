@@ -75,7 +75,7 @@ begin
    query.ParamByName('qt').AsString := Memo1.Lines.Text;
    query.ParamByName('pid').AsInteger := TQuestion(FormQuests.TreeView1.Selected.Data).id;
    query.ExecSQL;
-   TFormQuests.tbSaveQuestionsClick(self);
+   FormQuests.tbSaveQuestionsClick(self);
    {
    FormMain.SQLTransaction.Commit;
    FormMain.qQuestions.Refresh;
