@@ -1,0 +1,47 @@
+object Form2: TForm2
+  Left = 262
+  Height = 600
+  Top = 32
+  Width = 800
+  Caption = 'Form2'
+  ClientHeight = 0
+  ClientWidth = 0
+  LCLVersion = '1.8.0.6'
+  object Panel1: TPanel
+    Left = 0
+    Height = 550
+    Top = 0
+    Width = 800
+    Align = alClient
+    Caption = 'Panel1'
+    ClientHeight = 550
+    ClientWidth = 800
+    TabOrder = 0
+    object DBCheckBox1: TDBCheckBox
+      Left = 84
+      Height = 23
+      Top = 82
+      Width = 90
+      Caption = 'DBCheckBox1'
+      TabOrder = 0
+      ValueChecked = 'True'
+      ValueUnchecked = 'False'
+    end
+    object DBText1: TDBText
+      Left = 75
+      Height = 15
+      Top = 150
+      Width = 41
+      ParentColor = False
+    end
+  end
+  object Panel2: TPanel
+    Left = 0
+    Height = 50
+    Top = 550
+    Width = 800
+    Align = alBottom
+    Caption = 'Panel2'
+    TabOrder = 1
+  end
+end

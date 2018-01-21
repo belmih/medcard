@@ -1,26 +1,26 @@
 object FormQuests: TFormQuests
-  Left = 25
-  Height = 531
-  Top = 0
-  Width = 1168
+  Left = 192
+  Height = 550
+  Top = 58
+  Width = 1100
   Caption = 'medcard'
-  ClientHeight = 531
-  ClientWidth = 1168
+  ClientHeight = 550
+  ClientWidth = 1100
   OnShow = FormShow
   LCLVersion = '1.8.0.6'
   object GroupBox3: TGroupBox
     Left = 0
-    Height = 531
+    Height = 550
     Top = 0
     Width = 520
     Align = alLeft
-    Caption = 'GroupBox3'
-    ClientHeight = 511
+    Caption = 'Дерево вопросов'
+    ClientHeight = 530
     ClientWidth = 516
     TabOrder = 0
     object TreeView1: TTreeView
       Left = 0
-      Height = 511
+      Height = 530
       Top = 0
       Width = 516
       Align = alClient
@@ -30,58 +30,38 @@ object FormQuests: TFormQuests
       Images = FormMain.imgList
       PopupMenu = pmQuestions
       ReadOnly = True
+      RightClickSelect = True
+      RowSelect = True
       TabOrder = 0
       OnClick = TreeView1Click
       OnSelectionChanged = TreeView1SelectionChanged
-      Options = [tvoAutoExpand, tvoAutoItemHeight, tvoHideSelection, tvoKeepCollapsedNodes, tvoReadOnly, tvoShowButtons, tvoShowLines, tvoShowRoot, tvoToolTips, tvoNoDoubleClickExpand, tvoThemedDraw]
-    end
-    object DBRadioGroup1: TDBRadioGroup
-      Left = 403
-      Height = 149
-      Top = 235
-      Width = 185
-      Caption = 'DBRadioGroup1'
-      DataField = 'questionorder'
-      DataSource = FormMain.dsQuestions
-      Items.Strings = (
-        '1'
-        '2'
-        '3'
-        '4'
-      )
-      TabOrder = 1
-      Values.Strings = (
-        '10'
-        '20'
-        '30'
-        '40'
-      )
+      Options = [tvoAutoExpand, tvoAutoItemHeight, tvoHideSelection, tvoKeepCollapsedNodes, tvoReadOnly, tvoRightClickSelect, tvoRowSelect, tvoShowButtons, tvoShowLines, tvoShowRoot, tvoToolTips, tvoNoDoubleClickExpand, tvoThemedDraw]
     end
   end
   object Panel1: TPanel
     Left = 520
-    Height = 531
+    Height = 550
     Top = 0
-    Width = 648
+    Width = 580
     Align = alClient
-    ClientHeight = 531
-    ClientWidth = 648
+    ClientHeight = 550
+    ClientWidth = 580
     TabOrder = 1
     object GroupBox1: TGroupBox
       Left = 1
       Height = 272
       Top = 1
-      Width = 646
+      Width = 578
       Align = alTop
       Caption = 'Вопросы'
       ClientHeight = 252
-      ClientWidth = 642
+      ClientWidth = 574
       TabOrder = 0
       object DBGrid2: TDBGrid
         Left = 0
         Height = 150
         Top = 26
-        Width = 642
+        Width = 574
         Align = alClient
         Color = clWindow
         Columns = <        
@@ -105,6 +85,10 @@ object FormQuests: TFormQuests
             Title.Caption = 'parentid'
             Width = 59
             FieldName = 'parentid'
+          end        
+          item
+            Title.Caption = 'answertype'
+            FieldName = 'answertype'
           end>
         DataSource = FormMain.dsQuestions
         Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgAutoSizeColumns]
@@ -114,7 +98,7 @@ object FormQuests: TFormQuests
         Left = 0
         Height = 76
         Top = 176
-        Width = 642
+        Width = 574
         Align = alBottom
         DataField = 'questiontext'
         DataSource = FormMain.dsQuestions
@@ -125,7 +109,7 @@ object FormQuests: TFormQuests
         Left = 0
         Height = 26
         Top = 0
-        Width = 642
+        Width = 574
         Caption = 'ToolBar1'
         Images = FormMain.imgList
         TabOrder = 2
@@ -150,29 +134,29 @@ object FormQuests: TFormQuests
           TabOrder = 0
           Images = FormMain.imgListDBNavigator
         end
-        object ToolButton1: TToolButton
+        object tbSaveQuestions: TToolButton
           Left = 201
           Top = 2
           Action = FormMain.actCommit
-          OnClick = ToolButton1Click
+          OnClick = tbSaveQuestionsClick
         end
       end
     end
     object GroupBox2: TGroupBox
       Left = 1
-      Height = 257
+      Height = 276
       Top = 273
-      Width = 646
+      Width = 578
       Align = alClient
       Caption = 'Ответы'
-      ClientHeight = 237
-      ClientWidth = 642
+      ClientHeight = 256
+      ClientWidth = 574
       TabOrder = 1
       object DBGrid1: TDBGrid
         Left = 0
-        Height = 133
+        Height = 152
         Top = 26
-        Width = 642
+        Width = 574
         Align = alClient
         Color = clWindow
         Columns = <        
@@ -180,11 +164,6 @@ object FormQuests: TFormQuests
             Title.Caption = 'id'
             Width = 25
             FieldName = 'id'
-          end        
-          item
-            Title.Caption = 'answertype'
-            Width = 75
-            FieldName = 'answertype'
           end        
           item
             Title.Caption = 'answerorder'
@@ -202,6 +181,7 @@ object FormQuests: TFormQuests
             FieldName = 'answertext'
           end        
           item
+            ButtonStyle = cbsCheckboxColumn
             Title.Caption = 'points'
             Width = 48
             FieldName = 'points'
@@ -213,8 +193,8 @@ object FormQuests: TFormQuests
       object DBMemo1: TDBMemo
         Left = 0
         Height = 78
-        Top = 159
-        Width = 642
+        Top = 178
+        Width = 574
         Align = alBottom
         DataField = 'answertext'
         DataSource = dsAnswersQ
@@ -225,7 +205,7 @@ object FormQuests: TFormQuests
         Left = 0
         Height = 26
         Top = 0
-        Width = 642
+        Width = 574
         Caption = 'ToolBar2'
         Images = FormMain.imgList
         TabOrder = 2
@@ -259,6 +239,7 @@ object FormQuests: TFormQuests
     end
   end
   object pmQuestions: TPopupMenu
+    Images = FormMain.imgList
     left = 440
     top = 464
     object miQuestionAdd: TMenuItem
@@ -307,7 +288,6 @@ object FormQuests: TFormQuests
     Transaction = FormMain.SQLTransaction
     SQL.Strings = (
       'select id,'
-      '       answertype,'
       '       answerorder,'
       '       question_id,'
       '       answertext || '''' as answertext,'
@@ -317,8 +297,8 @@ object FormQuests: TFormQuests
       ' order by answerorder, id'
     )
     InsertSQL.Strings = (
-      'insert into answers (answertype,answerorder,question_id,answertext,points )'
-      'values (:answertype,:answerorder,:question_id,:answertext,:points)'
+      'insert into answers (answerorder,question_id,answertext,points )'
+      'values (:answerorder,:question_id,:answertext,:points)'
       ''
     )
     Params = <    

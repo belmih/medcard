@@ -326,12 +326,12 @@ object FormMain: TFormMain
       OnExecute = actShowQuestionsFormExecute
     end
     object actQuestionAdd: TAction
-      Caption = 'actQuestionAdd'
+      Caption = 'Добавить вопрос'
       ImageIndex = 1
       OnExecute = actQuestionAddExecute
     end
     object actQuestionDelete: TAction
-      Caption = 'actQuestionDelete'
+      Caption = 'Удалить вопрос'
       ImageIndex = 2
       OnExecute = actQuestionDeleteExecute
     end
@@ -1170,7 +1170,7 @@ object FormMain: TFormMain
     KeepConnection = False
     Transaction = SQLTransaction
     left = 624
-    top = 170
+    top = 168
   end
   object SQLTransaction: TSQLTransaction
     Active = False
@@ -1302,6 +1302,10 @@ object FormMain: TFormMain
         Name = 'parentid'
         DataType = ftInteger
         Precision = -1
+      end    
+      item
+        Name = 'answertype'
+        DataType = ftInteger
       end>
     AfterDelete = qQuestionsAfterDelete
     AfterRefresh = qQuestionsAfterRefresh
@@ -1312,21 +1316,23 @@ object FormMain: TFormMain
       '       questionorder,'
       '       questiontext,'
       '       substr(questiontext,1,50) questiontextcut,'
-      '       parentid'
+      '       parentid,'
+      '       answertype'
       '  from questions'
       '  order by parentid, questionorder'
     )
     InsertSQL.Strings = (
       'insert into questions'
-      '(questionorder,questiontext,parentid)'
-      'values (:questionorder,:questiontext,:parentid)'
+      '(questionorder,questiontext,parentid,answertype)'
+      'values (:questionorder,:questiontext,:parentid,:answertype)'
       ''
     )
     UpdateSQL.Strings = (
       'update questions set'
       'questionorder = :questionorder,'
       'questiontext = :questiontext,'
-      'parentid = :parentid'
+      'parentid = :parentid,'
+      'answertype = :answertype'
       'where id = :id'
     )
     DeleteSQL.Strings = (

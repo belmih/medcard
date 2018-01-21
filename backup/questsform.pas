@@ -19,7 +19,6 @@ type
     DBMemo2: TDBMemo;
     DBNavigator1: TDBNavigator;
     DBNavigator2: TDBNavigator;
-    DBRadioGroup1: TDBRadioGroup;
     dsAnswersQ: TDataSource;
     GroupBox1: TGroupBox;
     GroupBox2: TGroupBox;
@@ -31,14 +30,14 @@ type
     qAnswersQ: TSQLQuery;
     ToolBar1: TToolBar;
     ToolBar2: TToolBar;
-    ToolButton1: TToolButton;
+    tbSaveQuestions: TToolButton;
     ToolButton2: TToolButton;
     TreeView1: TTreeView;
      procedure dsAnswersQUpdateData(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure qAnswersQBeforeInsert(DataSet: TDataSet);
     procedure qAnswersQNewRecord(DataSet: TDataSet);
-    procedure ToolButton1Click(Sender: TObject);
+    procedure tbSaveQuestionsClick(Sender: TObject);
     procedure ToolButton2Click(Sender: TObject);
     procedure TreeView1Click(Sender: TObject);
     procedure TreeView1SelectionChanged(Sender: TObject);
@@ -87,7 +86,7 @@ begin
   FormMain.actCommit.Enabled:=True;
 end;
 
-procedure TFormQuests.ToolButton1Click(Sender: TObject);
+procedure TFormQuests.tbSaveQuestionsClick(Sender: TObject);
 begin
   FormMain.qQuestions.ApplyUpdates;
   while FormMain.qQuestions.State = dsEdit do

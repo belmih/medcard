@@ -207,16 +207,16 @@ begin
    query.ExecSQL;
    SQLTransaction.Commit;
    id := SQLite3Conn.GetInsertID;
-   ShowMessage(IntToStr(id));
+   {ShowMessage(IntToStr(id));
    query.SQL.Text := ''
-     + 'insert into results (action_id,lvl,questiontext,answertext,points,comment)'#13#10
-     + 'select a.id, lvl, questiontext, null, null, null'#13#10
+     + 'insert into results (action_id,lvl,questiontext,points,question_id)'#13#10
+     + 'select a.id, lvl, questiontext, null,q.question_id'#13#10
      + '  from actions a, quest_template q where a.id = :id'#13#10
      + ' order by q.id';
    query.Prepare;
    query.ParamByName('id').AsInteger := id;
    query.ExecSQL;
-   SQLTransaction.Commit;
+   SQLTransaction.Commit;}
    Form1 := TForm1.Create(self);
    Form1.ActionID:=id;
    Form1.Show;
@@ -285,6 +285,7 @@ var
   Query: TSQLQuery;
 begin
   try
+    try
     Query := TSQLQuery.Create(nil);
     Query.DataBase := SQLite3Conn;
     Query.SQL.Text := 'delete from questions where id = :id';
@@ -294,6 +295,9 @@ begin
     qQuestions.Refresh;
     FormQuests.TreeView1.Items.Clear;
     FormMain.GetTreeQuestions(FormQuests.TreeView1.Items);
+    except
+      ;
+    end;
   finally
     Query.Close;
     Query.Free;
@@ -438,16 +442,14 @@ var
   node: TTreeNode;
   Query: TSQLQuery;
   txt: String;
+  lvltmp:String;
 begin
-
   try
-
     Query := TSQLQuery.Create(nil);
     Query.DataBase := SQLite3Conn;
     Query.SQL.Text:='select id, questiontext, substr(questiontext,1,60) txt,'#13#10
                    +' parentid, questionorder from questions'#13#10
                    +' where ifnull(parentid,0) = :p order by parentid, questionorder';
-
     Query.Prepare;
     Query.ParamByName('p').AsInteger := id;
     Query.Open;
@@ -456,12 +458,17 @@ begin
     begin
        txt := Query.FieldByName('txt').AsString;
        if UTF8Length(Query.FieldByName('questiontext').AsString)>60 then
-       txt:=txt+' [...]';
+       txt:= txt+' [...]';
+
        if id=0 then
+       begin
+        lvltmp := Query.FieldByName('questionorder').AsString + '.';
+        txt :=  lvltmp + ' ' + txt;
         node := nodes.Add(nil, txt)
-      else
+       end else
         begin
-          txt :=  Query.FieldByName('questionorder').AsString + '. ' + txt;
+          lvltmp := lvl + Query.FieldByName('questionorder').AsString + '.';
+          txt :=  lvltmp + ' ' + txt;
           node := nodes.AddChild(rootnode, txt);
         end;
 
@@ -470,11 +477,8 @@ begin
       TQuestion(node.Data).questionorder := Query.FieldByName('questionorder').AsInteger;
       TQuestion(node.Data).txt := Query.FieldByName('questiontext').AsString;
       TQuestion(node.Data).parentid := Query.FieldByName('parentid').AsInteger;
-      if id <> 0 then
-        lvl := lvl + Query.FieldByName('questionorder').AsString + '.';
-      SetQuestTemplate(lvl,Query.FieldByName('questiontext').AsString,Query.FieldByName('id').AsInteger);
-      GetTreeQuestions(nodes,node,Query.FieldByName('id').AsInteger,lvl);
-
+      SetQuestTemplate(lvltmp,Query.FieldByName('questiontext').AsString,Query.FieldByName('id').AsInteger);
+      GetTreeQuestions(nodes,node,Query.FieldByName('id').AsInteger,lvltmp);
       Query.Next;
     end;
   finally
