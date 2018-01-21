@@ -1164,7 +1164,7 @@ object FormMain: TFormMain
     }
   end
   object SQLite3Conn: TSQLite3Connection
-    Connected = True
+    Connected = False
     LoginPrompt = False
     DatabaseName = 'C:\Users\ййй\Documents\GitHub\medcard\database.db'
     KeepConnection = False
@@ -1173,7 +1173,7 @@ object FormMain: TFormMain
     top = 168
   end
   object SQLTransaction: TSQLTransaction
-    Active = True
+    Active = False
     Database = SQLite3Conn
     left = 712
     top = 170

@@ -88,6 +88,7 @@ object FormQuests: TFormQuests
           end        
           item
             Title.Caption = 'answertype'
+            Width = 75
             FieldName = 'answertype'
           end>
         DataSource = FormMain.dsQuestions
@@ -181,7 +182,6 @@ object FormQuests: TFormQuests
             FieldName = 'answertext'
           end        
           item
-            ButtonStyle = cbsCheckboxColumn
             Title.Caption = 'points'
             Width = 48
             FieldName = 'points'
