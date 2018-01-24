@@ -63,7 +63,6 @@ type
     qQuestions: TSQLQuery;
     SQLTransaction: TSQLTransaction;
     ToolBar1: TToolBar;
-    ToolButton1: TToolButton;
     ToolButton2: TToolButton;
     ToolButton3: TToolButton;
     ToolButton4: TToolButton;
@@ -466,12 +465,14 @@ begin
     Query.First;
     while not Query.EOF do
     begin
+
        txt := Query.FieldByName('txt').AsString;
        if UTF8Length(Query.FieldByName('questiontext').AsString)>60 then
        txt:= txt+' [...]';
 
        if id=0 then
        begin
+        SQLIte3Conn.ExecuteDirect('delete from quest_template',FormMain.SQLTransaction);
         lvltmp := Query.FieldByName('questionorder').AsString + '.';
         txt :=  lvltmp + ' ' + txt;
         node := nodes.Add(nil, txt)

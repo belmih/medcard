@@ -92,23 +92,18 @@ object FormMain: TFormMain
       ParentShowHint = False
       ShowHint = True
       TabOrder = 0
-      object ToolButton1: TToolButton
-        Left = 1
-        Top = 2
-        Action = actActionDelete
-      end
       object ToolButton2: TToolButton
-        Left = 24
+        Left = 1
         Top = 2
         Action = actBlock
       end
       object ToolButton3: TToolButton
-        Left = 47
+        Left = 24
         Top = 2
         Action = actUnblock
       end
       object ToolButton4: TToolButton
-        Left = 70
+        Left = 47
         Top = 2
         Action = actStartTest
       end
@@ -123,17 +118,17 @@ object FormMain: TFormMain
       Columns = <      
         item
           Title.Caption = 'id'
-          Width = 27
+          Width = 25
           FieldName = 'id'
         end      
         item
           Title.Caption = 'Дата начала'
-          Width = 118
+          Width = 82
           FieldName = 'actiondate'
         end      
         item
           Title.Caption = 'Врач'
-          Width = 263
+          Width = 42
           FieldName = 'doctor'
         end      
         item
@@ -375,7 +370,6 @@ object FormMain: TFormMain
     top = 304
   end
   object qActions: TSQLQuery
-    IndexName = 'DEFAULT_ORDER'
     FieldDefs = <    
       item
         Name = 'id'
@@ -1283,7 +1277,6 @@ object FormMain: TFormMain
     top = 170
   end
   object qUsers: TSQLQuery
-    IndexName = 'DEFAULT_ORDER'
     FieldDefs = <    
       item
         Name = 'id'
@@ -1330,7 +1323,6 @@ object FormMain: TFormMain
     top = 170
   end
   object qDoctors: TSQLQuery
-    IndexName = 'DEFAULT_ORDER'
     FieldDefs = <    
       item
         Name = 'id'
@@ -1421,7 +1413,6 @@ object FormMain: TFormMain
     top = 384
   end
   object qQuestions: TSQLQuery
-    IndexName = 'DEFAULT_ORDER'
     FieldDefs = <    
       item
         Name = 'id'

@@ -466,12 +466,14 @@ begin
     Query.First;
     while not Query.EOF do
     begin
+
        txt := Query.FieldByName('txt').AsString;
        if UTF8Length(Query.FieldByName('questiontext').AsString)>60 then
        txt:= txt+' [...]';
 
        if id=0 then
        begin
+        SQLIte3Conn.ExecuteDirect('delete from quest_template',FormMain.SQLTransaction);
         lvltmp := Query.FieldByName('questionorder').AsString + '.';
         txt :=  lvltmp + ' ' + txt;
         node := nodes.Add(nil, txt)

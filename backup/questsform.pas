@@ -61,6 +61,7 @@ implementation
 
 procedure TFormQuests.FormShow(Sender: TObject);
 begin
+
   FormMain.GetTreeQuestions(TreeView1.Items);
   qAnswersQ.Options := [sqoCancelUpdatesOnRefresh, sqoRefreshUsingSelect, sqoKeepOpenOnCommit];
   try
@@ -93,7 +94,7 @@ begin
     Sleep(1000);
   FormMain.qQuestions.Refresh;
   TreeView1.Items.Clear;
-  FormMain.SQLIte3Conn.ExecuteDirect('delete from quest_template',FormMain.SQLTransaction);
+  //FormMain.SQLIte3Conn.ExecuteDirect('delete from quest_template',FormMain.SQLTransaction);
   FormMain.GetTreeQuestions(TreeView1.Items);
   FormMain.SQLTransaction.Commit;
 end;

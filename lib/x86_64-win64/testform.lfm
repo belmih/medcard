@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Left = 374
+  Left = 404
   Height = 600
-  Top = 17
+  Top = 19
   Width = 800
   Caption = 'Критерии'
   ClientHeight = 600
@@ -160,7 +160,7 @@ object Form1: TForm1
           Flat = True
           Options = []
           TabOrder = 0
-          VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbPost, nbCancel, nbRefresh]
+          VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbPost, nbCancel]
           Images = FormMain.imgListDBNavigator
         end
       end
@@ -227,7 +227,7 @@ object Form1: TForm1
       TabOrder = 2
       object DBMemo1: TDBMemo
         Left = 0
-        Height = 253
+        Height = 268
         Top = 0
         Width = 373
         Align = alClient
@@ -241,24 +241,14 @@ object Form1: TForm1
         Top = 268
         Width = 373
         Align = alBottom
-        Alignment = taRightJustify
+        AutoSize = False
         DataField = 'points'
         DataSource = dsResults
-        ParentColor = False
-      end
-      object Label1: TLabel
-        Left = 0
-        Height = 15
-        Top = 253
-        Width = 373
-        Align = alBottom
-        Caption = 'Всего баллов по подпункту:'
         ParentColor = False
       end
     end
   end
   object qResults: TSQLQuery
-    IndexName = 'DEFAULT_ORDER'
     FieldDefs = <    
       item
         Name = 'id'
@@ -297,8 +287,6 @@ object Form1: TForm1
         DataType = ftInteger
         Precision = -1
       end>
-    AfterPost = qResultsAfterPost
-    AfterRefresh = qResultsAfterRefresh
     Database = FormMain.SQLite3Conn
     Transaction = FormMain.SQLTransaction
     SQL.Strings = (
@@ -328,14 +316,11 @@ object Form1: TForm1
   end
   object dsResults: TDataSource
     DataSet = qResults
-    OnStateChange = dsResultsStateChange
-    OnDataChange = dsResultsDataChange
     OnUpdateData = dsResultsUpdateData
     left = 48
     top = 184
   end
   object qResultsAnswers: TSQLQuery
-    IndexName = 'DEFAULT_ORDER'
     FieldDefs = <    
       item
         Name = 'id'
@@ -400,6 +385,7 @@ object Form1: TForm1
   end
   object dsResultAnswers: TDataSource
     DataSet = qResultsAnswers
+    OnDataChange = dsResultAnswersDataChange
     OnUpdateData = dsResultAnswersUpdateData
     left = 48
     top = 264
