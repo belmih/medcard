@@ -28,6 +28,7 @@ type
     GroupBox2: TGroupBox;
     GroupBox3: TGroupBox;
     Panel1: TPanel;
+    pbar1: TProgressBar;
     qResults: TSQLQuery;
     qResultsAnswers: TSQLQuery;
     StatusBar1: TStatusBar;
@@ -35,13 +36,14 @@ type
     ToolBar2: TToolBar;
     ToolButton1: TToolButton;
     ToolButton2: TToolButton;
+    ToolButton4: TToolButton;
     procedure DBGrid1CellClick(Column: TColumn);
     procedure DBGrid1ColEnter(Sender: TObject);
     procedure dsResultAnswersDataChange(Sender: TObject; Field: TField);
     procedure dsResultAnswersUpdateData(Sender: TObject);
 
 
-    procedure dsResultsDataChange(Sender: TObject; Field: TField);
+
     procedure dsResultsStateChange(Sender: TObject);
     procedure dsResultsUpdateData(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -56,7 +58,9 @@ type
     procedure ToolButton1Click(Sender: TObject);
     procedure ToolButton2Click(Sender: TObject);
     procedure ToolButton3Click(Sender: TObject);
+    procedure progressbarfill;
   private
+
     FActionID: Integer;
   public
     property ActionID: Integer read FActionID write FActionID;
@@ -73,7 +77,9 @@ implementation
 { TForm1 }
 
 procedure TForm1.FormShow(Sender: TObject);
+
 begin
+
   qResults.DataBase:= FormMain.SQLite3Conn;
   qResults.Options:=[sqoCancelUpdatesOnRefresh, sqoRefreshUsingSelect, sqoKeepOpenOnCommit];
   qResults.Prepare;
@@ -82,6 +88,8 @@ begin
   qResultsAnswers.DataBase:= FormMain.SQLite3Conn;
   qResultsAnswers.Options:=[sqoCancelUpdatesOnRefresh, sqoRefreshUsingSelect, sqoKeepOpenOnCommit];
   qResultsAnswers.Open;
+
+  progressbarfill ;
   AfterShow := True;
 end;
 
@@ -99,11 +107,16 @@ end;
 
 procedure TForm1.qResultsAnswersAfterPost(DataSet: TDataSet);
 var id: Integer;
+
 begin
- qResultsAnswers.ApplyUpdates;
- id := qResults.FieldByName('id').AsInteger;
- qResults.Refresh;
- qResults.Locate('id',id,[]);
+
+
+   qResultsAnswers.ApplyUpdates;
+   id := qResults.FieldByName('id').AsInteger;
+   qResults.Refresh;
+   qResults.Locate('id',id,[]);
+
+
 end;
 
 procedure TForm1.qResultsAnswersAfterRefresh(DataSet: TDataSet);
@@ -165,7 +178,7 @@ end;
 
 procedure TForm1.dsResultAnswersDataChange(Sender: TObject; Field: TField);
 begin
-
+  progressbarfill;
 end;
 
 procedure TForm1.dsResultAnswersUpdateData(Sender: TObject);
@@ -186,17 +199,35 @@ end;
 
 
 
-procedure TForm1.dsResultsDataChange(Sender: TObject; Field: TField);
-begin
-
-end;
-
 procedure TForm1.dsResultsStateChange(Sender: TObject);
 begin
 
 end;
 
-
+procedure TForm1.progressbarfill;
+var
+  q: TSQLQuery;
+begin
+   q:=TSQLQuery.Create(nil);
+ try
+  q.DataBase := FormMain.SQLite3Conn;
+  q.SQL.Text := 'select  count(distinct r.id) cnt from results r inner join results_answer ra on r.id =ra.results_id where action_id = :id';
+  q.Prepare;
+  q.ParamByName('id').AsInteger := FActionID;
+  q.Open;
+  pbar1.Max := q.FieldByName('cnt').AsInteger;
+  q.Close;
+  q.SQL.Text := 'select count(distinct r.id) cnt from results r inner join results_answer ra on r.id =ra.results_id where action_id = :id and r.points is not null';
+  q.Prepare;
+  q.ParamByName('id').AsInteger := FActionID;
+  q.Open;
+  pbar1.Position := q.FieldByName('cnt').AsInteger;
+  StatusBar1.Panels[0].Text:='Отмечено вопросов ' + IntToStr(pbar1.Position) + ' из ' + IntToStr(pbar1.Max);
+   finally
+   q.Close;
+   q.Free;
+   end;
+end;
 
 procedure TForm1.dsResultsUpdateData(Sender: TObject);
 begin

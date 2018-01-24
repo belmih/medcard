@@ -6,8 +6,8 @@ interface
 
 uses
   Classes, SysUtils, sqldb, sqlite3conn, db, FileUtil, Forms, Controls,
-  Graphics, Dialogs, Menus, ActnList, ComCtrls, StdCtrls, DbCtrls, DBGrids, Grids,
-  LazUtf8 ;
+  Graphics, Dialogs, Menus, ActnList, ComCtrls, StdCtrls, DbCtrls, DBGrids,
+  Grids, Buttons, LazUtf8 ;
 type
 
   { TFormMain }
@@ -26,6 +26,7 @@ type
     actShowDoctorsForm: TAction;
     ActionList1: TActionList;
     actShowUsersForm: TAction;
+    BitBtn1: TBitBtn;
     btnAdd: TButton;
     dsQuestions: TDataSource;
     dsUsers: TDataSource;
@@ -77,6 +78,7 @@ type
     procedure actShowUsersFormExecute(Sender: TObject);
     procedure actStartTestExecute(Sender: TObject);
     procedure actUnblockExecute(Sender: TObject);
+    procedure BitBtn1Click(Sender: TObject);
     procedure dsDoctorsDataChange(Sender: TObject; Field: TField);
     procedure dsDoctorsStateChange(Sender: TObject);
     procedure dsDoctorsUpdateData(Sender: TObject);
@@ -162,6 +164,11 @@ var
      Query.Close;
      Query.Free;
    end;
+end;
+
+procedure TFormMain.BitBtn1Click(Sender: TObject);
+begin
+  eMedCard.Text:='';
 end;
 
 procedure TFormMain.dsDoctorsDataChange(Sender: TObject; Field: TField);
