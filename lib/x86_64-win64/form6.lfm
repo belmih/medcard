@@ -158,6 +158,7 @@ object FormReports: TFormReports
     Top = 26
     Width = 576
     Align = alClient
+    ScrollBars = ssAutoBoth
     TabOrder = 3
   end
   object SQLQuery1: TSQLQuery

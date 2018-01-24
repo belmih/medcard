@@ -56,14 +56,12 @@ type
     miShowUsersForm: TMenuItem;
     pmActions: TPopupMenu;
     qActions: TSQLQuery;
-    ShowLog: TMenuItem;
     SQLite3Conn: TSQLite3Connection;
     qUsers: TSQLQuery;
     qDoctors: TSQLQuery;
     qQuestions: TSQLQuery;
     SQLTransaction: TSQLTransaction;
     ToolBar1: TToolBar;
-    ToolButton1: TToolButton;
     ToolButton2: TToolButton;
     ToolButton3: TToolButton;
     ToolButton4: TToolButton;

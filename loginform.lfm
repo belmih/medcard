@@ -30,7 +30,6 @@ object FormLogin: TFormLogin
     Top = 73
     Width = 184
     TabOrder = 0
-    Text = 'admin'
   end
   object ePassword: TEdit
     Left = 68
@@ -40,7 +39,6 @@ object FormLogin: TFormLogin
     EchoMode = emPassword
     PasswordChar = '*'
     TabOrder = 1
-    Text = 'qwerty'
   end
   object btnLogin: TButton
     Left = 123

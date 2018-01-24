@@ -56,7 +56,6 @@ type
     miShowUsersForm: TMenuItem;
     pmActions: TPopupMenu;
     qActions: TSQLQuery;
-    ShowLog: TMenuItem;
     SQLite3Conn: TSQLite3Connection;
     qUsers: TSQLQuery;
     qDoctors: TSQLQuery;
@@ -235,6 +234,7 @@ begin
  end;
  dblcDoctor.KeyValue := key;
  qActions.Refresh;
+ eMedCard.Text:='';
 end;
 
 procedure TFormMain.actActionDeleteExecute(Sender: TObject);

@@ -66,7 +66,7 @@ var
 
 
         QueryStr := '  select lvl,'+LineEnding+
-        '       substr(questiontext,1,20) questiontext,'+LineEnding+
+        '       substr(questiontext,1,15) questiontext,'+LineEnding+
         '	   sum(sumpoints) s1,'+LineEnding+
         '	   fullname,'+LineEnding+
         '	   post'+LineEnding+
@@ -74,7 +74,7 @@ var
         '    on a.id=r.action_id left join doctors d'+LineEnding+
         '	on a.doc_id = d.id'+LineEnding+
         ' where enddate is not null'+LineEnding+
-        '   and datetime(actiondate, ''localtime'') between datetime(''' + dt1str + ''',''localtime'') and datetime('''+dt2str+''',''localtime'')'+LineEnding+
+        '   and datetime(enddate, ''localtime'') between datetime(''' + dt1str + ''') and datetime('''+dt2str+''')'+LineEnding+
         ' group by lvl, questiontext, fullname, post'+LineEnding+
         ' order by fullname,post,lvl';
        end;
@@ -97,7 +97,10 @@ var
      while not q.EOF do
      begin
         if fio <> q.FieldByName('fullname').AsString then
+        begin
+        fio := q.FieldByName('fullname').AsString;
         memoReport.Lines.Add('');
+        end ;
         memoReport.Lines.Add(
         q.FieldByName('lvl').AsString
         + Chr(9)+ q.FieldByName('questiontext').AsString

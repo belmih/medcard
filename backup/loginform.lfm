@@ -1,7 +1,7 @@
 object FormLogin: TFormLogin
   Left = 436
   Height = 240
-  Top = 291
+  Top = 347
   Width = 320
   Caption = 'medcard'
   ClientHeight = 240
@@ -30,7 +30,6 @@ object FormLogin: TFormLogin
     Top = 73
     Width = 184
     TabOrder = 0
-    Text = 'admin'
   end
   object ePassword: TEdit
     Left = 68
