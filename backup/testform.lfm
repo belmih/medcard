@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Left = 472
+  Left = 294
   Height = 600
-  Top = 51
+  Top = 86
   Width = 800
   Caption = 'Критерии'
   ClientHeight = 600
@@ -61,6 +61,7 @@ object Form1: TForm1
       Top = 2
       Caption = 'ToolButton4'
       ImageIndex = 16
+      OnClick = ToolButton4Click
       ParentShowHint = False
       ShowHint = True
     end
@@ -176,6 +177,47 @@ object Form1: TForm1
           VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbPost, nbCancel]
           Images = FormMain.imgListDBNavigator
         end
+        object DBEdit1: TDBEdit
+          Left = 313
+          Height = 24
+          Top = 2
+          Width = 80
+          DataField = 'points'
+          DataSource = dsResults
+          Align = alRight
+          CharCase = ecNormal
+          MaxLength = 0
+          TabOrder = 1
+        end
+        object DBNavigator3: TDBNavigator
+          Left = 393
+          Height = 24
+          Top = 2
+          Width = 24
+          Align = alRight
+          BevelOuter = bvNone
+          ChildSizing.EnlargeHorizontal = crsScaleChilds
+          ChildSizing.EnlargeVertical = crsScaleChilds
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 100
+          ClientHeight = 24
+          ClientWidth = 24
+          DataSource = dsResults
+          Flat = True
+          Options = []
+          TabOrder = 2
+          VisibleButtons = [nbPost]
+          Images = FormMain.imgListDBNavigator
+        end
+        object ToolButton3: TToolButton
+          Left = 192
+          Height = 22
+          Top = 2
+          Caption = 'ToolButton3'
+          Style = tbsSeparator
+        end
       end
       object DBGrid2: TDBGrid
         Left = 0
@@ -277,7 +319,7 @@ object Form1: TForm1
     FieldDefs = <    
       item
         Name = 'id'
-        DataType = ftAutoInc
+        DataType = ftInteger
         Precision = -1
       end    
       item

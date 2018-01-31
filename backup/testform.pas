@@ -13,6 +13,7 @@ type
   { TForm1 }
 
   TForm1 = class(TForm)
+    DBEdit1: TDBEdit;
     DBGrid1: TDBGrid;
     DBGrid2: TDBGrid;
     DBGroupBox1: TDBGroupBox;
@@ -20,6 +21,7 @@ type
     DBMemo2: TDBMemo;
     DBMemo3: TDBMemo;
     DBNavigator2: TDBNavigator;
+    DBNavigator3: TDBNavigator;
     DBText1: TDBText;
     dsResultAnswers: TDataSource;
     dsResults: TDataSource;
@@ -36,6 +38,7 @@ type
     ToolBar2: TToolBar;
     ToolButton1: TToolButton;
     ToolButton2: TToolButton;
+    ToolButton3: TToolButton;
     ToolButton4: TToolButton;
     procedure DBGrid1CellClick(Column: TColumn);
     procedure DBGrid1ColEnter(Sender: TObject);
@@ -59,6 +62,7 @@ type
     procedure ToolButton2Click(Sender: TObject);
     procedure ToolButton3Click(Sender: TObject);
     procedure progressbarfill;
+    procedure ToolButton4Click(Sender: TObject);
   private
 
     FActionID: Integer;
@@ -227,6 +231,14 @@ begin
    q.Close;
    q.Free;
    end;
+end;
+
+procedure TForm1.ToolButton4Click(Sender: TObject);
+begin
+  if pbar1.Showing then
+    pbar1.Hide
+  else
+    pbar1.Show;
 end;
 
 procedure TForm1.dsResultsUpdateData(Sender: TObject);

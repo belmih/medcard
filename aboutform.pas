@@ -19,6 +19,7 @@ type
     Label3: TLabel;
     Label4: TLabel;
     procedure Image1Click(Sender: TObject);
+    procedure Label1Click(Sender: TObject);
     procedure Label2Click(Sender: TObject);
   private
 
@@ -41,6 +42,11 @@ begin
 end;
 
 procedure TFormAbout.Image1Click(Sender: TObject);
+begin
+
+end;
+
+procedure TFormAbout.Label1Click(Sender: TObject);
 begin
 
 end;

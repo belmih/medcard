@@ -63,6 +63,8 @@ end;
 procedure TFormDoctors.ToolButton1Click(Sender: TObject);
 begin
   FormMain.qDoctors.ApplyUpdates();
+  formMain.qDoctors.Close;
+  FormMain.qDoctors.Open;
 end;
 
 procedure TFormDoctors.ToolButton2Click(Sender: TObject);

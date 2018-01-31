@@ -49,4 +49,17 @@ object FormLogin: TFormLogin
     OnClick = btnLoginClick
     TabOrder = 2
   end
+  object Label3: TLabel
+    Left = 10
+    Height = 15
+    Top = 215
+    Width = 300
+    Align = alBottom
+    Alignment = taRightJustify
+    BorderSpacing.Left = 10
+    BorderSpacing.Right = 10
+    BorderSpacing.Bottom = 10
+    Caption = 'Версия 1.1'
+    ParentColor = False
+  end
 end

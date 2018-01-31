@@ -48,9 +48,10 @@ object FormReports: TFormReports
       ChildSizing.ControlsPerLine = 1
       ClientHeight = 308
       ClientWidth = 216
-      ItemIndex = 0
+      ItemIndex = 1
       Items.Strings = (
         'Отчет 1'
+        'Отчет 2'
       )
       TabOrder = 0
     end

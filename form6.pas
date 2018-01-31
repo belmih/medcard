@@ -62,9 +62,6 @@ var
 
      case rgReports.ItemIndex of
      0: begin
-
-
-
         QueryStr := '  select lvl,'+LineEnding+
         '       substr(questiontext,1,15) questiontext,'+LineEnding+
         '	   sum(sumpoints) s1,'+LineEnding+
@@ -78,6 +75,22 @@ var
         ' group by lvl, questiontext, fullname, post'+LineEnding+
         ' order by fullname,post,lvl';
        end;
+    1: begin
+        QueryStr := '  select lvl,'+LineEnding+
+        '       substr(questiontext,1,15) questiontext,'+LineEnding+
+        '	   sum(sumpoints) s1,'+LineEnding+
+        '	   fullname,'+LineEnding+
+        '	   post'+LineEnding+
+        '  from actions a left join results_sum r'+LineEnding+
+        '    on a.id=r.action_id left join doctors d'+LineEnding+
+        '	on a.doc_id = d.id'+LineEnding+
+        ' where enddate is not null'+LineEnding+
+        '   and datetime(enddate, ''localtime'') between datetime(''' + dt1str + ''') and datetime('''+dt2str+''')'+LineEnding+
+        ' group by lvl, questiontext, fullname, post'+LineEnding+
+        ' order by fullname,post,lvl';
+       end;
+
+
     end;
    try
      memoReport.Lines.Clear;

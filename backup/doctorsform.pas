@@ -63,6 +63,7 @@ end;
 procedure TFormDoctors.ToolButton1Click(Sender: TObject);
 begin
   FormMain.qDoctors.ApplyUpdates();
+  formMain.qDoctors.Refresh;
 end;
 
 procedure TFormDoctors.ToolButton2Click(Sender: TObject);

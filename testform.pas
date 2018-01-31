@@ -13,6 +13,7 @@ type
   { TForm1 }
 
   TForm1 = class(TForm)
+    DBEdit1: TDBEdit;
     DBGrid1: TDBGrid;
     DBGrid2: TDBGrid;
     DBGroupBox1: TDBGroupBox;
@@ -20,6 +21,7 @@ type
     DBMemo2: TDBMemo;
     DBMemo3: TDBMemo;
     DBNavigator2: TDBNavigator;
+    DBNavigator3: TDBNavigator;
     DBText1: TDBText;
     dsResultAnswers: TDataSource;
     dsResults: TDataSource;
@@ -36,6 +38,7 @@ type
     ToolBar2: TToolBar;
     ToolButton1: TToolButton;
     ToolButton2: TToolButton;
+    ToolButton3: TToolButton;
     ToolButton4: TToolButton;
     procedure DBGrid1CellClick(Column: TColumn);
     procedure DBGrid1ColEnter(Sender: TObject);

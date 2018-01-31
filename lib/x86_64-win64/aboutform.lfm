@@ -20,6 +20,7 @@ object FormAbout: TFormAbout
     Caption = 'Some icons by Yusuke Kamiyamane. Licensed under a Creative Commons Attribution 3.0 License.'#13#10#13#10'http://p.yusukekamiyamane.com'
     ParentColor = False
     WordWrap = True
+    OnClick = Label1Click
   end
   object Label2: TLabel
     Left = 0

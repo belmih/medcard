@@ -39,7 +39,6 @@ object FormLogin: TFormLogin
     EchoMode = emPassword
     PasswordChar = '*'
     TabOrder = 1
-    Text = 'qwerty'
   end
   object btnLogin: TButton
     Left = 123
