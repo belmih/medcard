@@ -113,12 +113,10 @@ procedure TForm1.qResultsAnswersAfterPost(DataSet: TDataSet);
 var id: Integer;
 
 begin
-
-
-   qResultsAnswers.ApplyUpdates;
-   id := qResults.FieldByName('id').AsInteger;
-   qResults.Refresh;
-   qResults.Locate('id',id,[]);
+  qResultsAnswers.ApplyUpdates;
+  id := qResults.FieldByName('id').AsInteger;
+  qResults.Refresh;
+  qResults.Locate('id',id,[]);
 
 
 end;

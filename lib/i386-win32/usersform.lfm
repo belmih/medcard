@@ -1,0 +1,108 @@
+object FormUsers: TFormUsers
+  Left = 426
+  Height = 480
+  Top = 126
+  Width = 640
+  Caption = 'medcard'
+  ClientHeight = 480
+  ClientWidth = 640
+  OnClose = FormClose
+  OnCreate = FormCreate
+  Position = poScreenCenter
+  LCLVersion = '1.8.0.6'
+  object StatusBar1: TStatusBar
+    Left = 0
+    Height = 23
+    Top = 457
+    Width = 640
+    Panels = <>
+  end
+  object GroupBox2: TGroupBox
+    Left = 0
+    Height = 457
+    Top = 0
+    Width = 640
+    Align = alClient
+    Caption = 'Учетные записи'
+    ClientHeight = 437
+    ClientWidth = 636
+    TabOrder = 1
+    object ToolBar1: TToolBar
+      Left = 0
+      Height = 26
+      Top = 0
+      Width = 636
+      Caption = 'ToolBar1'
+      Images = FormMain.imgList
+      TabOrder = 0
+      object DBNavigator1: TDBNavigator
+        Left = 1
+        Height = 22
+        Top = 2
+        Width = 241
+        BevelOuter = bvNone
+        ChildSizing.EnlargeHorizontal = crsScaleChilds
+        ChildSizing.EnlargeVertical = crsScaleChilds
+        ChildSizing.ShrinkHorizontal = crsScaleChilds
+        ChildSizing.ShrinkVertical = crsScaleChilds
+        ChildSizing.Layout = cclLeftToRightThenTopToBottom
+        ChildSizing.ControlsPerLine = 100
+        ClientHeight = 22
+        ClientWidth = 241
+        DataSource = FormMain.dsUsers
+        Flat = True
+        Options = []
+        TabOrder = 0
+        Images = FormMain.imgListDBNavigator
+      end
+      object ToolButton1: TToolButton
+        Left = 242
+        Top = 2
+        Action = FormMain.actCommit
+        OnClick = ToolButton1Click
+      end
+    end
+    object DBGrid1: TDBGrid
+      Left = 0
+      Height = 411
+      Top = 26
+      Width = 636
+      Align = alClient
+      Color = clWindow
+      Columns = <      
+        item
+          Title.Caption = 'id'
+          Width = 25
+          FieldName = 'id'
+        end      
+        item
+          Title.Caption = 'login'
+          Width = 87
+          FieldName = 'login'
+        end      
+        item
+          Title.Caption = 'Пароль'
+          Width = 58
+          FieldName = 'passwrd'
+        end      
+        item
+          ButtonStyle = cbsPickList
+          PickList.Strings = (
+            'admin'
+            'user'
+          )
+          Title.Caption = 'Роль'
+          Width = 57
+          FieldName = 'userrole'
+        end      
+        item
+          Title.Caption = 'doctor_id'
+          Width = 65
+          FieldName = 'doctor_id'
+        end>
+      DataSource = FormMain.dsUsers
+      Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgAutoSizeColumns]
+      TabOrder = 1
+    end
+  end
+end

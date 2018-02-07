@@ -72,21 +72,27 @@ object FormQuests: TFormQuests
           end        
           item
             Title.Caption = 'Порядок'
-            Width = 60
+            Width = 63
             FieldName = 'questionorder'
           end        
           item
             ReadOnly = True
             Title.Caption = 'Текст вопроса'
-            Width = 320
+            Width = 94
             FieldName = 'questiontextcut'
           end        
           item
-            Title.Caption = 'id вопроса-родителя'
-            Width = 130
+            Title.Caption = 'id родителя'
+            Width = 79
             FieldName = 'parentid'
+          end        
+          item
+            Title.Caption = 'Максимум баллов'
+            Width = 118
+            FieldName = 'maxpoints'
           end>
         DataSource = FormMain.dsQuestions
+        Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgAutoSizeColumns]
         TabOrder = 0
       end
       object DBMemo2: TDBMemo
@@ -131,8 +137,11 @@ object FormQuests: TFormQuests
         end
         object tbSaveQuestions: TToolButton
           Left = 201
+          Hint = 'Записать в базу данных'
           Top = 2
-          Action = FormMain.actCommit
+          Caption = 'actCommit'
+          Enabled = False
+          ImageIndex = 0
           OnClick = tbSaveQuestionsClick
         end
       end
@@ -164,11 +173,6 @@ object FormQuests: TFormQuests
             Title.Caption = 'Порядок'
             Width = 60
             FieldName = 'answerorder'
-          end        
-          item
-            Title.Caption = 'id вопроса'
-            Width = 70
-            FieldName = 'question_id'
           end        
           item
             Title.Caption = 'Текст ответа'

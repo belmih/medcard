@@ -19,7 +19,9 @@ type
     ilDBNavigator: TImageList;
     Label1: TLabel;
     Label2: TLabel;
+    Label3: TLabel;
     procedure btnLoginClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
 
   private
 
@@ -36,7 +38,7 @@ var
 
 
 implementation
-  uses mainform;
+  uses mainform, fileinfo;
 {$R *.lfm}
 
 { TFormLogin }
@@ -75,6 +77,28 @@ begin
   begin
     FormLogin.Hide;
     FormMain.Show;
+  end;
+end;
+
+procedure TFormLogin.FormShow(Sender: TObject);
+var
+ FileVerInfo: TFileVersionInfo;
+begin
+  FileVerInfo:=TFileVersionInfo.Create(nil);
+  try
+    FileVerInfo.ReadFileInfo;
+    Label3.Caption:=FileVerInfo.VersionStrings.Values['ProductVersion'];
+   { writeln('Company: ',FileVerInfo.VersionStrings.Values['CompanyName']);
+    writeln('File description: ',FileVerInfo.VersionStrings.Values['FileDescription']);
+    writeln('File version: ',FileVerInfo.VersionStrings.Values['FileVersion']);
+    writeln('Internal name: ',FileVerInfo.VersionStrings.Values['InternalName']);
+    writeln('Legal copyright: ',FileVerInfo.VersionStrings.Values['LegalCopyright']);
+    writeln('Original filename: ',FileVerInfo.VersionStrings.Values['OriginalFilename']);
+    writeln('Product name: ',FileVerInfo.VersionStrings.Values['ProductName']);
+    writeln('Product version: ',FileVerInfo.VersionStrings.Values['ProductVersion']);  }
+
+  finally
+    FileVerInfo.Free;
   end;
 end;
 

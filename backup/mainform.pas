@@ -97,7 +97,7 @@ type
     procedure qUsersAfterDelete(DataSet: TDataSet);
     procedure qUsersAfterRefresh(DataSet: TDataSet);
     procedure GetTreeQuestions(nodes:TTreeNodes; rootnode:TTreeNode=nil; id:Integer = 0; lvl:String = '');
-    procedure SetQuestTemplate(l,q:String;qid:Integer);
+    procedure SetQuestTemplate(l,q:String;qid,maxpoints:Integer);
   private
     FUserID: Integer;
     FTreeQuestions: TTreeNode;
@@ -106,7 +106,7 @@ type
   end;
 
 const
-  version='0.1.0';
+  version=FileVerInfo.VersionStrings.Values['FileVersion']);
 
 var
   FormMain: TFormMain;
@@ -120,7 +120,8 @@ var
     end;
 
 implementation
- uses loginform, usersform, doctorsform, aboutform, questsform, addquestionform, testform, form6;
+ uses loginform, usersform, doctorsform, aboutform, questsform, addquestionform, testform, form6,
+ fileinfo  ;
 {$R *.lfm}
 
 { TFormMain }
@@ -431,19 +432,20 @@ begin
   actCommit.Enabled:=False;
 end;
 
-procedure TFormMain.SetQuestTemplate(l,q:String;qid:Integer);
+procedure TFormMain.SetQuestTemplate(l,q:String;qid,maxpoints:Integer);
 var
    Query: TSQLQuery;
 begin
   Query:= TSQLQuery.Create(nil);
   try
     Query.DataBase := SQLite3Conn;
-    Query.SQL.Text:='insert into quest_template(lvl,questiontext,question_id)'#13#10
-                   + 'values(:l,:q,:qid)';
+    Query.SQL.Text:='insert into quest_template(lvl,questiontext,question_id,maxpoints)'#13#10
+                   + 'values(:l,:q,:qid,:maxpoints)';
     Query.Prepare;
     Query.ParamByName('l').AsString := l;
     Query.ParamByName('q').AsString := q;
     Query.ParamByName('qid').AsInteger := qid;
+    Query.ParamByName('maxpoints').AsInteger := maxpoints;
     Query.ExecSQL;
 
   finally
@@ -464,7 +466,7 @@ begin
     Query := TSQLQuery.Create(nil);
     Query.DataBase := SQLite3Conn;
     Query.SQL.Text:='select id, questiontext, substr(questiontext,1,60) txt,'#13#10
-                   +' parentid, questionorder from questions'#13#10
+                   +' parentid, questionorder, maxpoints from questions'#13#10
                    +' where ifnull(parentid,0) = :p order by parentid, questionorder';
     Query.Prepare;
     Query.ParamByName('p').AsInteger := id;
@@ -495,7 +497,8 @@ begin
       TQuestion(node.Data).questionorder := Query.FieldByName('questionorder').AsInteger;
       TQuestion(node.Data).txt := Query.FieldByName('questiontext').AsString;
       TQuestion(node.Data).parentid := Query.FieldByName('parentid').AsInteger;
-      SetQuestTemplate(lvltmp,Query.FieldByName('questiontext').AsString,Query.FieldByName('id').AsInteger);
+      SetQuestTemplate(lvltmp,Query.FieldByName('questiontext').AsString,
+        Query.FieldByName('id').AsInteger,Query.FieldByName('maxpoints').AsInteger);
       GetTreeQuestions(nodes,node,Query.FieldByName('id').AsInteger,lvltmp);
       Query.Next;
     end;

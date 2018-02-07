@@ -6,6 +6,7 @@ object FormLogin: TFormLogin
   Caption = 'medcard'
   ClientHeight = 240
   ClientWidth = 320
+  OnShow = FormShow
   Position = poScreenCenter
   LCLVersion = '1.8.0.6'
   object Label1: TLabel
@@ -48,5 +49,18 @@ object FormLogin: TFormLogin
     Caption = 'Войти'
     OnClick = btnLoginClick
     TabOrder = 2
+  end
+  object Label3: TLabel
+    Left = 10
+    Height = 15
+    Top = 215
+    Width = 300
+    Align = alBottom
+    Alignment = taRightJustify
+    BorderSpacing.Left = 10
+    BorderSpacing.Right = 10
+    BorderSpacing.Bottom = 10
+    Caption = 'Версия'
+    ParentColor = False
   end
 end
