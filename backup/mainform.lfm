@@ -165,17 +165,17 @@ object FormMain: TFormMain
       Columns = <      
         item
           Title.Caption = 'id'
-          Width = 25
+          Width = 33
           FieldName = 'id'
         end      
         item
           Title.Caption = 'Дата начала'
-          Width = 82
+          Width = 118
           FieldName = 'actiondate'
         end      
         item
           Title.Caption = 'Врач'
-          Width = 42
+          Width = 263
           FieldName = 'doctor'
         end      
         item
@@ -185,7 +185,7 @@ object FormMain: TFormMain
         end      
         item
           Title.Caption = 'Дата завершения'
-          Width = 110
+          Width = 118
           FieldName = 'enddate'
         end>
       DataSource = dsActions
@@ -377,6 +377,7 @@ object FormMain: TFormMain
     top = 304
   end
   object qActions: TSQLQuery
+    IndexName = 'DEFAULT_ORDER'
     FieldDefs = <    
       item
         Name = 'id'
@@ -1333,16 +1334,16 @@ object FormMain: TFormMain
     }
   end
   object SQLite3Conn: TSQLite3Connection
-    Connected = False
+    Connected = True
     LoginPrompt = False
-    DatabaseName = '.\database.db'
+    DatabaseName = 'C:\Users\ййй\Documents\GitHub\medcard\database.db'
     KeepConnection = False
     Transaction = SQLTransaction
     left = 624
     top = 168
   end
   object SQLTransaction: TSQLTransaction
-    Active = False
+    Active = True
     Database = SQLite3Conn
     left = 712
     top = 170

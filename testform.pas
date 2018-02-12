@@ -99,7 +99,7 @@ end;
 
 procedure TForm1.qResultsAfterPost(DataSet: TDataSet);
 begin
-
+  qResults.ApplyUpdates;
 end;
 
 procedure TForm1.qResultsAfterRefresh(DataSet: TDataSet);
@@ -213,13 +213,13 @@ begin
    q:=TSQLQuery.Create(nil);
  try
   q.DataBase := FormMain.SQLite3Conn;
-  q.SQL.Text := 'select  count(distinct r.id) cnt from results r inner join results_answer ra on r.id =ra.results_id where action_id = :id';
+  q.SQL.Text := 'select  count(distinct r.id) cnt from results r inner join results_answer ra on r.id =ra.results_id where action_id = :id and skipquest<>1';
   q.Prepare;
   q.ParamByName('id').AsInteger := FActionID;
   q.Open;
   pbar1.Max := q.FieldByName('cnt').AsInteger;
   q.Close;
-  q.SQL.Text := 'select count(distinct r.id) cnt from results r inner join results_answer ra on r.id =ra.results_id where action_id = :id and r.points is not null';
+  q.SQL.Text := 'select count(distinct r.id) cnt from results r inner join results_answer ra on r.id =ra.results_id where action_id = :id and r.points is not null and skipquest<>1';
   q.Prepare;
   q.ParamByName('id').AsInteger := FActionID;
   q.Open;

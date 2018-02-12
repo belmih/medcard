@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Left = 294
+  Left = 347
   Height = 600
-  Top = 86
+  Top = 216
   Width = 800
   Caption = 'Критерии'
   ClientHeight = 600
@@ -82,26 +82,39 @@ object Form1: TForm1
       Top = 0
       Width = 796
       Align = alClient
-      AutoEdit = False
       Color = clWindow
       Columns = <      
         item
+          ReadOnly = True
           Title.Caption = 'Пункт'
-          Width = 60
+          Width = 50
           FieldName = 'lvl'
         end      
         item
+          ReadOnly = True
           Title.Caption = 'Текст вопроса'
-          Width = 650
+          Width = 500
           FieldName = 'questiontext1'
         end      
         item
+          ReadOnly = True
+          Title.Caption = 'Баллы max'
+          Width = 70
+          FieldName = 'maxpoints'
+        end      
+        item
           Title.Caption = 'Баллы'
-          Width = 50
+          Width = 55
           FieldName = 'points'
+        end      
+        item
+          ButtonStyle = cbsCheckboxColumn
+          Title.Caption = 'Не учитывать'
+          Width = 85
+          FieldName = 'skipquest'
         end>
       DataSource = dsResults
-      ReadOnly = True
+      Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgRowHighlight]
       TabOrder = 0
       OnCellClick = DBGrid1CellClick
       OnColEnter = DBGrid1ColEnter
@@ -274,7 +287,6 @@ object Form1: TForm1
       Top = 1
       Width = 377
       Align = alLeft
-      Caption = 'Номер пункта'
       ClientHeight = 273
       ClientWidth = 373
       DataField = 'lvl'
@@ -316,10 +328,11 @@ object Form1: TForm1
     TabOrder = 4
   end
   object qResults: TSQLQuery
+    IndexName = 'DEFAULT_ORDER'
     FieldDefs = <    
       item
         Name = 'id'
-        DataType = ftInteger
+        DataType = ftAutoInc
         Precision = -1
       end    
       item
@@ -350,10 +363,21 @@ object Form1: TForm1
         Precision = -1
       end    
       item
+        Name = 'maxpoints'
+        DataType = ftInteger
+        Precision = -1
+      end    
+      item
         Name = 'question_id'
         DataType = ftInteger
         Precision = -1
+      end    
+      item
+        Name = 'skipquest'
+        DataType = ftInteger
+        Precision = -1
       end>
+    AfterPost = qResultsAfterPost
     Database = FormMain.SQLite3Conn
     Transaction = FormMain.SQLTransaction
     SQL.Strings = (
@@ -363,20 +387,25 @@ object Form1: TForm1
       '       questiontext || '''' as questiontext1,'
       '       comment,'
       '       points,'
-      '       question_id'
+      '       maxpoints,'
+      '       question_id,'
+      '       skipquest'
       '  from results'
       ' where action_id = :a'
       ''
     )
     UpdateSQL.Strings = (
-      'update results set points=:points'
+      'update results'
+      '   set points = :points,'
+      '       skipquest = :skipquest'
       'where id = :id'
     )
     Params = <    
       item
-        DataType = ftUnknown
+        DataType = ftString
         Name = 'a'
         ParamType = ptInput
+        Value = ''
       end>
     left = 160
     top = 184

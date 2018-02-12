@@ -105,8 +105,6 @@ type
     property UserID: Integer read FUserID write FUserID;
   end;
 
-const
-  version=FileVerInfo.VersionStrings.Values['FileVersion']);
 
 var
   FormMain: TFormMain;
@@ -120,8 +118,7 @@ var
     end;
 
 implementation
- uses loginform, usersform, doctorsform, aboutform, questsform, addquestionform, testform, form6,
- fileinfo  ;
+ uses loginform, usersform, doctorsform, aboutform, questsform, addquestionform, testform, form6 ;
 {$R *.lfm}
 
 { TFormMain }

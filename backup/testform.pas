@@ -99,7 +99,7 @@ end;
 
 procedure TForm1.qResultsAfterPost(DataSet: TDataSet);
 begin
-
+  qResults.ApplyUpdates;
 end;
 
 procedure TForm1.qResultsAfterRefresh(DataSet: TDataSet);
