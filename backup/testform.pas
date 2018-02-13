@@ -13,10 +13,11 @@ type
   { TForm1 }
 
   TForm1 = class(TForm)
+    DBCheckBox1: TDBCheckBox;
     DBEdit1: TDBEdit;
     DBGrid1: TDBGrid;
     DBGrid2: TDBGrid;
-    DBGroupBox1: TDBGroupBox;
+    DBgbQuestText: TDBGroupBox;
     DBMemo1: TDBMemo;
     DBMemo2: TDBMemo;
     DBMemo3: TDBMemo;
@@ -98,8 +99,16 @@ begin
 end;
 
 procedure TForm1.qResultsAfterPost(DataSet: TDataSet);
+var id: Integer;
 begin
-  qResults.ApplyUpdates;
+   try
+    id := qResults.FieldByName('id').AsInteger;
+    qResults.ApplyUpdates;
+   except
+     on E: Exception do ShowMessage('Количество баллов не может быть больше max баллов '+LineEnding+LineEnding+ E.Message);
+   end;
+   qResults.Refresh;
+   qResults.Locate('id',id,[]);
 end;
 
 procedure TForm1.qResultsAfterRefresh(DataSet: TDataSet);
@@ -213,13 +222,13 @@ begin
    q:=TSQLQuery.Create(nil);
  try
   q.DataBase := FormMain.SQLite3Conn;
-  q.SQL.Text := 'select  count(distinct r.id) cnt from results r inner join results_answer ra on r.id =ra.results_id where action_id = :id';
+  q.SQL.Text := 'select  count(distinct r.id) cnt from results r inner join results_answer ra on r.id =ra.results_id where action_id = :id and skipquest<>1';
   q.Prepare;
   q.ParamByName('id').AsInteger := FActionID;
   q.Open;
   pbar1.Max := q.FieldByName('cnt').AsInteger;
   q.Close;
-  q.SQL.Text := 'select count(distinct r.id) cnt from results r inner join results_answer ra on r.id =ra.results_id where action_id = :id and r.points is not null';
+  q.SQL.Text := 'select count(distinct r.id) cnt from results r inner join results_answer ra on r.id =ra.results_id where action_id = :id and r.points is not null and skipquest<>1';
   q.Prepare;
   q.ParamByName('id').AsInteger := FActionID;
   q.Open;

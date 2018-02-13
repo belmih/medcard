@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, sqldb, sqlite3conn, db, DateTimePicker, Forms, Controls, Graphics,
-  Dialogs, ExtCtrls, DbCtrls, ComCtrls, StdCtrls, ComObj, ActiveX;
+  Dialogs, ExtCtrls, DbCtrls, ComCtrls, StdCtrls, DBGrids, ComObj, ActiveX;
 
 type
 
@@ -14,15 +14,16 @@ type
 
   TFormReports = class(TForm)
     Button1: TButton;
+    DataSource1: TDataSource;
     dt1: TDateTimePicker;
     dt2: TDateTimePicker;
     GroupBox1: TGroupBox;
+    GroupBox2: TGroupBox;
     Label1: TLabel;
     Label2: TLabel;
     memoReport: TMemo;
     Panel1: TPanel;
     Panel2: TPanel;
-    rgReports: TRadioGroup;
     SQLQuery1: TSQLQuery;
     StatusBar1: TStatusBar;
     ToolBar1: TToolBar;
@@ -59,33 +60,27 @@ var
  begin
    dt1str := FormatDateTime('yyyy-mm-dd HH:MM:SS',dt1.DateTime);
    dt2str := FormatDateTime('yyyy-mm-dd HH:MM:SS',dt2.DateTime);
+   QueryStr := '' +LineEnding+
+  'select substr(r.lvl,1,4) lvl,'+LineEnding+
+  '       fullname,'+LineEnding+
+  '	   post,'+LineEnding+
+  '	   round(sum(points)*100.0/sum(maxpoints),2) percent,'+LineEnding+
+  '	   (select count(1) from actions where doc_id = a.doc_id and enddate is not null ) cnt'+LineEnding+
+  '  from actions a left join results r on a.id=r.action_id left join doctors d on a.doc_id=d.id'+LineEnding+
+  ' where skipquest = 0 and enddate is not null and maxpoints > 0'+LineEnding+
+  '   and datetime(enddate, ''localtime'') between datetime(''' + dt1str + ''') and datetime('''+dt2str+''')'+LineEnding+
+  ' group by substr(r.lvl,1,4), fullname, post'+LineEnding+
+  ' order by fullname, enddate, lvl';
 
-     case rgReports.ItemIndex of
-     0: begin
-
-
-
-        QueryStr := '  select lvl,'+LineEnding+
-        '       substr(questiontext,1,15) questiontext,'+LineEnding+
-        '	   sum(sumpoints) s1,'+LineEnding+
-        '	   fullname,'+LineEnding+
-        '	   post'+LineEnding+
-        '  from actions a left join results_sum r'+LineEnding+
-        '    on a.id=r.action_id left join doctors d'+LineEnding+
-        '	on a.doc_id = d.id'+LineEnding+
-        ' where enddate is not null'+LineEnding+
-        '   and datetime(enddate, ''localtime'') between datetime(''' + dt1str + ''') and datetime('''+dt2str+''')'+LineEnding+
-        ' group by lvl, questiontext, fullname, post'+LineEnding+
-        ' order by fullname,post,lvl';
-       end;
-    end;
    try
      memoReport.Lines.Clear;
      memoReport.Lines.Add(
      'Пункт' + Chr(9) +
-     'Вопрос'  + Chr(9) + Chr(9) +
+     'ФИО'  + Chr(9) +
+     'Должность'  + Chr(9) +
      'Баллы'  + Chr(9) +
-     'ФИО,должность'
+     'Количество карт'  + Chr(9) +
+     ''
      );
      q := TSQLQuery.Create(nil);
      q.DataBase := FormMain.SQLite3Conn;
@@ -102,11 +97,11 @@ var
         memoReport.Lines.Add('');
         end ;
         memoReport.Lines.Add(
-        q.FieldByName('lvl').AsString
-        + Chr(9)+ q.FieldByName('questiontext').AsString
-        + Chr(9) + q.FieldByName('s1').AsString
-        + Chr(9) + q.FieldByName('fullname').AsString
-        + ', ' + q.FieldByName('post').AsString
+        q.FieldByName('lvl').AsString + Chr(9) +
+        q.FieldByName('fullname').AsString +  Chr(9)+
+        q.FieldByName('post').AsString + Chr(9) +
+        q.FieldByName('percent').AsString  + Chr(9) +
+        q.FieldByName('cnt').AsString + Chr(9)
         );
         q.Next;
      end;

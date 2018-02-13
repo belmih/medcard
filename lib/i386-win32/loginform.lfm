@@ -47,6 +47,7 @@ object FormLogin: TFormLogin
     Top = 168
     Width = 75
     Caption = 'Войти'
+    Default = True
     OnClick = btnLoginClick
     TabOrder = 2
   end

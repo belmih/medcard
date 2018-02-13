@@ -87,7 +87,7 @@ begin
   FileVerInfo:=TFileVersionInfo.Create(nil);
   try
     FileVerInfo.ReadFileInfo;
-    Label3.Caption:=FileVerInfo.VersionStrings.Values['ProductVersion'];
+    Label3.Caption:=FileVerInfo.VersionStrings.Values['FileVersion'];
    { writeln('Company: ',FileVerInfo.VersionStrings.Values['CompanyName']);
     writeln('File description: ',FileVerInfo.VersionStrings.Values['FileDescription']);
     writeln('File version: ',FileVerInfo.VersionStrings.Values['FileVersion']);

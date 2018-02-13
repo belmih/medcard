@@ -13,10 +13,11 @@ type
   { TForm1 }
 
   TForm1 = class(TForm)
+    DBCheckBox1: TDBCheckBox;
     DBEdit1: TDBEdit;
     DBGrid1: TDBGrid;
     DBGrid2: TDBGrid;
-    DBGroupBox1: TDBGroupBox;
+    DBgbQuestText: TDBGroupBox;
     DBMemo1: TDBMemo;
     DBMemo2: TDBMemo;
     DBMemo3: TDBMemo;
@@ -98,8 +99,16 @@ begin
 end;
 
 procedure TForm1.qResultsAfterPost(DataSet: TDataSet);
+var id: Integer;
 begin
-  qResults.ApplyUpdates;
+   try
+    id := qResults.FieldByName('id').AsInteger;
+    qResults.ApplyUpdates;
+   except
+     on E: Exception do ShowMessage('Количество баллов не может быть больше max баллов '+LineEnding+LineEnding+ E.Message);
+   end;
+   qResults.Refresh;
+   qResults.Locate('id',id,[]);
 end;
 
 procedure TForm1.qResultsAfterRefresh(DataSet: TDataSet);
