@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Left = 232
+  Left = 251
   Height = 600
-  Top = 99
+  Top = 151
   Width = 800
   Caption = 'Критерии'
   ClientHeight = 600
@@ -86,20 +86,17 @@ object Form1: TForm1
       Color = clWindow
       Columns = <      
         item
-          ReadOnly = False
           Title.Caption = 'Пункт'
           Width = 70
           FieldName = 'lvl'
         end      
         item
-          ReadOnly = False
           Title.Caption = 'Баллы max'
           Width = 70
           FieldName = 'maxpoints'
         end      
         item
           Font.Style = [fsBold]
-          ReadOnly = False
           Title.Caption = 'Баллы'
           Width = 71
           FieldName = 'points'
@@ -357,6 +354,7 @@ object Form1: TForm1
       '       skipquest = :skipquest'
       'where id = :id'
     )
+    Options = [sqoAutoCommit]
     Params = <    
       item
         DataType = ftString
@@ -426,6 +424,7 @@ object Form1: TForm1
       'update results_answer set checked=:checked, comment = :comment where'
       'id=:id'
     )
+    Options = [sqoAutoCommit]
     Params = <    
       item
         DataType = ftAutoInc

@@ -1,0 +1,27 @@
+object memoForm1: TmemoForm1
+  Left = 336
+  Height = 600
+  Top = 184
+  Width = 800
+  Caption = 'medcard'
+  ClientHeight = 600
+  ClientWidth = 800
+  LCLVersion = '1.8.0.6'
+  object Memo1: TMemo
+    Left = 0
+    Height = 574
+    Top = 26
+    Width = 800
+    Align = alClient
+    OnChange = Memo1Change
+    TabOrder = 0
+  end
+  object ToolBar1: TToolBar
+    Left = 0
+    Height = 26
+    Top = 0
+    Width = 800
+    Caption = 'ToolBar1'
+    TabOrder = 1
+  end
+end

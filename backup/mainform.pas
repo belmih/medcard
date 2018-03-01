@@ -118,7 +118,7 @@ var
     end;
 
 implementation
- uses loginform, usersform, doctorsform, aboutform, questsform, addquestionform, testform, form6 ;
+ uses loginform, usersform, doctorsform, aboutform, questsform, addquestionform, testform, form6,memoform ;
 {$R *.lfm}
 
 { TFormMain }
@@ -198,8 +198,8 @@ end;
 
 procedure TFormMain.actCommitExecute(Sender: TObject);
 begin
+  actCommit.Enabled := False;
   SQLTransaction.Commit;
-  actCommit.Enabled:=False;
 end;
 
 procedure TFormMain.actActionAddExecute(Sender: TObject);
@@ -403,10 +403,10 @@ begin
   qDoctors.DataBase:=SQLite3Conn;
   qQuestions.DataBase:=SQLite3Conn;
   qActions.DataBase:=SQLite3Conn;
-  qUsers.Options     := [sqoCancelUpdatesOnRefresh, sqoRefreshUsingSelect, sqoKeepOpenOnCommit];
-  qDoctors.Options   := [sqoCancelUpdatesOnRefresh, sqoRefreshUsingSelect, sqoKeepOpenOnCommit];
-  qQuestions.Options := [sqoCancelUpdatesOnRefresh, sqoRefreshUsingSelect, sqoKeepOpenOnCommit];
-  qActions.Options   := [sqoCancelUpdatesOnRefresh, sqoRefreshUsingSelect, sqoKeepOpenOnCommit];
+  qUsers.Options     := [sqoCancelUpdatesOnRefresh, sqoRefreshUsingSelect, sqoKeepOpenOnCommit, sqoAutoApplyUpdates];
+  qDoctors.Options   := [sqoCancelUpdatesOnRefresh, sqoRefreshUsingSelect, sqoKeepOpenOnCommit, sqoAutoApplyUpdates];
+  qQuestions.Options := [sqoCancelUpdatesOnRefresh, sqoRefreshUsingSelect, sqoKeepOpenOnCommit, sqoAutoApplyUpdates];
+  qActions.Options   := [sqoCancelUpdatesOnRefresh, sqoRefreshUsingSelect, sqoKeepOpenOnCommit, sqoAutoApplyUpdates];
   try
     qUsers.Open;
     qDoctors.Open;

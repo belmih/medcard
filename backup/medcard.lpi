@@ -16,7 +16,7 @@
       <AutoIncrementBuild Value="True"/>
       <MinorVersionNr Value="1"/>
       <RevisionNr Value="1"/>
-      <BuildNr Value="7"/>
+      <BuildNr Value="8"/>
       <Language Value="0419"/>
       <CharSet Value="04B0"/>
       <StringTable ProductVersion="0.0.0.0"/>
@@ -32,18 +32,21 @@
         <FormatVersion Value="1"/>
       </local>
     </RunParams>
-    <RequiredPackages Count="3">
+    <RequiredPackages Count="4">
       <Item1>
-        <PackageName Value="DateTimeCtrls"/>
+        <PackageName Value="Printer4Lazarus"/>
       </Item1>
       <Item2>
-        <PackageName Value="FCL"/>
+        <PackageName Value="DateTimeCtrls"/>
       </Item2>
       <Item3>
-        <PackageName Value="LCL"/>
+        <PackageName Value="FCL"/>
       </Item3>
+      <Item4>
+        <PackageName Value="LCL"/>
+      </Item4>
     </RequiredPackages>
-    <Units Count="15">
+    <Units Count="16">
       <Unit0>
         <Filename Value="medcard.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -140,6 +143,12 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit14>
+      <Unit15>
+        <Filename Value="memoform.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="memoForm1"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit15>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

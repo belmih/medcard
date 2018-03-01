@@ -1,7 +1,7 @@
 object FormQuests: TFormQuests
-  Left = 122
+  Left = 179
   Height = 531
-  Top = 0
+  Top = 160
   Width = 1100
   Caption = 'medcard'
   ClientHeight = 531
@@ -10,17 +10,17 @@ object FormQuests: TFormQuests
   LCLVersion = '1.8.0.6'
   object GroupBox3: TGroupBox
     Left = 0
-    Height = 531
-    Top = 0
+    Height = 505
+    Top = 26
     Width = 520
     Align = alLeft
     Caption = 'Дерево вопросов'
-    ClientHeight = 511
+    ClientHeight = 485
     ClientWidth = 516
     TabOrder = 0
     object TreeView1: TTreeView
       Left = 0
-      Height = 511
+      Height = 485
       Top = 0
       Width = 516
       Align = alClient
@@ -40,11 +40,11 @@ object FormQuests: TFormQuests
   end
   object Panel1: TPanel
     Left = 520
-    Height = 531
-    Top = 0
+    Height = 505
+    Top = 26
     Width = 580
     Align = alClient
-    ClientHeight = 531
+    ClientHeight = 505
     ClientWidth = 580
     TabOrder = 1
     object GroupBox1: TGroupBox
@@ -135,27 +135,21 @@ object FormQuests: TFormQuests
           TabOrder = 0
           Images = FormMain.imgListDBNavigator
         end
-        object tbSaveQuestions: TToolButton
-          Left = 201
-          Top = 2
-          Action = FormMain.actCommit
-          OnClick = tbSaveQuestionsClick
-        end
       end
     end
     object GroupBox2: TGroupBox
       Left = 1
-      Height = 257
+      Height = 231
       Top = 273
       Width = 578
       Align = alClient
       Caption = 'Ответы'
-      ClientHeight = 237
+      ClientHeight = 211
       ClientWidth = 574
       TabOrder = 1
       object DBGrid1: TDBGrid
         Left = 0
-        Height = 133
+        Height = 107
         Top = 26
         Width = 574
         Align = alClient
@@ -187,7 +181,7 @@ object FormQuests: TFormQuests
       object DBMemo1: TDBMemo
         Left = 0
         Height = 78
-        Top = 159
+        Top = 133
         Width = 574
         Align = alBottom
         DataField = 'answertext'
@@ -223,13 +217,29 @@ object FormQuests: TFormQuests
           TabOrder = 0
           Images = FormMain.imgListDBNavigator
         end
-        object ToolButton2: TToolButton
-          Left = 201
-          Top = 2
-          Action = FormMain.actCommit
-          OnClick = ToolButton2Click
-        end
       end
+    end
+  end
+  object ToolBar3: TToolBar
+    Left = 0
+    Height = 26
+    Top = 0
+    Width = 1100
+    Caption = 'ToolBar3'
+    Images = FormMain.imgList
+    TabOrder = 2
+    object ToolButton1: TToolButton
+      Left = 1
+      Top = 2
+      Action = FormMain.actCommit
+      OnClick = ToolButton1Click
+    end
+    object ToolButton2: TToolButton
+      Left = 24
+      Top = 2
+      Caption = 'ToolButton2'
+      ImageIndex = 18
+      OnClick = ToolButton2Click
     end
   end
   object pmQuestions: TPopupMenu
@@ -276,7 +286,6 @@ object FormQuests: TFormQuests
         DataType = ftInteger
         Precision = -1
       end>
-    BeforeInsert = qAnswersQBeforeInsert
     OnNewRecord = qAnswersQNewRecord
     Database = FormMain.SQLite3Conn
     Transaction = FormMain.SQLTransaction
@@ -293,6 +302,10 @@ object FormQuests: TFormQuests
     InsertSQL.Strings = (
       'insert into answers (answerorder,question_id,answertext,points )'
       'values (:answerorder,:question_id,:answertext,:points)'
+      ''
+    )
+    DeleteSQL.Strings = (
+      'delete from answers where id = :id;'
       ''
     )
     Params = <    

@@ -16,7 +16,6 @@ type
     btnLogin: TButton;
     eLogin: TEdit;
     ePassword: TEdit;
-    ilDBNavigator: TImageList;
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
@@ -66,9 +65,10 @@ begin
     if not Query.EOF then
     begin
       FormMain.UserID := Query.Fields.FieldByName('id').AsInteger;
-      //userFullName := query.Fields.FieldByName('fullname').AsString;
       ShowMainForm := True;
-    end;
+    end
+    else
+      ShowMessage('Неверный логин или пароль!');
   finally
     Query.Close;
     Query.Free;
